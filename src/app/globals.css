@@ -181,10 +181,6 @@ a {
   overflow: hidden;
 }
 
-.hero-mobile-image {
-  display: none;
-}
-
 .hero-background-plate {
   position: absolute;
   z-index: 1;
@@ -203,6 +199,11 @@ a {
   display: block;
   width: 96%;
   pointer-events: none;
+}
+
+.hero-model-image {
+  object-fit: contain;
+  object-position: right bottom;
 }
 
 .hero-insight {
@@ -1094,10 +1095,6 @@ a {
     overflow: visible;
   }
 
-  .hero-mobile-image {
-    display: none;
-  }
-
   .hero-background-plate {
     position: absolute;
     z-index: 1;
@@ -1253,6 +1250,22 @@ a {
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) and (max-aspect-ratio: 1 / 1) {
+  .hero-model-layer {
+    top: -2.5rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-model-image {
+    object-fit: contain;
+    object-position: right top;
   }
 }
 

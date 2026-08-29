@@ -150,22 +150,13 @@ export function LandingPage() {
         </div>
 
         <div data-hero-image className="hero-visual relative">
-          <Image
-            src="/images/hero-skin.png?v=2"
-            alt="Mulher com pele iluminada ao lado de um sérum, representando análise de pele e skincare personalizado"
-            fill
-            priority
-            unoptimized
-            sizes="(max-width: 767px) 100vw, (max-width: 1279px) 62vw, 920px"
-            className="hero-mobile-image object-cover object-[72%_center]"
-          />
           <div className="hero-background-plate absolute" aria-hidden="true">
             <Image
-              src="/images/hero-background-plate-v1.png"
+              src="/images/hero-background-plate-v1.png?v=2"
               alt=""
               fill
               priority
-              quality={90}
+              unoptimized
               sizes="64vw"
               className="object-cover object-right"
             />
@@ -178,7 +169,7 @@ export function LandingPage() {
               priority
               unoptimized
               sizes="(max-width: 1439px) 52vw, 760px"
-              className="object-contain object-right-bottom"
+              className="hero-model-image object-contain object-right-bottom"
             />
           </div>
           <motion.aside
