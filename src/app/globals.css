@@ -195,7 +195,7 @@ a {
   z-index: 2;
   top: 34%;
   right: -8%;
-  bottom: -2%;
+  bottom: -6%;
   display: block;
   width: 96%;
   pointer-events: none;
@@ -1109,10 +1109,10 @@ a {
     z-index: 2;
     top: -5rem;
     right: clamp(-1.5rem, -1.6vw, -0.5rem);
-    bottom: 0;
+    bottom: -3rem;
     left: auto;
     display: block;
-    width: min(80%, 56rem);
+    width: min(86%, 60rem);
     pointer-events: none;
   }
 
@@ -1254,18 +1254,22 @@ a {
 }
 
 @media (min-width: 768px) and (max-aspect-ratio: 1 / 1) {
+  .hero-visual {
+    clip-path: inset(-8rem 0 -4rem 0);
+  }
+
   .hero-model-layer {
     top: -2.5rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
+    right: -25%;
+    bottom: -3rem;
+    left: auto;
+    width: 126%;
+    overflow: visible;
   }
 
   .hero-model-image {
     object-fit: contain;
-    object-position: right top;
+    object-position: center bottom;
   }
 }
 
