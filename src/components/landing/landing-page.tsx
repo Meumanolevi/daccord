@@ -172,7 +172,7 @@ export function LandingPage() {
           </div>
           <div className="hero-model-layer absolute" aria-hidden="true">
             <Image
-              src="/images/hero-model-hd-v13.png?v=3"
+              src="/images/hero-model-hd-v13.png?v=4"
               alt=""
               fill
               priority

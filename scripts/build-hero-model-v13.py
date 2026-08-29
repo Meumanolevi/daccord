@@ -85,22 +85,34 @@ def main() -> None:
         raw_alpha = np.asarray(Image.open(GENERATED_CUTOUT).convert("RGBA"))[:, :, 3]
         raw_alpha = keep_largest_component(raw_alpha)
         core = raw_alpha > 205
+        source_work = generated_rgb.astype(np.float32)
+        source_value = source_work.mean(axis=2)
+        source_chroma = source_work.max(axis=2) - source_work.min(axis=2)
+        source_edge_distance = ndi.distance_transform_edt(core)
+        matte_residue = (
+            core
+            & (source_value > 65)
+            & (source_chroma < 50)
+            & (source_edge_distance < 34)
+        )
+        core &= ~matte_residue
+        # The AI outpaint includes fine flyaways and a few checkerboard-colored
+        # islands near the crown. Close tiny gaps and discard one-pixel residue
+        # so the silhouette stays clean on white and pale-pink backgrounds.
+        core = ndi.binary_closing(core, structure=np.ones((3, 3), dtype=bool))
+        core = ndi.binary_opening(core, structure=np.ones((3, 3), dtype=bool))
+        core = keep_largest_component(core.astype(np.uint8) * 255) > 0
         generated_alpha = np.clip(
             ndi.gaussian_filter(core.astype(np.float32), sigma=0.72) * 255.0,
             0,
             255,
         ).astype(np.uint8)
+        generated_alpha[generated_alpha < 58] = 0
         _, nearest_core = ndi.distance_transform_edt(~core, return_indices=True)
         generated_clean = generated_rgb.copy()
         fringe = (~core) & (generated_alpha > 0)
         nearest_color = generated_rgb[nearest_core[0], nearest_core[1]]
         generated_clean[fringe] = nearest_color[fringe]
-        edge_distance = ndi.distance_transform_edt(core)
-        edge_zone = (generated_alpha > 0) & (edge_distance < 4.5)
-        generated_clean[edge_zone] = np.minimum(
-            generated_clean[edge_zone],
-            np.array([58, 44, 50], dtype=np.uint8),
-        )
     else:
         generated_alpha = checker_alpha(generated_rgb)
         generated_clean = decontaminate(generated_rgb, generated_alpha)
@@ -145,6 +157,10 @@ def main() -> None:
     original_canvas = Image.new("RGBA", canvas_size, (0, 0, 0, 0))
     original_canvas.alpha_composite(original, (-original_crop_x, original_shift_y))
     original_data = np.asarray(original_canvas).copy()
+    original_support = ndi.binary_dilation(
+        original_data[:, :, 3] > 8,
+        iterations=12,
+    )
     top_blend = np.clip((y - 285.0) / 115.0, 0.0, 1.0)
     original_data[:, :, 3] = np.clip(
         original_data[:, :, 3].astype(np.float32) * top_blend,
@@ -152,6 +168,22 @@ def main() -> None:
         255,
     ).astype(np.uint8)
     original_canvas = Image.fromarray(original_data, "RGBA")
+
+    # Below the completed crown, the generated layer may only overlap the
+    # original subject silhouette. This prevents a secondary outline from
+    # appearing beside the hair while keeping the new top fully visible.
+    crown_data = np.asarray(crown).copy()
+    support_mix = np.clip((y - 245.0) / 105.0, 0.0, 1.0)
+    support_alpha = (
+        (1.0 - support_mix)
+        + (support_mix * original_support.astype(np.float32))
+    )
+    crown_data[:, :, 3] = np.clip(
+        crown_data[:, :, 3].astype(np.float32) * support_alpha,
+        0,
+        255,
+    ).astype(np.uint8)
+    crown = Image.fromarray(crown_data, "RGBA")
 
     master = Image.alpha_composite(crown, original_canvas)
     master.save(MASTER, optimize=True)
