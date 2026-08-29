@@ -1093,6 +1093,7 @@ a {
     grid-area: 1 / 2;
     min-height: 0;
     overflow: visible;
+    clip-path: inset(-8rem 0 0 0);
   }
 
   .hero-background-plate {
@@ -1255,7 +1256,7 @@ a {
 
 @media (min-width: 768px) and (max-aspect-ratio: 1 / 1) {
   .hero-visual {
-    clip-path: inset(-8rem 0 -4rem 0);
+    clip-path: inset(-8rem 0 0 0);
   }
 
   .hero-model-layer {
