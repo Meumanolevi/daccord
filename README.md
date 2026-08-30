@@ -8,17 +8,13 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
 ![Status](https://img.shields.io/badge/status-em_evolução-9D286F)
 
-![Prévia da landing page D’Accord](docs/preview/daccord-hero.png)
+
 
 ## Sobre o projeto
 
 D’Accord é o rebranding e a base técnica de uma plataforma de curadoria de skincare. A landing apresenta o propósito da marca, explica a jornada de análise, demonstra uma recomendação de produto e prepara o caminho para as telas de diagnóstico, questionário e resultados.
 
 O projeto traduz o frame oficial do Figma para uma aplicação responsiva em Next.js, preservando a direção editorial da marca e adicionando uma arquitetura pronta para evoluir sem reescrever a landing.
-
-- [Arquivo no Figma — D’Accord: Landing Page e Telas Principais](https://www.figma.com/design/p9TFscb93b0H2kBBO7qLYD/D%E2%80%99Accord-%E2%80%94-Landing-Page-e-Telas-Principais?node-id=7-13)
-- Página de referência: `Screens`
-- Frame principal: `25:56` — `V2 · 01 · Landing Page — Modelo adaptado`
 
 ## Destaques
 
