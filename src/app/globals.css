@@ -181,29 +181,10 @@ a {
   overflow: hidden;
 }
 
-.hero-background-plate {
-  position: absolute;
+.hero-composite-image {
   z-index: 1;
-  inset: 0;
-  display: block;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hero-model-layer {
-  position: absolute;
-  z-index: 2;
-  top: 34%;
-  right: -8%;
-  bottom: -6%;
-  display: block;
-  width: 96%;
-  pointer-events: none;
-}
-
-.hero-model-image {
-  object-fit: contain;
-  object-position: right bottom;
+  object-fit: cover;
+  object-position: 70% center;
 }
 
 .hero-insight {
@@ -1092,29 +1073,11 @@ a {
     z-index: 50;
     grid-area: 1 / 2;
     min-height: 0;
-    overflow: visible;
-    clip-path: inset(-8rem 0 0 0);
-  }
-
-  .hero-background-plate {
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-    display: block;
     overflow: hidden;
-    pointer-events: none;
   }
 
-  .hero-model-layer {
-    position: absolute;
-    z-index: 2;
-    top: -1rem;
-    right: clamp(-1.5rem, -1.6vw, -0.5rem);
-    bottom: -4.5rem;
-    left: auto;
-    display: block;
-    width: min(86%, 60rem);
-    pointer-events: none;
+  .hero-composite-image {
+    object-position: right center;
   }
 
   .hero-insight {
@@ -1251,26 +1214,6 @@ a {
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
-  }
-}
-
-@media (min-width: 768px) and (max-aspect-ratio: 1 / 1) {
-  .hero-visual {
-    clip-path: inset(-8rem 0 0 0);
-  }
-
-  .hero-model-layer {
-    top: -1rem;
-    right: -25%;
-    bottom: -4.5rem;
-    left: auto;
-    width: 126%;
-    overflow: visible;
-  }
-
-  .hero-model-image {
-    object-fit: contain;
-    object-position: center bottom;
   }
 }
 

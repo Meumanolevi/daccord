@@ -150,28 +150,15 @@ export function LandingPage() {
         </div>
 
         <div data-hero-image className="hero-visual relative">
-          <div className="hero-background-plate absolute" aria-hidden="true">
-            <Image
-              src="/images/hero-background-plate-v1.png?v=2"
-              alt=""
-              fill
-              priority
-              unoptimized
-              sizes="64vw"
-              className="object-cover object-right"
-            />
-          </div>
-          <div className="hero-model-layer absolute" aria-hidden="true">
-            <Image
-              src="/images/hero-model-single-v16.png?v=7"
-              alt=""
-              fill
-              priority
-              unoptimized
-              sizes="(max-width: 1439px) 52vw, 760px"
-              className="hero-model-image object-contain object-right-bottom"
-            />
-          </div>
+          <Image
+            src="/images/hero-skin-premium-v17.png?v=8"
+            alt=""
+            fill
+            priority
+            unoptimized
+            sizes="(max-width: 767px) 100vw, 64vw"
+            className="hero-composite-image"
+          />
           <motion.aside
             className="hero-insight absolute border border-white/70 bg-white/95 text-plum shadow-[0_20px_50px_rgba(43,25,36,0.16)]"
             initial={reduceMotion ? false : { opacity: 0, y: 20 }}
