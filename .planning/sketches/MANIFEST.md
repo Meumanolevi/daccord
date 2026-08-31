@@ -26,3 +26,12 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Produto:** compatibilidade explicada com hierarquia mais leve, poucos contornos e cantos discretos somente no universo do produto.
 - **Geometria:** a interface global permanece ortogonal; o arredondamento de 4 a 10 px é uma exceção funcional para imagens, controles e painéis de produto.
 - **Próximo sprint:** institucional, acessibilidade, consentimento de cookies e autenticação.
+
+## Sprint 2 — Confiança, consentimento e acesso
+
+| # | Name | Design Question | Winner | Tags |
+|---|------|-----------------|--------|------|
+| 004 | institutional-system | Como manter leitura confortável, navegação interna e identidade editorial em páginas longas? | D · Síntese C mais leve | institutional, legal, accessibility, content |
+| 005 | help-contact | Como encaminhar cada dúvida sem transformar contato em um formulário genérico? | pendente | help, faq, contact, support |
+| 006 | cookie-consent | Como obter consentimento granular sem bloquear a landing ou induzir escolhas? | pendente | cookies, consent, lgpd, privacy |
+| 007 | authentication | Como criar uma jornada de acesso confiável, curta e fácil de recuperar? | pendente | login, signup, verification, recovery |
