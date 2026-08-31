@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D’Accord · Sketch 003 · Detalhe do produto</title>
+  <link id="theme-link" rel="stylesheet" href="../themes/default.css">
+  <style>
+    * { box-sizing: border-box; }
+    html { background:#ece8ea; color:var(--color-text); font-family:var(--font-sans); }
+    body { min-width:320px; margin:0; padding-top:58px; }
+    button,input,select { font:inherit; }
+    button,a { transition:all .15s ease; }
+    button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible { outline:2px solid var(--color-focus); outline-offset:3px; }
+    button { color:inherit; cursor:pointer; }
+    [hidden] { display:none !important; }
+    .variant-nav { position:fixed; z-index:9998; inset:0 0 auto; display:flex; min-height:58px; align-items:center; gap:8px; padding:9px 16px; overflow-x:auto; border-bottom:1px solid #cbc3c7; background:rgba(255,255,255,.98); box-shadow:0 6px 20px rgba(43,25,36,.08); font-family:system-ui,sans-serif; }
+    .variant-nav__label { margin-right:8px; color:#6b6267; font-size:11px; font-weight:800; letter-spacing:.09em; white-space:nowrap; }
+    .variant-tab { min-height:36px; padding:7px 12px; border:1px solid #d2c9cd; background:white; white-space:nowrap; }
+    .variant-tab:hover { border-color:var(--color-primary); color:var(--color-primary); }
+    .variant-tab.active { border-color:var(--color-text); background:var(--color-text); color:white; }
+    .sketch-stage { min-height:calc(100vh - 58px); padding:24px; }
+    .viewport-shell { width:100%; margin:0 auto; transition:width .25s ease; }
+    #sketch-viewport { width:100%; min-height:880px; overflow:hidden; border:1px solid #bbb1b6; background:var(--color-surface); box-shadow:var(--shadow-lg); container-type:inline-size; }
+    #sketch-viewport.large-text { font-size:112.5%; }
+    #sketch-viewport.high-contrast { --color-text:#14000c; --color-text-muted:#3f2434; --color-primary:#720043; --color-primary-hover:#52002f; --color-border-soft:rgba(20,0,12,.4); }
+    .variant { display:none; min-height:880px; background:var(--color-bg); }
+    .variant.active { display:block; }
+
+    .shell-header { position:relative; z-index:20; border-bottom:3px solid var(--color-primary); background:white; }
+    .login-notice { display:grid; min-height:31px; place-items:center; padding:6px 16px; background:var(--color-surface-soft); font-size:11px; text-align:center; }
+    .login-notice strong { text-decoration:underline; text-underline-offset:2px; }
+    .main-row { display:grid; min-height:80px; grid-template-columns:1fr auto 1fr; align-items:center; gap:20px; padding:10px 38px; }
+    .utility,.actions { display:flex; align-items:center; gap:15px; }
+    .utility button,.actions button { min-height:36px; border:0; background:transparent; font-size:11px; }
+    .utility button:hover,.actions button:hover { color:var(--color-primary); }
+    .actions { justify-self:end; }
+    .brand-home { grid-column:2; justify-self:center; }
+    .brand-logo { display:block; width:188px; height:auto; }
+    .outlined { padding:8px 12px !important; border:1px solid var(--color-text) !important; }
+    .guided-rail { display:grid; grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr); border-top:1px solid var(--color-border-soft); }
+    .analysis-entry { display:flex; min-height:54px; align-items:center; justify-content:space-between; gap:14px; padding:8px 18px 8px 38px; background:var(--color-primary); color:white; }
+    .analysis-entry p { margin:0; font-size:11px; }
+    .analysis-entry strong { display:block; font-size:13px; }
+    .analysis-entry button { min-height:35px; padding:7px 11px; border:1px solid white; background:transparent; color:white; font-size:10px; font-weight:800; }
+    .analysis-entry button:hover { background:white; color:var(--color-primary); }
+    .search-form { display:flex; min-width:0; height:54px; border-left:1px solid var(--color-border-soft); background:white; }
+    .search-form input { min-width:0; flex:1; padding:0 16px; border:0; outline:0; background:transparent; color:var(--color-text); }
+    .search-form button { width:54px; border:0; background:transparent; font-size:18px; }
+    .search-form button:hover { background:var(--color-surface-soft); color:var(--color-primary); }
+    .mobile-search,.mobile-menu { display:none; width:42px; height:42px; place-items:center; border:0; background:transparent; font-size:20px; }
+    .mobile-panel { display:none; padding:14px; border-top:1px solid var(--color-border-soft); background:white; }
+    .mobile-panel.open { display:grid; gap:10px; }
+    .mobile-panel .search-form { height:44px; border:1px solid var(--color-border-soft); }
+    .mobile-panel button { min-height:42px; border:0; border-bottom:1px solid var(--color-border-soft); background:transparent; text-align:left; }
+
+    .product-page { min-height:680px; }
+    .breadcrumb { margin:0; padding:17px 38px; border-bottom:1px solid var(--color-border-soft); color:var(--color-text-muted); font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
+    .pdp-grid { display:grid; grid-template-columns:minmax(0,1.18fr) minmax(340px,.82fr); min-height:610px; }
+    .gallery { display:grid; grid-template-columns:74px minmax(0,1fr); gap:12px; padding:28px 30px 42px 38px; background:#f4e9ee; }
+    .thumbnails { display:grid; align-content:start; gap:8px; }
+    .thumbnail { display:grid; aspect-ratio:1; place-items:center; border:1px solid transparent; background:white; color:var(--color-text-muted); font-size:10px; }
+    .thumbnail:hover,.thumbnail[aria-pressed="true"] { border-color:var(--color-primary); color:var(--color-primary); }
+    .product-hero { position:relative; display:grid; min-height:500px; place-items:center; overflow:hidden; background:linear-gradient(145deg,#ead3de,#fff7fa); }
+    .product-hero::before { position:absolute; width:145px; height:320px; border:1px solid #775c69; background:rgba(255,255,255,.3); box-shadow:inset 0 0 35px rgba(157,40,111,.12); content:""; }
+    .product-hero::after { position:absolute; top:calc(50% - 190px); width:116px; height:72px; border:1px solid #775c69; background:linear-gradient(#b9a7b0,#73616a); content:""; }
+    .hero-label { position:relative; z-index:2; margin-top:90px; font-family:var(--font-display); font-size:clamp(48px,6vw,82px); color:rgba(43,25,36,.65); }
+    .hero-caption { position:absolute; z-index:2; right:14px; bottom:12px; color:var(--color-text-muted); font-size:9px; font-weight:700; text-transform:uppercase; }
+    .purchase-panel { display:flex; flex-direction:column; padding:34px 38px 42px; background:white; }
+    .product-brand { margin:0; color:var(--color-primary); font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .product-title { margin:8px 0 0; font-family:var(--font-display); font-size:clamp(48px,5vw,72px); line-height:.88; text-transform:uppercase; }
+    .product-subtitle { margin:10px 0 0; font-size:17px; font-weight:700; line-height:1.25; }
+    .product-description { margin:16px 0 0; color:var(--color-text-muted); font-size:12px; line-height:1.55; }
+    .price { margin:22px 0 0; font-size:24px; font-weight:800; }
+    .installments { margin:3px 0 0; color:var(--color-text-muted); font-size:10px; }
+    .choice-label { display:block; margin:20px 0 7px; font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
+    .size-options { display:flex; gap:7px; }
+    .size-option { min-width:78px; min-height:39px; border:1px solid var(--color-border-soft); background:white; font-size:10px; font-weight:800; }
+    .size-option:hover,.size-option[aria-pressed="true"] { border-color:var(--color-primary); background:var(--color-surface-soft); color:var(--color-primary); }
+    .purchase-row { display:grid; grid-template-columns:104px minmax(0,1fr); gap:8px; margin-top:16px; }
+    .quantity { display:grid; grid-template-columns:32px 1fr 32px; min-height:46px; border:1px solid var(--color-text); }
+    .quantity button { border:0; background:white; }
+    .quantity span { display:grid; place-items:center; font-size:12px; font-weight:800; }
+    .primary,.secondary { min-height:46px; padding:9px 14px; font-size:10px; font-weight:800; }
+    .primary { border:1px solid var(--color-primary); background:var(--color-primary); color:white; }
+    .primary:hover { border-color:var(--color-primary-hover); background:var(--color-primary-hover); }
+    .secondary { border:1px solid var(--color-text); background:white; }
+    .secondary:hover { border-color:var(--color-primary); color:var(--color-primary); }
+    .favorite-line { display:flex; gap:8px; margin-top:8px; }
+    .favorite-line button { flex:1; }
+    .favorite-line button[aria-pressed="true"] { border-color:var(--color-primary); color:var(--color-primary); }
+    .shipping { display:flex; margin-top:18px; border-top:1px solid var(--color-border-soft); padding-top:16px; }
+    .shipping input { min-width:0; min-height:40px; flex:1; padding:8px 10px; border:1px solid var(--color-border-soft); border-right:0; }
+    .shipping button { min-width:88px; min-height:40px; border:1px solid var(--color-text); background:white; font-size:9px; font-weight:800; }
+    .stock-message { margin:12px 0 0; color:var(--color-success); font-size:10px; font-weight:800; }
+    .stock-message.warning { color:var(--color-danger); }
+
+    .match-card { border:1px solid var(--color-primary); background:var(--color-surface-soft); }
+    .match-card__head { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 16px; border-bottom:1px solid rgba(157,40,111,.25); }
+    .match-score { font-family:var(--font-display); font-size:39px; line-height:1; color:var(--color-primary); }
+    .match-card__head div:last-child { text-align:right; }
+    .match-card__head small { display:block; color:var(--color-primary); font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .match-card__head strong { font-size:12px; }
+    .match-body { padding:14px 16px; }
+    .match-body p { margin:0; color:var(--color-text-muted); font-size:11px; line-height:1.5; }
+    .match-reasons { display:flex; flex-wrap:wrap; gap:5px; margin:11px 0 0; padding:0; list-style:none; }
+    .match-reasons li { padding:5px 7px; border:1px solid rgba(157,40,111,.35); color:var(--color-primary); font-size:9px; font-weight:800; }
+    .match-link { width:100%; margin-top:11px; min-height:37px; border:1px solid var(--color-primary); background:white; color:var(--color-primary); font-size:9px; font-weight:800; }
+
+    .info-section { padding:40px 38px 62px; background:white; }
+    .tab-list { display:flex; border-bottom:1px solid var(--color-text); }
+    .info-tab { min-height:45px; padding:10px 18px; border:0; border-bottom:3px solid transparent; background:white; font-size:10px; font-weight:800; }
+    .info-tab:hover,.info-tab[aria-pressed="true"] { border-bottom-color:var(--color-primary); color:var(--color-primary); }
+    .tab-panel { max-width:800px; padding:24px 0 0; }
+    .tab-panel h2 { margin:0; font-family:var(--font-display); font-size:30px; text-transform:uppercase; }
+    .tab-panel p,.tab-panel li { color:var(--color-text-muted); font-size:12px; line-height:1.6; }
+    .details-stack { display:grid; gap:0; margin-top:24px; border-top:1px solid var(--color-text); }
+    details { border-bottom:1px solid var(--color-border-soft); background:white; }
+    summary { display:flex; min-height:50px; align-items:center; justify-content:space-between; padding:10px 0; font-size:11px; font-weight:800; cursor:pointer; list-style:none; }
+    summary::after { content:'+'; font-size:18px; }
+    details[open] summary::after { content:'−'; }
+    details > div { max-width:760px; padding:0 0 18px; color:var(--color-text-muted); font-size:12px; line-height:1.6; }
+
+    /* Variant B */
+    .explain-grid { display:grid; grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr); min-height:640px; }
+    .explain-grid .gallery { grid-template-columns:64px minmax(0,1fr); padding-right:24px; }
+    .explain-content { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(260px,.95fr); gap:22px; padding:32px 34px 42px; background:white; }
+    .explain-copy { min-width:0; }
+    .explain-copy .product-title { font-size:clamp(44px,4.5vw,66px); }
+    .explain-side { display:flex; flex-direction:column; gap:14px; }
+    .explain-side .purchase-box { padding:16px; border:1px solid var(--color-text); }
+    .purchase-box .price { margin-top:0; }
+    .safety-note { padding:13px 15px; border-left:4px solid var(--color-accent); background:#fbf6f8; color:var(--color-text-muted); font-size:10px; line-height:1.5; }
+
+    /* Synthesis D: B with lower visual noise and restrained product rounding */
+    .variant-d .gallery { gap:14px; background:#f5edf1; }
+    .variant-d .product-hero { border-radius:10px; background:linear-gradient(145deg,#eadde3,#fffafb); box-shadow:0 14px 40px rgba(43,25,36,.08); }
+    .variant-d .product-hero::before { border-color:rgba(119,92,105,.58); background:rgba(255,255,255,.38); }
+    .variant-d .product-hero::after { border-color:rgba(119,92,105,.55); }
+    .variant-d .thumbnail { border:0; border-radius:6px; background:rgba(255,255,255,.72); }
+    .variant-d .thumbnail:hover,.variant-d .thumbnail[aria-pressed="true"] { border:0; color:var(--color-primary); box-shadow:inset 0 0 0 2px var(--color-primary); }
+    .variant-d .explain-content { column-gap:28px; }
+    .variant-d .match-card { overflow:hidden; border:0; border-left:3px solid var(--color-primary); border-radius:8px; background:#f8f1f4; box-shadow:0 8px 24px rgba(43,25,36,.07); }
+    .variant-d .match-card__head { padding-bottom:7px; border-bottom:0; }
+    .variant-d .match-body { padding-top:6px; }
+    .variant-d .match-reasons li { border:0; border-radius:4px; background:white; box-shadow:0 1px 0 rgba(43,25,36,.08); }
+    .variant-d .match-link { border:0; border-radius:4px; background:white; box-shadow:0 1px 0 rgba(43,25,36,.14); }
+    .variant-d .purchase-box { padding:18px; border:0; border-radius:10px; background:#f8f4f6; box-shadow:0 10px 30px rgba(43,25,36,.08); }
+    .variant-d .size-option { border:0; border-radius:4px; background:white; box-shadow:0 1px 0 rgba(43,25,36,.14); }
+    .variant-d .size-option:hover,.variant-d .size-option[aria-pressed="true"] { border:0; box-shadow:inset 0 0 0 2px var(--color-primary); }
+    .variant-d .quantity { overflow:hidden; border:0; border-radius:4px; background:white; box-shadow:0 1px 0 rgba(43,25,36,.14); }
+    .variant-d .primary { border:0; border-radius:4px; }
+    .variant-d .secondary { border:0; border-radius:4px; background:white; box-shadow:0 1px 0 rgba(43,25,36,.14); }
+    .variant-d .shipping { overflow:hidden; border-radius:4px; }
+    .variant-d .shipping input { border-color:rgba(43,25,36,.12); }
+    .variant-d .shipping button { border-color:rgba(43,25,36,.12); background:white; }
+    .variant-d .details-stack { border-top-color:rgba(43,25,36,.14); }
+    .variant-d details { border-bottom-color:rgba(43,25,36,.11); }
+    .variant-d .safety-note { border-left-width:3px; border-radius:0 6px 6px 0; }
+
+    /* Variant C */
+    .routine-grid { display:grid; grid-template-columns:minmax(290px,.7fr) minmax(0,1.3fr); min-height:640px; }
+    .routine-context { padding:34px 30px 44px 38px; background:var(--color-text); color:white; }
+    .routine-context .eyebrow { color:var(--color-accent); }
+    .routine-context h1 { margin:8px 0 0; font-family:var(--font-display); font-size:clamp(44px,5vw,68px); line-height:.9; text-transform:uppercase; }
+    .routine-context > p { color:rgba(255,255,255,.7); font-size:12px; line-height:1.5; }
+    .period-tabs { display:flex; margin-top:22px; }
+    .period-tabs button { min-height:40px; flex:1; border:1px solid rgba(255,255,255,.45); background:transparent; color:white; font-size:10px; font-weight:800; }
+    .period-tabs button[aria-pressed="true"] { background:white; color:var(--color-text); }
+    .routine-list { margin:20px 0 0; padding:0; list-style:none; counter-reset:step; }
+    .routine-step { position:relative; min-height:70px; padding:13px 10px 13px 48px; border-top:1px solid rgba(255,255,255,.2); counter-increment:step; }
+    .routine-step::before { position:absolute; top:13px; left:8px; color:var(--color-accent); font-size:11px; font-weight:800; content:'0' counter(step); }
+    .routine-step strong { display:block; font-size:12px; }
+    .routine-step span { color:rgba(255,255,255,.6); font-size:10px; }
+    .routine-step.current { margin-inline:-10px; padding-inline:58px 20px; background:var(--color-primary); }
+    .routine-step.current::before { left:18px; color:white; }
+    .routine-product { display:grid; grid-template-columns:minmax(270px,.8fr) minmax(310px,1.2fr); background:white; }
+    .routine-product .gallery { grid-template-columns:1fr; padding:28px; }
+    .routine-product .thumbnails { display:none; }
+    .routine-product .product-hero { min-height:420px; }
+    .routine-product .purchase-panel { padding:34px; }
+    .alternatives { margin-top:22px; border-top:1px solid var(--color-border-soft); }
+    .alternative { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid var(--color-border-soft); }
+    .alternative div { min-width:0; }
+    .alternative strong { display:block; font-size:11px; }
+    .alternative span { color:var(--color-text-muted); font-size:9px; }
+    .alternative button { min-height:34px; padding:6px 9px; border:1px solid var(--color-text); background:white; font-size:9px; font-weight:800; }
+
+    .compat-dialog { width:min(620px,calc(100vw - 28px)); padding:0; border:1px solid var(--color-text); color:var(--color-text); }
+    .compat-dialog::backdrop { background:rgba(43,25,36,.58); }
+    .dialog-head { display:flex; align-items:center; justify-content:space-between; padding:16px 18px; background:var(--color-text); color:white; }
+    .dialog-head strong { font-family:var(--font-display); font-size:24px; text-transform:uppercase; }
+    .dialog-head button { width:34px; height:34px; border:1px solid white; background:transparent; color:white; }
+    .dialog-body { padding:22px; }
+    .dialog-score { font-family:var(--font-display); font-size:54px; color:var(--color-primary); }
+    .dialog-body h2 { margin:3px 0 10px; font-size:20px; }
+    .dialog-body p,.dialog-body li { color:var(--color-text-muted); font-size:12px; line-height:1.55; }
+    .loading-cover { position:absolute; z-index:15; inset:0; display:grid; place-items:center; background:rgba(255,248,250,.96); }
+    .loading-cover span { width:54px; height:54px; border:4px solid #eadde3; border-top-color:var(--color-primary); border-radius:50%; animation:spin .8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .product-page { position:relative; }
+
+    #toast { position:fixed; z-index:10003; right:22px; bottom:22px; max-width:340px; padding:13px 16px; border-left:4px solid var(--color-accent); background:var(--color-text); color:white; box-shadow:var(--shadow-lg); font:13px system-ui,sans-serif; opacity:0; pointer-events:none; transform:translateY(12px); }
+    #toast.visible { opacity:1; transform:translateY(0); }
+    #sketch-tools { position:fixed; z-index:10002; right:12px; bottom:12px; display:grid; gap:7px; min-width:210px; padding:9px 11px; border-radius:8px; background:rgba(0,0,0,.8); color:white; font:12px system-ui,sans-serif; opacity:.48; transition:opacity .2s ease; }
+    #sketch-tools:hover,#sketch-tools:focus-within { opacity:1; }
+    .tool-row { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .tool-row button,.tool-row select { min-height:27px; padding:4px 7px; border:1px solid #767676; border-radius:3px; background:#232323; color:white; }
+    .tool-row button.active { border-color:white; background:white; color:#111; }
+    #annotation-tooltip { position:fixed; z-index:10004; display:none; max-width:270px; padding:7px 9px; border-radius:4px; background:#111; color:white; font:11px/1.35 monospace; pointer-events:none; }
+    body.annotations-on [data-annotate] { outline:1px dashed rgba(157,40,111,.58); outline-offset:-1px; }
+
+    @container (max-width:767px) {
+      .main-row { min-height:66px; grid-template-columns:42px minmax(0,1fr) 42px; gap:8px; padding:8px 13px; }
+      .utility,.actions,.guided-rail { display:none; }
+      .mobile-search,.mobile-menu { display:grid; }
+      .mobile-search { grid-column:1; }
+      .brand-home { grid-column:2; }
+      .mobile-menu { grid-column:3; }
+      .brand-logo { width:min(170px,52vw); }
+      .login-notice { min-height:38px; font-size:10px; }
+      .breadcrumb { padding:14px 16px; }
+      .pdp-grid,.explain-grid,.routine-grid,.routine-product { grid-template-columns:1fr; }
+      .gallery,.explain-grid .gallery { grid-template-columns:1fr; padding:16px; }
+      .thumbnails { grid-template-columns:repeat(3,1fr); grid-row:2; }
+      .product-hero,.routine-product .product-hero { min-height:350px; }
+      .purchase-panel,.explain-content,.routine-product .purchase-panel { padding:24px 18px 36px; }
+      .purchase-row { grid-template-columns:92px minmax(0,1fr); }
+      .info-section { padding:30px 18px 48px; }
+      .tab-list { overflow-x:auto; }
+      .info-tab { flex:0 0 auto; }
+      .explain-content { grid-template-columns:1fr; }
+      .explain-side { grid-row:1; }
+      .routine-context { padding:28px 18px 36px; }
+    }
+    @container (min-width:768px) and (max-width:1050px) {
+      .main-row { padding-inline:24px; }
+      .brand-logo { width:166px; }
+      .actions span { display:none; }
+      .analysis-entry { padding-left:24px; }
+      .pdp-grid { grid-template-columns:minmax(0,1fr) minmax(330px,.9fr); }
+      .gallery { grid-template-columns:58px minmax(0,1fr); padding:22px; }
+      .purchase-panel { padding:28px 25px 36px; }
+      .explain-grid { grid-template-columns:minmax(0,.8fr) minmax(430px,1.2fr); }
+      .explain-content { grid-template-columns:1fr; padding:26px; }
+      .explain-side { grid-row:1; }
+      .routine-grid { grid-template-columns:270px minmax(0,1fr); }
+      .routine-product { grid-template-columns:1fr; }
+      .routine-product .product-hero { min-height:310px; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+  </style>
+</head>
+<body>
+  <nav class="variant-nav" aria-label="Variantes do sketch"><span class="variant-nav__label">SKETCH 003 · PRODUTO</span><button class="variant-tab active" type="button" data-variant="a">A · Compra direta</button><button class="variant-tab" type="button" data-variant="b">B · Compatibilidade explicada</button><button class="variant-tab" type="button" data-variant="c">C · Rotina em contexto</button><button class="variant-tab" type="button" data-variant="d">D · Síntese B mais leve ★ Selecionada</button></nav>
+  <main class="sketch-stage"><div class="viewport-shell" id="viewport-shell"><div id="sketch-viewport">
+    <section class="variant active" id="variant-a" aria-label="Variante A: Compra direta"><div data-shell></div><div class="product-page"><p class="breadcrumb">Produtos / Séruns / IRIS 01</p><div class="pdp-grid"><div data-gallery></div><div class="purchase-panel"><p class="product-brand">D’Accord · Curadoria para pele sensível</p><h1 class="product-title" data-annotate="Título de produto">IRIS 01</h1><p class="product-subtitle">Sérum calmante para barreira sensibilizada</p><div class="match-card" style="margin-top:18px" data-match-card></div><p class="product-description">Fórmula leve com ativos de suporte à hidratação e ao conforto da pele. Orientação cosmética; não substitui avaliação dermatológica.</p><div data-purchase></div></div></div><div class="info-section"><div class="tab-list" role="tablist"><button class="info-tab" type="button" aria-pressed="true" data-tab="beneficios">Benefícios</button><button class="info-tab" type="button" aria-pressed="false" data-tab="ingredientes">Ingredientes</button><button class="info-tab" type="button" aria-pressed="false" data-tab="uso">Como usar</button><button class="info-tab" type="button" aria-pressed="false" data-tab="seguranca">Segurança</button></div><div class="tab-panel" data-tab-panel></div></div></div></section>
+
+    <section class="variant" id="variant-b" aria-label="Variante B: Compatibilidade explicada"><div data-shell></div><div class="product-page"><p class="breadcrumb">Produtos / Séruns / IRIS 01</p><div class="explain-grid"><div data-gallery></div><div class="explain-content"><div class="explain-copy"><p class="product-brand">Recomendação principal</p><h1 class="product-title">IRIS 01</h1><p class="product-subtitle">Sérum calmante para barreira sensibilizada</p><p class="product-description">A recomendação conecta seu questionário, a leitura cosmética da pele e as regras de segurança do catálogo.</p><div class="details-stack"><details open><summary>Por que faz sentido para você</summary><div>Prioriza hidratação e suporte de barreira, respeita sua preferência por textura leve e não contém fragrância declarada.</div></details><details><summary>Ingredientes e funções cosméticas</summary><div>Pantenol, beta-glucana, glicerina, esqualano e complexo hidratante. INCI completo disponível antes da compra.</div></details><details><summary>O que esta recomendação não significa</summary><div>Não é diagnóstico e não afirma tratar doenças. Em caso de reação, suspenda o uso e procure orientação profissional.</div></details></div></div><aside class="explain-side"><div class="match-card" data-match-card></div><div class="purchase-box"><div data-purchase></div></div><div class="safety-note">Alergias e condições informadas são usadas apenas para exclusões e compatibilidade. Confirme sempre o rótulo físico.</div></aside></div></div><div class="info-section"><h2 style="font-family:var(--font-display);font-size:30px;text-transform:uppercase;margin:0">Transparência antes da compra</h2><p class="product-description" style="max-width:720px">Veja composição, uso, limitações e alternativas compatíveis sem sair da página.</p></div></div></section>
+
+    <section class="variant variant-d" id="variant-d" aria-label="Variante D: Síntese B mais leve"><div data-shell></div><div class="product-page"><p class="breadcrumb">Produtos / Séruns / IRIS 01</p><div class="explain-grid"><div data-gallery></div><div class="explain-content"><div class="explain-copy"><p class="product-brand">Recomendação principal</p><h1 class="product-title">IRIS 01</h1><p class="product-subtitle">Sérum calmante para barreira sensibilizada</p><p class="product-description">A recomendação conecta seu questionário, a leitura cosmética da pele e as regras de segurança do catálogo — com menos elementos competindo pela atenção.</p><div class="details-stack"><details open><summary>Por que faz sentido para você</summary><div>Prioriza hidratação e suporte de barreira, respeita sua preferência por textura leve e não contém fragrância declarada.</div></details><details><summary>Ingredientes e funções cosméticas</summary><div>Pantenol, beta-glucana, glicerina, esqualano e complexo hidratante. INCI completo disponível antes da compra.</div></details><details><summary>O que esta recomendação não significa</summary><div>Não é diagnóstico e não afirma tratar doenças. Em caso de reação, suspenda o uso e procure orientação profissional.</div></details></div></div><aside class="explain-side"><div class="match-card" data-match-card></div><div class="purchase-box"><div data-purchase></div></div><div class="safety-note">Alergias e condições informadas são usadas apenas para exclusões e compatibilidade. Confirme sempre o rótulo físico.</div></aside></div></div><div class="info-section"><h2 style="font-family:var(--font-display);font-size:30px;text-transform:uppercase;margin:0">Transparência antes da compra</h2><p class="product-description" style="max-width:720px">Superfícies, respiro e hierarquia substituem contornos pesados; o arredondamento fica restrito aos componentes do produto.</p></div></div></section>
+
+    <section class="variant" id="variant-c" aria-label="Variante C: Rotina em contexto"><div data-shell></div><div class="product-page"><p class="breadcrumb" data-period-breadcrumb>Minha rotina / Noite / Etapa 02</p><div class="routine-grid"><aside class="routine-context"><p class="eyebrow">Variante C · Produto como etapa</p><h1>Sua rotina, na ordem certa</h1><p>IRIS 01 aparece no momento em que sua textura e função fazem mais sentido.</p><div class="period-tabs"><button type="button" aria-pressed="false" data-period="manha">MANHÃ</button><button type="button" aria-pressed="true" data-period="noite">NOITE</button></div><ol class="routine-list" data-routine-list></ol></aside><div class="routine-product"><div data-gallery></div><div class="purchase-panel"><p class="product-brand">Etapa 02 · Tratamento hidratante</p><h1 class="product-title">IRIS 01</h1><p class="product-subtitle">Sérum calmante para barreira sensibilizada</p><div class="match-card" style="margin-top:17px" data-match-card></div><div data-purchase></div><div class="alternatives"><div class="alternative"><div><strong>Prefere uma textura mais cremosa?</strong><span>CALMA · creme de barreira · 94%</span></div><button type="button" data-message="Alternativa CALMA selecionada para comparação.">Comparar</button></div><div class="alternative"><div><strong>Quer reduzir o valor da rotina?</strong><span>NÉVOA · essência restauradora · 91%</span></div><button type="button" data-message="Alternativa NÉVOA selecionada para comparação.">Comparar</button></div></div></div></div></div></div></section>
+  </div></div></main>
+
+  <dialog class="compat-dialog" id="compat-dialog"><form method="dialog"><div class="dialog-head"><strong>Como calculamos esta compatibilidade</strong><button value="cancel" aria-label="Fechar explicação">×</button></div><div class="dialog-body"><div class="dialog-score" data-dialog-score>97%</div><h2>Boa aderência ao perfil informado</h2><p>A pontuação organiza produtos conforme preferências e regras cosméticas. Ela não mede eficácia clínica nem substitui avaliação profissional.</p><ul><li>Compatível com prioridade de hidratação e barreira.</li><li>Sem fragrância declarada no cadastro atual.</li><li>Textura coerente com a preferência informada.</li><li>Nenhuma exclusão ativa encontrada.</li></ul></div></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div><div id="annotation-tooltip"></div><div id="sketch-tools"><div class="tool-row"><strong>Viewport</strong><span><button type="button" data-width="375">375</button> <button type="button" data-width="768">768</button> <button class="active" type="button" data-width="1280">1280</button></span></div><div class="tool-row"><label for="theme-switcher">Tema</label><select id="theme-switcher"><option value="default">D’Accord</option></select></div><div class="tool-row"><label for="state-switcher">Estado</label><select id="state-switcher"><option value="default">Disponível · 97%</option><option value="loading">Carregando</option><option value="out">Sem estoque</option><option value="low">Compatibilidade baixa</option></select></div><div class="tool-row"><span>Anotações</span><button type="button" id="annotation-toggle">Mostrar</button></div></div>
+
+  <template id="shell-template"><header class="shell-header" data-annotate="Shell C aprovado"><div class="login-notice"><span>Novo por aqui? <strong>Entre ou crie sua conta</strong> para guardar seu progresso.</span></div><div class="main-row"><button class="mobile-search" type="button" data-mobile-toggle aria-label="Abrir busca">⌕</button><div class="utility"><button type="button" data-message="Recursos de acessibilidade abertos.">Acessibilidade ↓</button><button type="button" data-message="Retorno ao catálogo com filtros preservados.">← Produtos</button></div><a class="brand-home" href="#" data-message="Logo centralizada no viewport."><img class="brand-logo" src="../../../public/images/daccord-logotipo.svg" alt="D’Accord"></a><div class="actions"><button type="button" data-favorite aria-pressed="false">♡ <span>Favoritar</span></button><button class="outlined" type="button" data-message="Sacola aberta com 0 itens.">Sacola 0</button></div><button class="mobile-menu" type="button" data-mobile-toggle aria-label="Abrir menu">☰</button></div><div class="mobile-panel" data-mobile-panel><form class="search-form" data-search-form><input type="search" name="busca" placeholder="Buscar produtos" aria-label="Buscar produtos"><button type="submit" aria-label="Buscar">⌕</button></form><button type="button" data-analysis>Ver minha análise</button><button type="button" data-message="Retorno ao catálogo com filtros preservados.">Voltar aos produtos</button></div><div class="guided-rail"><div class="analysis-entry"><p><strong>Produto recomendado para você</strong> Veja os motivos de compatibilidade antes da compra.</p><button type="button" data-compat>VER EXPLICAÇÃO</button></div><form class="search-form" data-search-form><input type="search" name="busca" placeholder="Buscar outro produto no catálogo" aria-label="Buscar produtos"><button type="submit" aria-label="Buscar">⌕</button></form></div></header></template>
+  <template id="gallery-template"><div class="gallery"><div class="thumbnails"><button class="thumbnail" type="button" aria-pressed="true" data-view="Frente">Frente</button><button class="thumbnail" type="button" aria-pressed="false" data-view="Textura">Textura</button><button class="thumbnail" type="button" aria-pressed="false" data-view="Embalagem">Detalhe</button></div><div class="product-hero" data-product-hero><span class="hero-label">IRIS 01</span><span class="hero-caption">Vista: <b data-view-label>Frente</b></span></div></div></template>
+  <template id="match-template"><div class="match-card__head"><div class="match-score" data-match-score>97%</div><div><small>Compatibilidade estimada</small><strong data-match-title>Ótima combinação</strong></div></div><div class="match-body"><p data-match-copy>Sua pele indicou sensibilidade e perda de hidratação. A fórmula prioriza suporte de barreira e textura leve.</p><ul class="match-reasons"><li>Sem fragrância</li><li>Textura leve</li><li>Barreira + hidratação</li></ul><button class="match-link" type="button" data-compat>ENTENDER A RECOMENDAÇÃO</button></div></template>
+  <template id="purchase-template"><p class="price" data-price>R$ 129,90</p><p class="installments">ou 3× de R$ 43,30 sem juros</p><span class="choice-label">Tamanho</span><div class="size-options"><button class="size-option" type="button" aria-pressed="true" data-size="30" data-size-price="129.9">30 ml</button><button class="size-option" type="button" aria-pressed="false" data-size="50" data-size-price="169.9">50 ml</button></div><div class="purchase-row"><div class="quantity"><button type="button" data-qty-minus aria-label="Diminuir quantidade">−</button><span data-qty>1</span><button type="button" data-qty-plus aria-label="Aumentar quantidade">+</button></div><button class="primary" type="button" data-add>ADICIONAR À SACOLA</button></div><div class="favorite-line"><button class="secondary" type="button" data-favorite aria-pressed="false">♡ SALVAR</button><button class="secondary" type="button" data-buy>COMPRAR AGORA</button></div><form class="shipping" data-shipping><input name="cep" inputmode="numeric" placeholder="Calcular frete pelo CEP" aria-label="CEP"><button type="submit">CALCULAR</button></form><p class="stock-message" data-stock>Em estoque · envio em até 2 dias úteis</p></template>
+
+  <script>
+    const shellTemplate=document.getElementById('shell-template'),galleryTemplate=document.getElementById('gallery-template'),matchTemplate=document.getElementById('match-template'),purchaseTemplate=document.getElementById('purchase-template');
+    document.querySelectorAll('[data-shell]').forEach(t=>t.appendChild(shellTemplate.content.cloneNode(true))); document.querySelectorAll('[data-gallery]').forEach(t=>t.appendChild(galleryTemplate.content.cloneNode(true))); document.querySelectorAll('[data-match-card]').forEach(t=>t.appendChild(matchTemplate.content.cloneNode(true))); document.querySelectorAll('[data-purchase]').forEach(t=>t.appendChild(purchaseTemplate.content.cloneNode(true)));
+    const viewportShell=document.getElementById('viewport-shell'),viewport=document.getElementById('sketch-viewport'),compatDialog=document.getElementById('compat-dialog'),toast=document.getElementById('toast'); let toastTimer;
+    const TAB_CONTENT={beneficios:'<h2>Conforto e hidratação em camadas</h2><p>Ajuda a manter hidratação, conforto e aparência uniforme da barreira cutânea. Resultados variam conforme rotina e uso.</p><ul><li>Textura leve de rápida absorção.</li><li>Sem fragrância declarada.</li><li>Compatível com rotinas simples.</li></ul>',ingredientes:'<h2>Ingredientes em linguagem clara</h2><p><strong>Destaques:</strong> pantenol, beta-glucana, glicerina e esqualano.</p><p><strong>INCI:</strong> Aqua, Glycerin, Panthenol, Beta-Glucan, Squalane, Hydroxyethylcellulose, Sodium Hyaluronate, preservantes e estabilizantes.</p>',uso:'<h2>Como usar</h2><p>Aplique de duas a três gotas após a limpeza e antes do hidratante. Pela manhã, finalize com protetor solar.</p><p>Introduza um produto por vez e faça teste de contato conforme orientação do fabricante.</p>',seguranca:'<h2>Cuidados e limites</h2><p>Uso externo. Suspenda em caso de irritação. A recomendação é cosmética e não trata doenças. Confirme o rótulo físico em caso de alergia conhecida.</p>'};
+    function notify(message){clearTimeout(toastTimer);toast.textContent=message;toast.classList.add('visible');toastTimer=setTimeout(()=>toast.classList.remove('visible'),2200);}
+    function activeVariant(){return document.querySelector('.variant.active');}
+    document.querySelectorAll('[data-tab-panel]').forEach(panel=>panel.innerHTML=TAB_CONTENT.beneficios);
+    document.querySelectorAll('[data-tab]').forEach(button=>button.addEventListener('click',()=>{const scope=button.closest('.variant');scope.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));scope.querySelector('[data-tab-panel]').innerHTML=TAB_CONTENT[button.dataset.tab];notify(`Conteúdo aberto: ${button.textContent}.`);}));
+    document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{const gallery=button.closest('.gallery');gallery.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));gallery.querySelector('[data-view-label]').textContent=button.dataset.view;gallery.querySelector('.hero-label').textContent=button.dataset.view==='Textura'?'GEL LEVE':button.dataset.view==='Embalagem'?'30 ML':'IRIS 01';notify(`Imagem alterada: ${button.dataset.view}.`);}));
+    document.querySelectorAll('[data-size]').forEach(button=>button.addEventListener('click',()=>{const container=button.closest('[data-purchase]');container.querySelectorAll('[data-size]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));container.querySelector('[data-price]').textContent=Number(button.dataset.sizePrice).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});notify(`Tamanho de ${button.dataset.size} ml selecionado.`);}));
+    document.querySelectorAll('[data-qty-plus]').forEach(button=>button.addEventListener('click',()=>{const label=button.parentElement.querySelector('[data-qty]');label.textContent=Math.min(5,Number(label.textContent)+1);})); document.querySelectorAll('[data-qty-minus]').forEach(button=>button.addEventListener('click',()=>{const label=button.parentElement.querySelector('[data-qty]');label.textContent=Math.max(1,Number(label.textContent)-1);}));
+    document.querySelectorAll('[data-add]').forEach(button=>button.addEventListener('click',()=>{if(button.disabled)return;button.textContent='ADICIONADO ✓';notify('IRIS 01 adicionado à sacola.');})); document.querySelectorAll('[data-buy]').forEach(button=>button.addEventListener('click',()=>notify('Checkout será detalhado no Sprint 5.')));
+    document.querySelectorAll('[data-favorite]').forEach(button=>button.addEventListener('click',()=>{const selected=button.getAttribute('aria-pressed')==='true';button.setAttribute('aria-pressed',String(!selected));button.innerHTML=selected?'♡ <span>Favoritar</span>':'♥ <span>Salvo</span>';notify(selected?'Produto removido dos favoritos.':'Produto salvo nos favoritos.');}));
+    document.querySelectorAll('[data-shipping]').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const cep=new FormData(form).get('cep').replace(/\D/g,'');if(cep.length!==8){notify('Digite um CEP com 8 números.');return;}form.closest('[data-purchase]').querySelector('[data-stock]').textContent='Entrega estimada: 3 a 5 dias úteis · R$ 14,90';notify('Frete calculado localmente para o wireframe.');}));
+    document.querySelectorAll('[data-compat]').forEach(button=>button.addEventListener('click',()=>compatDialog.showModal())); document.querySelectorAll('[data-analysis]').forEach(button=>button.addEventListener('click',()=>notify('Histórico da análise entra no Sprint 6.'))); document.querySelectorAll('[data-message]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();notify(button.dataset.message);}));
+    document.querySelectorAll('[data-search-form]').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const query=new FormData(form).get('busca');notify(query?`Busca por “${query}” preparada.`:'Digite um produto para buscar.');})); document.querySelectorAll('[data-mobile-toggle]').forEach(button=>button.addEventListener('click',()=>button.closest('.shell-header').querySelector('[data-mobile-panel]').classList.toggle('open')));
+    const ROUTINES={noite:[['Limpeza','Limpador suave'],['Tratamento','IRIS 01 · etapa atual'],['Hidratação','CALMA · creme de barreira']],manha:[['Limpeza','Limpador suave'],['Tratamento','IRIS 01 · camada fina'],['Proteção','SOLIS · FPS 50']]};
+    function renderRoutine(scope,period){const list=scope.querySelector('[data-routine-list]');list.innerHTML=ROUTINES[period].map((item,index)=>`<li class="routine-step ${index===1?'current':''}"><strong>${item[0]}</strong><span>${item[1]}</span></li>`).join('');}
+    renderRoutine(document.getElementById('variant-c'),'noite'); document.querySelectorAll('[data-period]').forEach(button=>button.addEventListener('click',()=>{const scope=button.closest('.variant');scope.querySelectorAll('[data-period]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));renderRoutine(scope,button.dataset.period);scope.querySelector('[data-period-breadcrumb]').textContent=`Minha rotina / ${button.dataset.period==='manha'?'Manhã':'Noite'} / Etapa 02`;notify(`Rotina da ${button.dataset.period==='manha'?'manhã':'noite'} aberta.`);}));
+    document.querySelectorAll('[data-variant]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.variant').forEach(v=>v.classList.toggle('active',v.id===`variant-${button.dataset.variant}`));document.querySelectorAll('.variant-tab').forEach(b=>b.classList.toggle('active',b===button));notify(`Variante ${button.dataset.variant.toUpperCase()} aberta.`);}));
+    document.querySelectorAll('[data-width]').forEach(button=>button.addEventListener('click',()=>{viewportShell.style.width=button.dataset.width==='1280'?'100%':`${button.dataset.width}px`;document.querySelectorAll('[data-width]').forEach(b=>b.classList.toggle('active',b===button));notify(`Viewport ${button.dataset.width}px.`);}));
+    function setState(state){document.querySelectorAll('.loading-cover').forEach(el=>el.remove());document.querySelectorAll('[data-add]').forEach(button=>{button.disabled=false;button.textContent='ADICIONAR À SACOLA';});document.querySelectorAll('[data-stock]').forEach(el=>{el.textContent='Em estoque · envio em até 2 dias úteis';el.classList.remove('warning');});document.querySelectorAll('[data-match-score]').forEach(el=>el.textContent='97%');document.querySelectorAll('[data-match-title]').forEach(el=>el.textContent='Ótima combinação');document.querySelectorAll('[data-match-copy]').forEach(el=>el.textContent='Sua pele indicou sensibilidade e perda de hidratação. A fórmula prioriza suporte de barreira e textura leve.');document.querySelector('[data-dialog-score]').textContent='97%';if(state==='loading'){const cover=document.createElement('div');cover.className='loading-cover';cover.innerHTML='<span aria-label="Carregando"></span>';activeVariant().querySelector('.product-page').appendChild(cover);}if(state==='out'){document.querySelectorAll('[data-add]').forEach(button=>{button.disabled=true;button.textContent='INDISPONÍVEL';});document.querySelectorAll('[data-stock]').forEach(el=>{el.textContent='Produto temporariamente sem estoque · avise-me';el.classList.add('warning');});}if(state==='low'){document.querySelectorAll('[data-match-score]').forEach(el=>el.textContent='58%');document.querySelectorAll('[data-match-title]').forEach(el=>el.textContent='Revisão recomendada');document.querySelectorAll('[data-match-copy]').forEach(el=>el.textContent='O produto conflita com uma preferência informada. Veja alternativas antes de comprar.');document.querySelector('[data-dialog-score]').textContent='58%';}}
+    document.getElementById('state-switcher').addEventListener('change',event=>setState(event.target.value)); document.getElementById('theme-switcher').addEventListener('change',event=>document.getElementById('theme-link').href=`../themes/${event.target.value}.css`);
+    const annotationToggle=document.getElementById('annotation-toggle'),annotationTooltip=document.getElementById('annotation-tooltip');annotationToggle.addEventListener('click',()=>{document.body.classList.toggle('annotations-on');annotationToggle.textContent=document.body.classList.contains('annotations-on')?'Ocultar':'Mostrar';annotationToggle.classList.toggle('active');});document.addEventListener('mousemove',event=>{if(!document.body.classList.contains('annotations-on'))return;const target=event.target.closest('[data-annotate]');if(!target){annotationTooltip.style.display='none';return;}const style=getComputedStyle(target);annotationTooltip.textContent=`${target.dataset.annotate} · ${style.fontSize} · ${style.color} · ${style.padding}`;annotationTooltip.style.display='block';annotationTooltip.style.left=`${Math.min(event.clientX+14,window.innerWidth-285)}px`;annotationTooltip.style.top=`${Math.min(event.clientY+14,window.innerHeight-60)}px`;});
+  </script>
+</body>
+</html>

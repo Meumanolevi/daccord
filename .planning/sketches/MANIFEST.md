@@ -17,4 +17,12 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 |---|------|-----------------|--------|------|
 | 001 | global-shell | Como organizar busca, filtros, conta e análise mantendo a logo centralizada? | C · Jornada guiada | shell, header, navigation, responsive |
 | 002 | catalog-discovery | Como navegar e filtrar o catálogo sem sobrecarregar a interface? | B · Curadoria visível | catalog, search, filters |
-| 003 | product-detail | Como equilibrar compra, compatibilidade e explicação no detalhe do produto? | pendente | pdp, commerce, recommendation |
+| 003 | product-detail | Como equilibrar compra, compatibilidade e explicação no detalhe do produto? | D · Síntese B mais leve | pdp, commerce, recommendation |
+
+## Sprint 1 — Decisions
+
+- **Shell:** jornada guiada, com análise de pele como entrada principal, catálogo como alternativa e logo centralizada em todos os breakpoints.
+- **Catálogo:** curadoria visível, com filtros persistentes no desktop e painel dedicado no celular.
+- **Produto:** compatibilidade explicada com hierarquia mais leve, poucos contornos e cantos discretos somente no universo do produto.
+- **Geometria:** a interface global permanece ortogonal; o arredondamento de 4 a 10 px é uma exceção funcional para imagens, controles e painéis de produto.
+- **Próximo sprint:** institucional, acessibilidade, consentimento de cookies e autenticação.
