@@ -16,5 +16,5 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | # | Name | Design Question | Winner | Tags |
 |---|------|-----------------|--------|------|
 | 001 | global-shell | Como organizar busca, filtros, conta e análise mantendo a logo centralizada? | C · Jornada guiada | shell, header, navigation, responsive |
-| 002 | catalog-discovery | Como navegar e filtrar o catálogo sem sobrecarregar a interface? | pendente | catalog, search, filters |
+| 002 | catalog-discovery | Como navegar e filtrar o catálogo sem sobrecarregar a interface? | B · Curadoria visível | catalog, search, filters |
 | 003 | product-detail | Como equilibrar compra, compatibilidade e explicação no detalhe do produto? | pendente | pdp, commerce, recommendation |

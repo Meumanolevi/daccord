@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D’Accord · Sketch 002 · Catálogo e descoberta</title>
+  <link id="theme-link" rel="stylesheet" href="../themes/default.css">
+  <style>
+    * { box-sizing: border-box; }
+    html { background: #ece8ea; color: var(--color-text); font-family: var(--font-sans); }
+    body { min-width: 320px; margin: 0; padding-top: 58px; }
+    button, input, select { font: inherit; }
+    button, a { transition: all .15s ease; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 3px; }
+    button { color: inherit; cursor: pointer; }
+    [hidden] { display: none !important; }
+
+    .variant-nav { position: fixed; z-index: 9998; inset: 0 0 auto; display: flex; min-height: 58px; align-items: center; gap: 8px; padding: 9px 16px; overflow-x: auto; border-bottom: 1px solid #cbc3c7; background: rgba(255,255,255,.98); box-shadow: 0 6px 20px rgba(43,25,36,.08); font-family: system-ui,sans-serif; }
+    .variant-nav__label { margin-right: 8px; color: #6b6267; font-size: 11px; font-weight: 800; letter-spacing: .09em; white-space: nowrap; }
+    .variant-tab { min-height: 36px; padding: 7px 12px; border: 1px solid #d2c9cd; background: white; white-space: nowrap; }
+    .variant-tab:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .variant-tab.active { border-color: var(--color-text); background: var(--color-text); color: white; }
+    .sketch-stage { min-height: calc(100vh - 58px); padding: 24px; }
+    .viewport-shell { width: 100%; margin: 0 auto; transition: width .25s ease; }
+    #sketch-viewport { width: 100%; min-height: 860px; overflow: hidden; border: 1px solid #bbb1b6; background: var(--color-surface); box-shadow: var(--shadow-lg); container-type: inline-size; }
+    .variant { display: none; min-height: 860px; background: var(--color-bg); }
+    .variant.active { display: block; }
+    #sketch-viewport.large-text { font-size: 112.5%; }
+    #sketch-viewport.high-contrast { --color-text:#14000c; --color-text-muted:#3f2434; --color-primary:#720043; --color-primary-hover:#52002f; --color-border-soft:rgba(20,0,12,.4); }
+
+    .shell-header { position: relative; z-index: 20; border-bottom: 3px solid var(--color-primary); background: white; }
+    .login-notice { display: grid; min-height: 31px; place-items: center; padding: 6px 16px; background: var(--color-surface-soft); font-size: 11px; text-align: center; }
+    .login-notice strong { text-decoration: underline; text-underline-offset: 2px; }
+    .main-row { display: grid; min-height: 82px; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding: 10px 38px; }
+    .utility, .actions { display: flex; align-items: center; gap: 15px; }
+    .utility button, .actions button { min-height: 36px; border: 0; background: transparent; font-size: 11px; }
+    .utility button:hover, .actions button:hover { color: var(--color-primary); }
+    .actions { justify-self: end; }
+    .brand-home { grid-column: 2; justify-self: center; }
+    .brand-logo { display: block; width: 188px; height: auto; }
+    .outlined { padding: 8px 12px !important; border: 1px solid var(--color-text) !important; }
+    .guided-rail { display: grid; grid-template-columns: minmax(260px,.72fr) minmax(0,1.28fr); border-top: 1px solid var(--color-border-soft); }
+    .analysis-entry { display: flex; min-height: 56px; align-items: center; justify-content: space-between; gap: 14px; padding: 8px 18px 8px 38px; background: var(--color-primary); color: white; }
+    .analysis-entry p { margin: 0; font-size: 11px; }
+    .analysis-entry strong { display: block; font-size: 13px; }
+    .analysis-entry button { min-height: 36px; padding: 7px 11px; border: 1px solid white; background: transparent; color: white; font-size: 10px; font-weight: 800; }
+    .analysis-entry button:hover { background: white; color: var(--color-primary); }
+    .search-form { display: flex; min-width: 0; height: 56px; border-left: 1px solid var(--color-border-soft); background: white; }
+    .search-form input { min-width: 0; flex: 1; padding: 0 16px; border: 0; outline: 0; background: transparent; color: var(--color-text); }
+    .search-form button { width: 56px; border: 0; background: transparent; font-size: 18px; }
+    .search-form button:hover { background: var(--color-surface-soft); color: var(--color-primary); }
+    .mobile-search, .mobile-menu { display: none; width: 42px; height: 42px; place-items: center; border: 0; background: transparent; font-size: 20px; }
+    .mobile-panel { display: none; padding: 14px; border-top: 1px solid var(--color-border-soft); background: white; }
+    .mobile-panel.open { display: grid; gap: 10px; }
+    .mobile-panel .search-form { height: 44px; border: 1px solid var(--color-border-soft); }
+    .mobile-panel button { min-height: 42px; border: 0; border-bottom: 1px solid var(--color-border-soft); background: transparent; text-align: left; }
+
+    .catalog-page { min-height: 650px; padding: 34px 38px 64px; }
+    .breadcrumb { margin: 0 0 18px; color: var(--color-text-muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .page-head { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 20px; }
+    .eyebrow { margin: 0 0 7px; color: var(--color-primary); font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .page-title { margin: 0; font-family: var(--font-display); font-size: clamp(43px,5.2vw,72px); line-height: .88; text-transform: uppercase; }
+    .page-description { max-width: 620px; margin: 15px 0 0; color: var(--color-text-muted); font-size: 13px; line-height: 1.5; }
+    .sort-box { display: grid; gap: 5px; min-width: 190px; color: var(--color-text-muted); font-size: 10px; font-weight: 800; text-transform: uppercase; }
+    .sort-box select { min-height: 42px; padding: 8px 10px; border: 1px solid var(--color-border-soft); background: white; color: var(--color-text); text-transform: none; }
+    .catalog-meta { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 14px; margin-top: 24px; border-top: 1px solid var(--color-border-soft); border-bottom: 1px solid var(--color-border-soft); color: var(--color-text-muted); font-size: 11px; }
+    .catalog-meta strong { color: var(--color-text); }
+    .active-filters { display: flex; flex-wrap: wrap; gap: 6px; }
+    .active-filter { padding: 5px 8px; border: 1px solid var(--color-primary); background: white; color: var(--color-primary); font-size: 10px; }
+
+    .quick-needs { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); margin-top: 24px; border-top: 1px solid var(--color-text); border-left: 1px solid var(--color-text); }
+    .need-button { min-height: 70px; padding: 12px; border: 0; border-right: 1px solid var(--color-text); border-bottom: 1px solid var(--color-text); background: white; font-size: 11px; font-weight: 800; text-align: left; }
+    .need-button span { display: block; margin-bottom: 6px; color: var(--color-primary); font-size: 17px; }
+    .need-button:hover, .need-button[aria-pressed="true"] { background: var(--color-primary); color: white; }
+    .need-button[aria-pressed="true"] span, .need-button:hover span { color: white; }
+    .filter-command { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+    .primary, .secondary { min-height: 40px; padding: 8px 13px; font-size: 10px; font-weight: 800; }
+    .primary { border: 1px solid var(--color-primary); background: var(--color-primary); color: white; }
+    .primary:hover { border-color: var(--color-primary-hover); background: var(--color-primary-hover); }
+    .secondary { border: 1px solid var(--color-text); background: white; }
+    .secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+    .catalog-layout { display: grid; grid-template-columns: 245px minmax(0,1fr); gap: 24px; margin-top: 24px; }
+    .filter-sidebar { align-self: start; border-top: 4px solid var(--color-primary); background: white; box-shadow: var(--shadow-sm); }
+    .filter-sidebar__head { display: flex; min-height: 52px; align-items: center; justify-content: space-between; padding: 11px 14px; border-bottom: 1px solid var(--color-border-soft); }
+    .filter-sidebar__head strong { font-family: var(--font-display); font-size: 23px; text-transform: uppercase; }
+    .filter-sidebar__head button { border: 0; background: transparent; color: var(--color-primary); font-size: 10px; font-weight: 800; }
+    .close-sidebar { display: none; margin-left: 8px; font-size: 18px !important; }
+    .filter-group { border-bottom: 1px solid var(--color-border-soft); }
+    .filter-group > button { display: flex; width: 100%; min-height: 42px; align-items: center; justify-content: space-between; padding: 9px 14px; border: 0; background: white; font-size: 11px; font-weight: 800; text-align: left; }
+    .filter-options { display: grid; gap: 9px; padding: 0 14px 14px; }
+    .filter-options label { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-size: 11px; }
+    .filter-options input { width: 16px; height: 16px; accent-color: var(--color-primary); }
+    .mobile-filter-trigger { display: none; }
+
+    .guide-panel { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(240px,.5fr); gap: 0; margin-top: 24px; border: 1px solid var(--color-text); background: white; }
+    .guide-question { padding: 22px; }
+    .guide-question h2 { margin: 0; font-family: var(--font-display); font-size: 29px; text-transform: uppercase; }
+    .guide-question p { margin: 8px 0 0; color: var(--color-text-muted); font-size: 12px; }
+    .guide-choices { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 17px; }
+    .guide-choice { min-height: 40px; padding: 8px 11px; border: 1px solid var(--color-border-soft); background: white; font-size: 10px; font-weight: 800; }
+    .guide-choice:hover, .guide-choice[aria-pressed="true"] { border-color: var(--color-primary); background: var(--color-surface-soft); color: var(--color-primary); }
+    .profile-card { display: grid; align-content: center; padding: 22px; background: var(--color-text); color: white; }
+    .profile-card small { color: var(--color-accent); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .profile-card strong { margin-top: 7px; font-family: var(--font-display); font-size: 27px; text-transform: uppercase; }
+    .profile-card p { margin: 8px 0 15px; color: rgba(255,255,255,.72); font-size: 11px; line-height: 1.4; }
+    .profile-card button { min-height: 39px; border: 1px solid white; background: transparent; color: white; font-size: 10px; font-weight: 800; }
+
+    .products-region { position: relative; margin-top: 24px; }
+    .product-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 15px; }
+    .product-card { position: relative; display: flex; min-width: 0; flex-direction: column; border: 1px solid var(--color-border-soft); background: white; }
+    .product-card[hidden] { display: none; }
+    .product-visual { position: relative; display: grid; min-height: 185px; place-items: center; overflow: hidden; background: linear-gradient(135deg,#eadde3,#fbf7f9); color: #7b6872; font-family: var(--font-display); font-size: 38px; }
+    .product-visual::after { position: absolute; width: 58px; height: 118px; border: 1px solid #9a858f; background: rgba(255,255,255,.38); content: ""; }
+    .match-badge { position: absolute; z-index: 2; top: 9px; left: 9px; padding: 5px 7px; background: var(--color-primary); color: white; font-family: var(--font-sans); font-size: 9px; font-weight: 800; }
+    .favorite { position: absolute; z-index: 2; top: 8px; right: 8px; width: 32px; height: 32px; border: 1px solid var(--color-text); background: white; }
+    .favorite[aria-pressed="true"] { background: var(--color-text); color: white; }
+    .product-info { display: flex; flex: 1; flex-direction: column; padding: 14px; }
+    .product-info small { color: var(--color-primary); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .product-info h3 { margin: 6px 0; font-size: 15px; }
+    .product-info p { margin: 0; color: var(--color-text-muted); font-size: 11px; line-height: 1.4; }
+    .product-price { margin-top: 12px !important; color: var(--color-text) !important; font-size: 15px !important; font-weight: 800; }
+    .product-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 12px; }
+    .product-actions button { min-height: 36px; padding: 6px; font-size: 9px; font-weight: 800; }
+    .empty-state { padding: 45px 20px; border: 1px dashed var(--color-text-muted); background: white; text-align: center; }
+    .empty-state h2 { margin: 0; font-family: var(--font-display); font-size: 29px; text-transform: uppercase; }
+    .empty-state p { color: var(--color-text-muted); font-size: 12px; }
+    .loading-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+    .skeleton { min-height: 330px; background: linear-gradient(90deg,#eee6ea 25%,#f8f3f5 40%,#eee6ea 60%); background-size: 300% 100%; animation: pulse 1.3s infinite; }
+    @keyframes pulse { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
+    .filter-drawer { position: fixed; z-index: 10000; top: 0; right: 0; width: min(390px,92vw); height: 100%; padding: 0; border: 0; border-left: 1px solid var(--color-text); background: white; box-shadow: var(--shadow-lg); transform: translateX(105%); transition: transform .22s ease; }
+    .filter-drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; min-height: 66px; align-items: center; justify-content: space-between; padding: 14px 18px; background: var(--color-text); color: white; }
+    .drawer-head strong { font-family: var(--font-display); font-size: 25px; text-transform: uppercase; }
+    .drawer-head button { width: 36px; height: 36px; border: 1px solid white; background: transparent; color: white; }
+    .drawer-body { height: calc(100% - 66px); padding: 18px; overflow-y: auto; }
+    .drawer-body fieldset { display: grid; gap: 9px; margin: 0 0 18px; padding: 0 0 18px; border: 0; border-bottom: 1px solid var(--color-border-soft); }
+    .drawer-body legend { margin-bottom: 10px; font-size: 11px; font-weight: 800; }
+    .drawer-body label { display: flex; align-items: center; gap: 8px; color: var(--color-text-muted); font-size: 11px; }
+
+    .product-dialog { width: min(560px,calc(100vw - 28px)); padding: 0; border: 1px solid var(--color-text); color: var(--color-text); }
+    .product-dialog::backdrop { background: rgba(43,25,36,.58); }
+    .dialog-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; background: var(--color-text); color: white; }
+    .dialog-head strong { font-family: var(--font-display); font-size: 24px; text-transform: uppercase; }
+    .dialog-head button { width: 34px; height: 34px; border: 1px solid white; background: transparent; color: white; }
+    .dialog-body { display: grid; grid-template-columns: 150px minmax(0,1fr); gap: 18px; padding: 20px; }
+    .dialog-image { min-height: 190px; background: var(--color-surface-soft); }
+    .dialog-body h2 { margin: 0; font-size: 21px; }
+    .dialog-body p { color: var(--color-text-muted); font-size: 12px; line-height: 1.5; }
+
+    #toast { position: fixed; z-index: 10003; right: 22px; bottom: 22px; max-width: 340px; padding: 13px 16px; border-left: 4px solid var(--color-accent); background: var(--color-text); color: white; box-shadow: var(--shadow-lg); font: 13px system-ui,sans-serif; opacity: 0; pointer-events: none; transform: translateY(12px); }
+    #toast.visible { opacity: 1; transform: translateY(0); }
+    #sketch-tools { position: fixed; z-index: 10002; right: 12px; bottom: 12px; display: grid; gap: 7px; min-width: 210px; padding: 9px 11px; border-radius: 8px; background: rgba(0,0,0,.8); color: white; font: 12px system-ui,sans-serif; opacity: .48; transition: opacity .2s ease; }
+    #sketch-tools:hover, #sketch-tools:focus-within { opacity: 1; }
+    .tool-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .tool-row button, .tool-row select { min-height: 27px; padding: 4px 7px; border: 1px solid #767676; border-radius: 3px; background: #232323; color: white; }
+    .tool-row button.active { border-color: white; background: white; color: #111; }
+    #annotation-tooltip { position: fixed; z-index: 10004; display: none; max-width: 270px; padding: 7px 9px; border-radius: 4px; background: #111; color: white; font: 11px/1.35 monospace; pointer-events: none; }
+    body.annotations-on [data-annotate] { outline: 1px dashed rgba(157,40,111,.58); outline-offset: -1px; }
+
+    @container (max-width: 767px) {
+      .main-row { min-height: 66px; grid-template-columns: 42px minmax(0,1fr) 42px; gap: 8px; padding: 8px 13px; }
+      .utility, .actions, .guided-rail { display: none; }
+      .mobile-search, .mobile-menu { display: grid; }
+      .mobile-search { grid-column: 1; }
+      .brand-home { grid-column: 2; }
+      .mobile-menu { grid-column: 3; }
+      .brand-logo { width: min(170px,52vw); }
+      .login-notice { min-height: 38px; font-size: 10px; }
+      .catalog-page { padding: 26px 16px 52px; }
+      .page-head { grid-template-columns: 1fr; }
+      .page-title { font-size: clamp(42px,14vw,60px); }
+      .sort-box { width: 100%; }
+      .catalog-meta { align-items: flex-start; flex-direction: column; padding: 10px 0; }
+      .quick-needs { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .quick-needs .need-button:last-child { grid-column: 1 / -1; }
+      .filter-command { justify-content: stretch; }
+      .filter-command button { flex: 1; }
+      .catalog-layout { grid-template-columns: 1fr; }
+      .filter-sidebar { display: none; }
+      .filter-sidebar.open { position: fixed; z-index: 10000; inset: 0 0 0 auto; display: block; width: min(330px,92vw); overflow-y: auto; box-shadow: var(--shadow-lg); }
+      .filter-sidebar.open .close-sidebar { display: inline-block; }
+      .mobile-filter-trigger { display: block; width: 100%; margin-top: 16px; }
+      .guide-panel { grid-template-columns: 1fr; }
+      .profile-card { padding: 18px; }
+      .product-grid, .loading-grid { grid-template-columns: 1fr; }
+      .product-visual { min-height: 155px; }
+      .dialog-body { grid-template-columns: 1fr; }
+      .dialog-image { min-height: 120px; }
+    }
+    @container (min-width:768px) and (max-width:1040px) {
+      .main-row { padding-inline: 24px; }
+      .brand-logo { width: 166px; }
+      .actions span { display: none; }
+      .analysis-entry { padding-left: 24px; }
+      .catalog-page { padding-inline: 26px; }
+      .quick-needs { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .product-grid, .loading-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .guide-panel { grid-template-columns: 1fr 230px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="variant-nav" aria-label="Variantes do sketch">
+    <span class="variant-nav__label">SKETCH 002 · CATÁLOGO</span>
+    <button class="variant-tab active" type="button" data-variant="a">A · Necessidades primeiro</button>
+    <button class="variant-tab" type="button" data-variant="b">B · Curadoria visível ★ Selecionada</button>
+    <button class="variant-tab" type="button" data-variant="c">C · Descoberta guiada</button>
+  </nav>
+
+  <main class="sketch-stage">
+    <div class="viewport-shell" id="viewport-shell">
+      <div id="sketch-viewport">
+        <section class="variant active" id="variant-a" aria-label="Variante A: Necessidades primeiro">
+          <div data-shell></div>
+          <div class="catalog-page">
+            <p class="breadcrumb">Início / Produtos</p>
+            <div class="page-head"><div><p class="eyebrow">Variante A · Atalhos cotidianos</p><h1 class="page-title" data-annotate="Título do catálogo">Produtos para a sua pele</h1><p class="page-description">Comece por uma necessidade comum e abra o refinamento avançado somente quando precisar.</p></div><label class="sort-box">Ordenar por<select data-sort><option value="match">Maior compatibilidade</option><option value="price-low">Menor preço</option><option value="price-high">Maior preço</option></select></label></div>
+            <div class="quick-needs"><button class="need-button" type="button" data-filter="sensibilidade"><span>01</span>Sensibilidade</button><button class="need-button" type="button" data-filter="hidratação"><span>02</span>Hidratação</button><button class="need-button" type="button" data-filter="oleosidade"><span>03</span>Oleosidade</button><button class="need-button" type="button" data-filter="textura"><span>04</span>Textura irregular</button><button class="need-button" type="button" data-filter="proteção"><span>05</span>Proteção solar</button></div>
+            <div class="filter-command"><button class="secondary" type="button" data-clear>Limpar seleção</button><button class="primary" type="button" data-open-drawer>Todos os filtros</button></div>
+            <div class="catalog-meta"><span><strong data-result-count>6</strong> produtos encontrados</span><div class="active-filters" data-active-filters><span>Nenhum filtro aplicado</span></div></div>
+            <div class="products-region" data-catalog></div>
+          </div>
+        </section>
+
+        <section class="variant" id="variant-b" aria-label="Variante B: Curadoria visível">
+          <div data-shell></div>
+          <div class="catalog-page">
+            <p class="breadcrumb">Início / Produtos</p>
+            <div class="page-head"><div><p class="eyebrow">Variante B · Controle permanente</p><h1 class="page-title">Catálogo D’Accord</h1><p class="page-description">Todos os critérios ficam visíveis para comparação e refinamento contínuo.</p></div><label class="sort-box">Ordenar por<select data-sort><option value="match">Maior compatibilidade</option><option value="price-low">Menor preço</option><option value="price-high">Maior preço</option></select></label></div>
+            <button class="primary mobile-filter-trigger" type="button" data-mobile-filter>Filtros e compatibilidade</button>
+            <div class="catalog-layout">
+              <aside class="filter-sidebar" data-sidebar>
+                <div class="filter-sidebar__head"><strong>Filtros</strong><span><button type="button" data-clear>Limpar</button><button class="close-sidebar" type="button" data-close-sidebar aria-label="Fechar filtros">×</button></span></div>
+                <div class="filter-group"><button type="button" data-collapse>Necessidade <span>−</span></button><div class="filter-options"><label><input type="checkbox" value="sensibilidade" data-check> Sensibilidade</label><label><input type="checkbox" value="hidratação" data-check> Hidratação</label><label><input type="checkbox" value="oleosidade" data-check> Oleosidade</label><label><input type="checkbox" value="proteção" data-check> Proteção solar</label></div></div>
+                <div class="filter-group"><button type="button" data-collapse>Preferências <span>−</span></button><div class="filter-options"><label><input type="checkbox" value="sem fragrância" data-check> Sem fragrância</label><label><input type="checkbox" value="vegano" data-check> Vegano</label><label><input type="checkbox" value="textura leve" data-check> Textura leve</label></div></div>
+                <div class="filter-group"><button type="button" data-collapse>Categoria <span>−</span></button><div class="filter-options"><label><input type="checkbox" value="sérum" data-check> Sérum</label><label><input type="checkbox" value="hidratante" data-check> Hidratante</label><label><input type="checkbox" value="protetor" data-check> Protetor</label></div></div>
+              </aside>
+              <div><div class="catalog-meta"><span><strong data-result-count>6</strong> produtos encontrados</span><div class="active-filters" data-active-filters><span>Nenhum filtro aplicado</span></div></div><div class="products-region" data-catalog></div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="variant" id="variant-c" aria-label="Variante C: Descoberta guiada">
+          <div data-shell></div>
+          <div class="catalog-page">
+            <p class="breadcrumb">Início / Produtos / Descoberta guiada</p>
+            <div class="page-head"><div><p class="eyebrow">Variante C · Menos escolhas por vez</p><h1 class="page-title">O que sua pele pede hoje?</h1><p class="page-description">Uma pergunta simples organiza a primeira seleção; filtros técnicos continuam disponíveis depois.</p></div><label class="sort-box">Ordenar por<select data-sort><option value="match">Mais indicados</option><option value="price-low">Menor preço</option><option value="price-high">Maior preço</option></select></label></div>
+            <div class="guide-panel"><div class="guide-question"><h2>Escolha a prioridade deste momento</h2><p>Você pode ajustar ou combinar respostas sem alterar seu perfil salvo.</p><div class="guide-choices"><button class="guide-choice" type="button" data-filter="sensibilidade">Acalmar sensibilidade</button><button class="guide-choice" type="button" data-filter="hidratação">Recuperar hidratação</button><button class="guide-choice" type="button" data-filter="oleosidade">Controlar oleosidade</button><button class="guide-choice" type="button" data-filter="textura">Suavizar textura</button><button class="guide-choice" type="button" data-filter="proteção">Proteger do sol</button></div></div><aside class="profile-card"><small>Perfil opcional</small><strong>Use sua análise</strong><p>Ordene por compatibilidade com sensibilidades e preferências já informadas.</p><button type="button" data-profile aria-pressed="false">ATIVAR PERFIL</button></aside></div>
+            <div class="catalog-meta"><span><strong data-result-count>6</strong> produtos encontrados</span><div class="active-filters" data-active-filters><span>Nenhum filtro aplicado</span></div></div>
+            <div class="products-region" data-catalog></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <aside class="filter-drawer" id="filter-drawer" aria-label="Todos os filtros">
+    <div class="drawer-head"><strong>Refinar catálogo</strong><button type="button" data-close-drawer aria-label="Fechar filtros">×</button></div>
+    <div class="drawer-body"><fieldset><legend>Necessidade</legend><label><input type="checkbox" value="sensibilidade" data-drawer-check> Sensibilidade</label><label><input type="checkbox" value="hidratação" data-drawer-check> Hidratação</label><label><input type="checkbox" value="proteção" data-drawer-check> Proteção solar</label></fieldset><fieldset><legend>Preferências</legend><label><input type="checkbox" value="sem fragrância" data-drawer-check> Sem fragrância</label><label><input type="checkbox" value="vegano" data-drawer-check> Vegano</label><label><input type="checkbox" value="textura leve" data-drawer-check> Textura leve</label></fieldset><button class="primary" type="button" data-apply-drawer>Aplicar filtros</button></div>
+  </aside>
+
+  <dialog class="product-dialog" id="product-dialog"><form method="dialog"><div class="dialog-head"><strong>Visão rápida</strong><button value="cancel" aria-label="Fechar produto">×</button></div><div class="dialog-body"><div class="dialog-image"></div><div><p class="eyebrow">Compatibilidade explicada</p><h2 id="dialog-product-name">Produto</h2><p id="dialog-product-copy">Resumo do produto.</p><p><strong id="dialog-product-price">R$ 0,00</strong></p><button class="primary" value="cancel" data-message="Produto adicionado à sacola de exemplo.">Adicionar à sacola</button></div></div></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div><div id="annotation-tooltip"></div>
+  <div id="sketch-tools"><div class="tool-row"><strong>Viewport</strong><span><button type="button" data-width="375">375</button> <button type="button" data-width="768">768</button> <button class="active" type="button" data-width="1280">1280</button></span></div><div class="tool-row"><label for="theme-switcher">Tema</label><select id="theme-switcher"><option value="default">D’Accord</option></select></div><div class="tool-row"><label for="state-switcher">Estado</label><select id="state-switcher"><option value="default">Com produtos</option><option value="loading">Carregando</option><option value="empty">Sem resultados</option></select></div><div class="tool-row"><span>Anotações</span><button type="button" id="annotation-toggle">Mostrar</button></div></div>
+
+  <template id="shell-template">
+    <header class="shell-header" data-annotate="Shell C aprovado no Sketch 001"><div class="login-notice"><span>Novo por aqui? <strong>Entre ou crie sua conta</strong> para guardar seu progresso.</span></div><div class="main-row"><button class="mobile-search" type="button" data-mobile-toggle aria-label="Abrir busca">⌕</button><div class="utility"><button type="button" data-message="Recursos de acessibilidade abertos.">Acessibilidade ↓</button><button type="button" data-message="Sobre entra no Sprint 2.">Sobre</button></div><a class="brand-home" href="#" data-message="Logo centralizada no viewport."><img class="brand-logo" src="../../../public/images/daccord-logotipo.svg" alt="D’Accord"></a><div class="actions"><button type="button" data-message="Favoritos: nenhum item salvo.">♡ <span>Favoritos</span></button><button class="outlined" type="button" data-message="Login será detalhado no Sprint 2.">Entrar</button></div><button class="mobile-menu" type="button" data-mobile-toggle aria-label="Abrir menu">☰</button></div><div class="mobile-panel" data-mobile-panel><form class="search-form" data-search-form><input type="search" name="busca" placeholder="Buscar produtos" aria-label="Buscar produtos"><button type="submit" aria-label="Buscar">⌕</button></form><button type="button" data-analysis>Começar análise</button><button type="button" data-message="Login será detalhado no Sprint 2.">Entrar</button></div><div class="guided-rail"><div class="analysis-entry"><p><strong>Não sabe por onde começar?</strong> Responda sobre sua pele em poucos minutos.</p><button type="button" data-analysis>COMEÇAR ANÁLISE</button></div><form class="search-form" data-search-form><input type="search" name="busca" placeholder="Já sabe o que procura? Busque no catálogo" aria-label="Buscar produtos"><button type="submit" aria-label="Buscar">⌕</button></form></div></header>
+  </template>
+
+  <script>
+    const PRODUCTS = [
+      {name:'IRIS 01',title:'Sérum calmante',tags:'sérum sensibilidade hidratação sem fragrância vegano',copy:'Barreira sensibilizada · textura leve',price:129.90,match:97},
+      {name:'AURA',title:'Gel hidratante',tags:'hidratante hidratação oleosidade textura leve vegano',copy:'Hidratação leve · toque seco',price:89.90,match:92},
+      {name:'SOLIS',title:'Fluido FPS 50',tags:'protetor proteção sensibilidade sem fragrância',copy:'Proteção alta · pele sensível',price:109.90,match:95},
+      {name:'NÉVOA',title:'Essência restauradora',tags:'hidratação sensibilidade textura sem fragrância',copy:'Conforto · recuperação da barreira',price:99.90,match:91},
+      {name:'LUME',title:'Sérum de textura',tags:'sérum textura oleosidade vegano',copy:'Textura irregular · acabamento leve',price:119.90,match:86},
+      {name:'CALMA',title:'Creme de barreira',tags:'hidratante sensibilidade hidratação sem fragrância',copy:'Nutrição · uso noturno',price:139.90,match:94}
+    ];
+    const shellTemplate = document.getElementById('shell-template');
+    document.querySelectorAll('[data-shell]').forEach((target) => target.appendChild(shellTemplate.content.cloneNode(true)));
+    const viewportShell = document.getElementById('viewport-shell');
+    const viewport = document.getElementById('sketch-viewport');
+    const drawer = document.getElementById('filter-drawer');
+    const productDialog = document.getElementById('product-dialog');
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    function activeVariant(){ return document.querySelector('.variant.active'); }
+    function notify(message){ clearTimeout(toastTimer); toast.textContent=message; toast.classList.add('visible'); toastTimer=setTimeout(()=>toast.classList.remove('visible'),2200); }
+    function money(value){ return value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); }
+    function productCard(product){
+      const article=document.createElement('article'); article.className='product-card'; article.dataset.tags=product.tags; article.dataset.price=product.price; article.dataset.match=product.match;
+      article.innerHTML=`<div class="product-visual"><span class="match-badge">${product.match}% COMPATÍVEL</span><button class="favorite" type="button" aria-label="Favoritar ${product.title}" aria-pressed="false">♡</button>${product.name}</div><div class="product-info"><small>Curadoria D’Accord</small><h3>${product.title}</h3><p>${product.copy}</p><p class="product-price">${money(product.price)}</p><div class="product-actions"><button class="secondary" type="button" data-quick-view>Ver detalhes</button><button class="primary" type="button" data-add>Adicionar</button></div></div>`;
+      article.querySelector('.favorite').addEventListener('click',(event)=>{ const selected=event.currentTarget.getAttribute('aria-pressed')==='true'; event.currentTarget.setAttribute('aria-pressed',String(!selected)); event.currentTarget.textContent=selected?'♡':'♥'; notify(selected?'Favorito removido.':'Produto salvo nos favoritos.'); });
+      article.querySelector('[data-add]').addEventListener('click',(event)=>{ event.currentTarget.textContent='Adicionado ✓'; notify(`${product.title} adicionado à sacola de exemplo.`); });
+      article.querySelector('[data-quick-view]').addEventListener('click',()=>{ document.getElementById('dialog-product-name').textContent=product.title; document.getElementById('dialog-product-copy').textContent=`${product.match}% compatível · ${product.copy}. A justificativa completa será definida no Sketch 003.`; document.getElementById('dialog-product-price').textContent=money(product.price); productDialog.showModal(); });
+      return article;
+    }
+    function renderCatalog(scope, state='default'){
+      const region=scope.querySelector('[data-catalog]'); region.innerHTML='';
+      if(state==='loading'){ const loading=document.createElement('div'); loading.className='loading-grid'; loading.innerHTML='<div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>'; region.appendChild(loading); return; }
+      if(state==='empty'){ region.innerHTML='<div class="empty-state"><h2>Nenhum produto por aqui</h2><p>Remova um filtro ou tente outra necessidade.</p><button class="secondary" type="button" data-empty-clear>Limpar busca</button></div>'; region.querySelector('[data-empty-clear]').addEventListener('click',()=>{ clearFilters(scope); renderCatalog(scope); }); if(scope.querySelector('[data-result-count]')) scope.querySelector('[data-result-count]').textContent='0'; return; }
+      const grid=document.createElement('div'); grid.className='product-grid'; PRODUCTS.forEach(p=>grid.appendChild(productCard(p))); region.appendChild(grid); applyFilters(scope,false);
+    }
+    document.querySelectorAll('.variant').forEach((scope)=>renderCatalog(scope));
+
+    function selectedTerms(scope){
+      const pressed=[...scope.querySelectorAll('[data-filter][aria-pressed="true"]')].map(b=>b.dataset.filter);
+      const checked=[...scope.querySelectorAll('[data-check]:checked')].map(i=>i.value);
+      const drawerTerms=(scope.dataset.drawerTerms||'').split('|').filter(Boolean);
+      return [...new Set([...pressed,...checked,...drawerTerms])];
+    }
+    function applyFilters(scope=activeVariant(),announce=true,forcedQuery=''){
+      const terms=selectedTerms(scope); const query=(forcedQuery||scope.dataset.query||'').trim().toLocaleLowerCase('pt-BR'); let visible=0;
+      scope.querySelectorAll('.product-card').forEach(card=>{ const matchesTerms=terms.every(term=>card.dataset.tags.includes(term)); const matchesQuery=!query||`${card.dataset.tags} ${card.textContent}`.toLocaleLowerCase('pt-BR').includes(query); const show=matchesTerms&&matchesQuery; card.hidden=!show; if(show)visible++; });
+      scope.querySelectorAll('[data-result-count]').forEach(el=>el.textContent=visible);
+      const active=scope.querySelector('[data-active-filters]'); if(active) active.innerHTML=terms.length?terms.map(t=>`<button class="active-filter" type="button" data-remove="${t}">${t} ×</button>`).join(''):'<span>Nenhum filtro aplicado</span>';
+      active?.querySelectorAll('[data-remove]').forEach(button=>button.addEventListener('click',()=>removeTerm(scope,button.dataset.remove)));
+      if(!visible && scope.querySelector('.product-grid')){ scope.querySelector('[data-catalog]').innerHTML='<div class="empty-state"><h2>Nenhuma combinação encontrada</h2><p>Tente remover um critério ou buscar uma necessidade diferente.</p><button class="secondary" type="button" data-empty-clear>Limpar filtros</button></div>'; scope.querySelector('[data-empty-clear]').addEventListener('click',()=>{clearFilters(scope);renderCatalog(scope);}); }
+      if(announce) notify(`${visible} produto(s) na seleção.`);
+    }
+    function removeTerm(scope,term){ scope.querySelectorAll('[data-filter]').forEach(b=>{if(b.dataset.filter===term)b.setAttribute('aria-pressed','false');}); scope.querySelectorAll('[data-check]').forEach(i=>{if(i.value===term)i.checked=false;}); scope.dataset.drawerTerms=(scope.dataset.drawerTerms||'').split('|').filter(value=>value&&value!==term).join('|'); renderCatalog(scope); }
+    function clearFilters(scope){ scope.dataset.query=''; scope.dataset.drawerTerms=''; scope.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed','false')); scope.querySelectorAll('[data-check]').forEach(i=>i.checked=false); scope.querySelectorAll('[data-search-form] input').forEach(i=>i.value=''); }
+
+    document.querySelectorAll('[data-variant]').forEach(button=>button.addEventListener('click',()=>{ document.querySelectorAll('.variant').forEach(v=>v.classList.toggle('active',v.id===`variant-${button.dataset.variant}`)); document.querySelectorAll('.variant-tab').forEach(b=>b.classList.toggle('active',b===button)); notify(`Variante ${button.dataset.variant.toUpperCase()} aberta.`); }));
+    document.querySelectorAll('[data-width]').forEach(button=>button.addEventListener('click',()=>{ viewportShell.style.width=button.dataset.width==='1280'?'100%':`${button.dataset.width}px`; document.querySelectorAll('[data-width]').forEach(b=>b.classList.toggle('active',b===button)); notify(`Viewport ${button.dataset.width}px.`); }));
+    document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{ const scope=button.closest('.variant'); button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true')); renderCatalog(scope); }));
+    document.querySelectorAll('[data-check]').forEach(input=>input.addEventListener('change',()=>renderCatalog(input.closest('.variant'))));
+    document.querySelectorAll('[data-clear]').forEach(button=>button.addEventListener('click',()=>{ const scope=button.closest('.variant'); clearFilters(scope); renderCatalog(scope); notify('Filtros removidos.'); }));
+    document.querySelectorAll('[data-sort]').forEach(select=>select.addEventListener('change',()=>{ const scope=select.closest('.variant'); const grid=scope.querySelector('.product-grid'); if(!grid)return; const cards=[...grid.children]; cards.sort((a,b)=>select.value==='price-low'?a.dataset.price-b.dataset.price:select.value==='price-high'?b.dataset.price-a.dataset.price:b.dataset.match-a.dataset.match); cards.forEach(card=>grid.appendChild(card)); notify('Ordenação atualizada.'); }));
+    document.querySelectorAll('[data-search-form]').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const scope=form.closest('.variant');scope.dataset.query=new FormData(form).get('busca')||'';renderCatalog(scope);notify(`Busca aplicada: ${scope.dataset.query||'todos os produtos'}.`);}));
+    document.querySelectorAll('[data-analysis]').forEach(button=>button.addEventListener('click',()=>notify('Análise de pele será detalhada no Sprint 3.')));
+    document.querySelectorAll('[data-message]').forEach(button=>button.addEventListener('click',event=>{event.preventDefault();notify(button.dataset.message);}));
+    document.querySelectorAll('[data-mobile-toggle]').forEach(button=>button.addEventListener('click',()=>{const panel=button.closest('.shell-header').querySelector('[data-mobile-panel]');panel.classList.toggle('open');}));
+    document.querySelectorAll('[data-collapse]').forEach(button=>button.addEventListener('click',()=>{const options=button.nextElementSibling;options.hidden=!options.hidden;button.querySelector('span').textContent=options.hidden?'+':'−';}));
+    document.querySelectorAll('[data-mobile-filter]').forEach(button=>button.addEventListener('click',()=>button.closest('.variant').querySelector('[data-sidebar]').classList.toggle('open')));
+    document.querySelectorAll('[data-close-sidebar]').forEach(button=>button.addEventListener('click',()=>button.closest('[data-sidebar]').classList.remove('open')));
+    document.querySelectorAll('[data-profile]').forEach(button=>button.addEventListener('click',()=>{const on=button.getAttribute('aria-pressed')==='true';button.setAttribute('aria-pressed',String(!on));button.textContent=on?'ATIVAR PERFIL':'PERFIL ATIVO ✓';const scope=button.closest('.variant');if(!on){scope.querySelectorAll('.product-card').forEach(card=>{if(Number(card.dataset.match)<90)card.hidden=true;});scope.querySelector('[data-result-count]').textContent=[...scope.querySelectorAll('.product-card:not([hidden])')].length;notify('Compatibilidade do perfil aplicada.');}else{renderCatalog(scope);notify('Perfil removido da ordenação.');}}));
+    document.querySelectorAll('[data-open-drawer]').forEach(button=>button.addEventListener('click',()=>drawer.classList.add('open'))); document.querySelector('[data-close-drawer]').addEventListener('click',()=>drawer.classList.remove('open')); document.querySelector('[data-apply-drawer]').addEventListener('click',()=>{const scope=document.getElementById('variant-a');const drawerTerms=[];document.querySelectorAll('[data-drawer-check]').forEach(input=>{const quick=scope.querySelector(`[data-filter="${input.value}"]`);if(quick&&input.checked)quick.setAttribute('aria-pressed','true');else if(input.checked)drawerTerms.push(input.value);});scope.dataset.drawerTerms=drawerTerms.join('|');drawer.classList.remove('open');renderCatalog(scope);notify('Filtros avançados aplicados.');});
+    document.getElementById('state-switcher').addEventListener('change',event=>renderCatalog(activeVariant(),event.target.value));
+    document.getElementById('theme-switcher').addEventListener('change',event=>{document.getElementById('theme-link').href=`../themes/${event.target.value}.css`;});
+    const annotationToggle=document.getElementById('annotation-toggle'); const annotationTooltip=document.getElementById('annotation-tooltip'); annotationToggle.addEventListener('click',()=>{document.body.classList.toggle('annotations-on');annotationToggle.textContent=document.body.classList.contains('annotations-on')?'Ocultar':'Mostrar';annotationToggle.classList.toggle('active');}); document.addEventListener('mousemove',event=>{if(!document.body.classList.contains('annotations-on'))return;const target=event.target.closest('[data-annotate]');if(!target){annotationTooltip.style.display='none';return;}const style=getComputedStyle(target);annotationTooltip.textContent=`${target.dataset.annotate} · ${style.fontSize} · ${style.color} · ${style.padding}`;annotationTooltip.style.display='block';annotationTooltip.style.left=`${Math.min(event.clientX+14,window.innerWidth-285)}px`;annotationTooltip.style.top=`${Math.min(event.clientY+14,window.innerHeight-60)}px`;});
+  </script>
+</body>
+</html>
