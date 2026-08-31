@@ -32,6 +32,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | # | Name | Design Question | Winner | Tags |
 |---|------|-----------------|--------|------|
 | 004 | institutional-system | Como manter leitura confortável, navegação interna e identidade editorial em páginas longas? | D · Síntese C mais leve | institutional, legal, accessibility, content |
-| 005 | help-contact | Como encaminhar cada dúvida sem transformar contato em um formulário genérico? | pendente | help, faq, contact, support |
+| 005 | help-contact | Como encaminhar cada dúvida sem transformar contato em um formulário genérico? | C · Central híbrida | help, faq, contact, support |
 | 006 | cookie-consent | Como obter consentimento granular sem bloquear a landing ou induzir escolhas? | pendente | cookies, consent, lgpd, privacy |
 | 007 | authentication | Como criar uma jornada de acesso confiável, curta e fácil de recuperar? | pendente | login, signup, verification, recovery |
