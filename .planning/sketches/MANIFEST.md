@@ -94,6 +94,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 020 | curations-routine | Como apresentar curadoria, rotina e alternativas sem esconder origem, restrições, estoque ou impacto de uma troca? | **A — Rotina editorial** | account, curation, routine, alternatives, explainability |
 | 021 | orders-tracking | Como acompanhar um pedido ativo e consultar o histórico sem confundir pagamento, separação e entrega? | **B — Central por status** | account, orders, tracking, payment, delivery, history |
 | 022 | addresses-delivery-preferences | Como cadastrar, escolher e editar endereços sem sugerir que a alteração muda pedidos em andamento? | **A — Carteira de endereços** | account, addresses, delivery, cep, coverage, privacy |
+| 023 | privacy-consents-data-rights | Como permitir controle real sobre consentimentos e dados sem misturar preferências opcionais, obrigações operacionais e ações irreversíveis? | **B — Finalidade por finalidade** | account, privacy, consent, lgpd, data-rights, ai |
 
 ## Sprint 5 — Decisions
 
@@ -105,4 +106,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Curadorias e rotina:** aprovada a variante A; a rotina ativa ocupa o primeiro plano em sequências de manhã e noite, enquanto justificativas, compatibilidade e alternativas apoiam a execução. Trocas exigem comparação e confirmação explícita e preservam os demais passos.
 - **Pedidos e acompanhamento:** aprovada a variante B; filtros e cartões apresentam o próximo acontecimento ou a ação necessária por pedido, mantendo status financeiro e logístico separados e recuperáveis.
 - **Endereços e entrega:** aprovada a variante A; o endereço padrão recebe destaque editorial, enquanto destinos secundários, preferências e validação de CEP permanecem acessíveis. Alterações valem somente para compras futuras.
-- **Próxima etapa:** detalhar privacidade e consentimentos da conta.
+- **Privacidade e dados:** aprovada a variante B; cada categoria explicita origem, uso, permanência e controle, separando escolhas opcionais de tratamentos necessários e ações sensíveis.
+- **Sprint concluída:** a conta do cliente agora cobre dashboard, perfil, segurança, perfil de pele, análises, curadorias, pedidos, endereços e privacidade.
+- **Próximo sprint:** administração — acesso administrativo, dashboard operacional, catálogo, pedidos, clientes e governança das análises.
