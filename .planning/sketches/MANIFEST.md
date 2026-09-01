@@ -50,11 +50,12 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | # | Name | Design Question | Winner | Tags |
 |---|------|-----------------|--------|------|
 | 008 | analysis-entry-consent | Como apresentar limites, elegibilidade e consentimento antes da análise sem criar medo ou sobrecarga? | A · Jornada transparente | onboarding, consent, safety, lgpd |
-| 009 | skin-questionnaire | Como coletar contexto, alergias e restrições sem transformar o fluxo em anamnese clínica? | Planejado | questionnaire, safety, progress |
+| 009 | skin-questionnaire | Como coletar contexto, alergias e restrições sem transformar o fluxo em anamnese clínica? | A · Passos por assunto | questionnaire, safety, progress |
 | 010 | photo-capture | Como orientar captura, permissão, quality gate e retake com feedback acionável? | Planejado | camera, upload, quality-gate |
 | 011 | analysis-result | Como explicar sinais, confiança, limites e rotina recomendada sem sugerir diagnóstico? | Planejado | result, explainability, routine |
 
 ## Sprint 3 — Decisions
 
 - **Entrada e consentimento:** jornada transparente, com abertura visual e informação em camadas; método, duração, limites e elegibilidade aparecem antes dos consentimentos separados.
-- **Próximo sketch:** questionário de pele após aprovação do Sketch 008.
+- **Questionário:** passos por assunto, com uma etapa temática por vez, progresso persistente, salvamento de sessão, revisão final e interrupção segura sem perder respostas.
+- **Próximo sketch:** captura e validação da foto após aprovação do Sketch 009.
