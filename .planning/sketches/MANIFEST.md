@@ -119,6 +119,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 026 | admin-catalog-inventory | Como administrar produtos, variações, composição, estoque e elegibilidade para AI sem fragmentar o contexto? | **A — Lista com inspetor** | admin, catalog, products, variants, ingredients, inventory, ai |
 | 027 | admin-order-operations | Como operar pedidos distinguindo pagamento, separação, entrega, cancelamento e devolução sem reduzir tudo a um único status? | **A — Fila com inspetor** | admin, orders, payment, fulfillment, delivery, cancellation, returns |
 | 028 | admin-customer-privacy | Como apoiar atendimento, compras e solicitações de privacidade sem expor continuamente dados pessoais, perfil de pele ou fotografias? | **A — Diretório contextual** | admin, customers, support, purchases, skin-profile, privacy, lgpd |
+| 029 | admin-ai-review-governance | Como revisar exceções individuais e governar a qualidade da AI sem transformar sinais cosméticos em diagnóstico ou expor fotografias continuamente? | **A — Fila de risco com inspetor** | admin, ai, analysis, human-review, governance, safety, privacy, audit |
 
 ## Sprint 6 — Decisions
 
@@ -137,3 +138,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Clientes e privacidade:** aprovada a variante A; a listagem inicia com dados minimizados e mantém o atendimento no contexto por meio do inspetor lateral, sem transformar o perfil completo em visão permanente.
 - **Acesso sensível:** perfil de pele exige finalidade, justificativa e duração auditável; fotografias permanecem em uma autorização separada e consentimentos não se confundem com bases operacionais necessárias.
 - **Próxima etapa:** estruturar a fila administrativa de análises, revisão humana e governança da AI.
+- **Revisão humana e governança:** aprovada a variante A; exceções são ordenadas por risco, SLA e recuperabilidade, enquanto o inspetor preserva contexto, origem das evidências e identidade protegida.
+- **Decisão assistida:** a AI apoia triagem e curadoria cosmética, mas não diagnostica; capturas exigem acesso auditado e aprovar, limitar, solicitar nova captura ou escalar exige justificativa vinculada ao modelo e às regras consultadas.
+- **Próxima etapa:** estruturar a gestão administrativa de conteúdo, vitrines e orientações editoriais.
