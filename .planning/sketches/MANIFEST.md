@@ -116,6 +116,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 |---|------|-----------------|--------|------|
 | 024 | admin-access-global-shell | Como estruturar acesso e navegação administrativa com contexto de papel, ambiente, alertas e auditoria? | **A — Sidebar operacional** | admin, access, shell, rbac, navigation, audit |
 | 025 | admin-operational-dashboard | Como transformar indicadores, filas, alertas e SLAs em uma visão diária acionável sem criar um mosaico de números? | **A — Exceções primeiro** | admin, dashboard, operations, queues, alerts, sla |
+| 026 | admin-catalog-inventory | Como administrar produtos, variações, composição, estoque e elegibilidade para AI sem fragmentar o contexto? | **A — Lista com inspetor** | admin, catalog, products, variants, ingredients, inventory, ai |
 
 ## Sprint 6 — Decisions
 
@@ -125,3 +126,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Dashboard operacional:** aprovada a variante A; exceções acionáveis ocupam o primeiro plano e são ordenadas por impacto, SLA e capacidade de recuperação.
 - **Hierarquia operacional:** indicadores e tendências fornecem contexto para decisões, mas não substituem a fila de trabalho nem escondem responsáveis e próximos passos.
 - **Próxima etapa:** estruturar a gestão de catálogo, produtos, variações, ingredientes e estoque.
+- **Catálogo e estoque:** aprovada a variante A; a listagem concentra busca, filtros, comparação e ações em lote, enquanto o inspetor preserva o contexto durante a edição.
+- **Integridade do produto:** publicação, estoque e elegibilidade para AI permanecem estados independentes; mudanças de composição suspendem recomendações até nova revisão.
+- **Próxima etapa:** estruturar a gestão de pedidos, pagamento, separação, entrega, cancelamentos e devoluções.
