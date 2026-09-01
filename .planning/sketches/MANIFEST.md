@@ -82,3 +82,15 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Referências visuais:** o comércio usa silhuetas de embalagem e hierarquia de informação; fotografias ficam reservadas para quando agregarem contexto real.
 - **Sprint concluída:** comércio e checkout agora cobre sacola, entrega, pagamento, revisão, confirmação e recuperação sem duplicidade.
 - **Próximo sprint:** conta do cliente — dashboard, perfil, perfil de pele, análises, curadorias, pedidos, endereços e privacidade.
+
+## Sprint 5 — Conta do cliente
+
+| # | Name | Design Question | Winner | Tags |
+|---|------|-----------------|--------|------|
+| 016 | account-dashboard | Como reunir análise, rotina, pedidos e atalhos pessoais sem transformar a conta em um painel administrativo? | **A — Resumo editorial** | account, dashboard, skin-profile, routine, orders |
+
+## Sprint 5 — Decisions
+
+- **Dashboard:** aprovada a variante A; o perfil de pele abre a conta como síntese editorial, com rotina, pedido e atalhos pessoais em uma coluna complementar.
+- **Referências visuais:** priorizar mapas, progresso, rotina e objetos funcionais; fotografias só entram quando adicionarem contexto novo.
+- **Próxima etapa:** detalhar perfil pessoal, dados de acesso e segurança da conta sem competir com a jornada de cuidado.
