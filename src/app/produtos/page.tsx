@@ -1,19 +1,36 @@
 import type { Metadata } from "next";
-import { FuturePage } from "@/components/ui/future-page";
+import { ProductCatalog, type CatalogInitialState } from "@/components/catalog/product-catalog";
+import { SiteHeader } from "@/components/landing/site-header";
+import { SiteFooter } from "@/components/site/site-footer";
 
 export const metadata: Metadata = {
   title: "Produtos e curadoria",
-  description: "Conheça a futura curadoria D’Accord de cosméticos por textura, tolerância e compatibilidade.",
+  description: "Explore a curadoria D’Accord por necessidade, tipo de pele, textura e preferências.",
   alternates: { canonical: "/produtos" },
 };
 
-export default function ProductsPage() {
+type ProductsPageProps = {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+const firstValue = (value: string | string[] | undefined) => Array.isArray(value) ? value[0] ?? "" : value ?? "";
+
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const params = await searchParams;
+  const initialState: CatalogInitialState = {
+    query: firstValue(params.busca),
+    category: firstValue(params.categoria),
+    need: firstValue(params.necessidade),
+    skinType: firstValue(params.tipo),
+    preference: firstValue(params.preferencia),
+    texture: firstValue(params.textura),
+  };
+
   return (
-    <FuturePage
-      eyebrow="CURADORIA D’ACCORD"
-      title="PRODUTOS QUE CONVERSAM ENTRE SI."
-      description="Este espaço receberá o catálogo editorial de séruns, hidratantes e protetores selecionados por compatibilidade."
-      nextStep="A arquitetura permite conectar um CMS ou API de catálogo sem alterar a landing page."
-    />
+    <div>
+      <SiteHeader />
+      <ProductCatalog key={JSON.stringify(initialState)} initialState={initialState} />
+      <SiteFooter />
+    </div>
   );
 }
