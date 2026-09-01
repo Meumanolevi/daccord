@@ -91,6 +91,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 017 | profile-access-security | Como editar dados pessoais e gerenciar acesso sem misturar alterações comuns e ações sensíveis? | **B — Perfil em capítulos** | account, profile, security, sessions, verification |
 | 018 | skin-profile | Como apresentar e atualizar um perfil de pele vivo, distinguindo respostas, análise e regras de segurança? | **B — Perfil versionado** | account, skin-profile, provenance, allergies, restrictions, history |
 | 019 | analysis-library-comparison | Como consultar e comparar análises sem sugerir evolução clínica ou esconder diferenças de captura? | **A — Biblioteca editorial** | account, analysis, history, comparison, confidence, privacy |
+| 020 | curations-routine | Como apresentar curadoria, rotina e alternativas sem esconder origem, restrições, estoque ou impacto de uma troca? | **A — Rotina editorial** | account, curation, routine, alternatives, explainability |
 
 ## Sprint 5 — Decisions
 
@@ -99,4 +100,5 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Perfil de pele:** aprovada a variante B; cada atualização cria uma versão auditável ligada às suas fontes e à curadoria correspondente, preservando versões anteriores para consulta e comparação.
 - **Histórico de análises:** aprovada a variante A; o resultado mais recente recebe destaque editorial e o arquivo secundário permite selecionar duas datas para uma comparação contextual, sem expor fotografias por padrão.
 - **Referências visuais:** priorizar mapas, progresso, rotina e objetos funcionais; fotografias só entram quando adicionarem contexto novo.
-- **Próxima etapa:** detalhar curadorias salvas, rotina atual e alternativas recomendadas vinculadas à versão ativa do perfil.
+- **Curadorias e rotina:** aprovada a variante A; a rotina ativa ocupa o primeiro plano em sequências de manhã e noite, enquanto justificativas, compatibilidade e alternativas apoiam a execução. Trocas exigem comparação e confirmação explícita e preservam os demais passos.
+- **Próxima etapa:** detalhar pedidos, endereços e privacidade da conta.
