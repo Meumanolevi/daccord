@@ -34,4 +34,13 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 004 | institutional-system | Como manter leitura confortável, navegação interna e identidade editorial em páginas longas? | D · Síntese C mais leve | institutional, legal, accessibility, content |
 | 005 | help-contact | Como encaminhar cada dúvida sem transformar contato em um formulário genérico? | C · Central híbrida | help, faq, contact, support |
 | 006 | cookie-consent | Como obter consentimento granular sem bloquear a landing ou induzir escolhas? | A · Banner progressivo | cookies, consent, lgpd, privacy |
-| 007 | authentication | Como criar uma jornada de acesso confiável, curta e fácil de recuperar? | pendente | login, signup, verification, recovery |
+| 007 | authentication | Como criar uma jornada de acesso confiável, curta e fácil de recuperar? | A · Entrada unificada | login, signup, verification, recovery |
+
+## Sprint 2 — Decisions
+
+- **Institucional:** hub modular com leitura progressiva, poucos contornos e referências visuais contextuais.
+- **Ajuda:** central híbrida, combinando busca, atalhos por assunto e atendimento humano já contextualizado.
+- **Consentimento:** banner progressivo com cookies opcionais desligados por padrão e ações equivalentes para aceitar ou recusar.
+- **Autenticação:** entrada unificada por e-mail, adaptando login, cadastro, recuperação e verificação sem criar rotas concorrentes.
+- **Confiança:** privacidade, acessibilidade e limites da tecnologia permanecem visíveis nos momentos de maior sensibilidade.
+- **Próximo sprint:** onboarding e jornada completa de análise de pele.
