@@ -92,6 +92,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 018 | skin-profile | Como apresentar e atualizar um perfil de pele vivo, distinguindo respostas, análise e regras de segurança? | **B — Perfil versionado** | account, skin-profile, provenance, allergies, restrictions, history |
 | 019 | analysis-library-comparison | Como consultar e comparar análises sem sugerir evolução clínica ou esconder diferenças de captura? | **A — Biblioteca editorial** | account, analysis, history, comparison, confidence, privacy |
 | 020 | curations-routine | Como apresentar curadoria, rotina e alternativas sem esconder origem, restrições, estoque ou impacto de uma troca? | **A — Rotina editorial** | account, curation, routine, alternatives, explainability |
+| 021 | orders-tracking | Como acompanhar um pedido ativo e consultar o histórico sem confundir pagamento, separação e entrega? | **B — Central por status** | account, orders, tracking, payment, delivery, history |
 
 ## Sprint 5 — Decisions
 
@@ -101,4 +102,5 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Histórico de análises:** aprovada a variante A; o resultado mais recente recebe destaque editorial e o arquivo secundário permite selecionar duas datas para uma comparação contextual, sem expor fotografias por padrão.
 - **Referências visuais:** priorizar mapas, progresso, rotina e objetos funcionais; fotografias só entram quando adicionarem contexto novo.
 - **Curadorias e rotina:** aprovada a variante A; a rotina ativa ocupa o primeiro plano em sequências de manhã e noite, enquanto justificativas, compatibilidade e alternativas apoiam a execução. Trocas exigem comparação e confirmação explícita e preservam os demais passos.
-- **Próxima etapa:** detalhar pedidos, endereços e privacidade da conta.
+- **Pedidos e acompanhamento:** aprovada a variante B; filtros e cartões apresentam o próximo acontecimento ou a ação necessária por pedido, mantendo status financeiro e logístico separados e recuperáveis.
+- **Próxima etapa:** detalhar endereços e privacidade da conta.
