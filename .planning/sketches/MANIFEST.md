@@ -117,6 +117,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 024 | admin-access-global-shell | Como estruturar acesso e navegação administrativa com contexto de papel, ambiente, alertas e auditoria? | **A — Sidebar operacional** | admin, access, shell, rbac, navigation, audit |
 | 025 | admin-operational-dashboard | Como transformar indicadores, filas, alertas e SLAs em uma visão diária acionável sem criar um mosaico de números? | **A — Exceções primeiro** | admin, dashboard, operations, queues, alerts, sla |
 | 026 | admin-catalog-inventory | Como administrar produtos, variações, composição, estoque e elegibilidade para AI sem fragmentar o contexto? | **A — Lista com inspetor** | admin, catalog, products, variants, ingredients, inventory, ai |
+| 027 | admin-order-operations | Como operar pedidos distinguindo pagamento, separação, entrega, cancelamento e devolução sem reduzir tudo a um único status? | **A — Fila com inspetor** | admin, orders, payment, fulfillment, delivery, cancellation, returns |
 
 ## Sprint 6 — Decisions
 
@@ -129,3 +130,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Catálogo e estoque:** aprovada a variante A; a listagem concentra busca, filtros, comparação e ações em lote, enquanto o inspetor preserva o contexto durante a edição.
 - **Integridade do produto:** publicação, estoque e elegibilidade para AI permanecem estados independentes; mudanças de composição suspendem recomendações até nova revisão.
 - **Próxima etapa:** estruturar a gestão de pedidos, pagamento, separação, entrega, cancelamentos e devoluções.
+- **Operação de pedidos:** aprovada a variante A; a fila é ordenada pela próxima ação, responsável e prazo, enquanto o inspetor preserva os estados independentes do pedido.
+- **Recuperações sensíveis:** cancelamento, estorno, reenvio e devolução exigem motivo, nota e confirmação explícita, sempre vinculados ao pedido original e à auditoria.
+- **Próxima etapa:** estruturar a gestão de clientes, contexto de atendimento, histórico de compras, perfil de pele e direitos de privacidade.
