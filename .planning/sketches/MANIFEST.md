@@ -63,3 +63,18 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Resultado e recomendação:** leitura em camadas, começando por síntese visual e aprofundando sinais, confiança, limites, justificativas, alternativas e rotina sob demanda.
 - **Sprint concluída:** a jornada core agora cobre entrada/consentimento, questionário, captura/quality gate e resultado/recomendação com estados críticos e responsividade.
 - **Próximo sprint:** comércio e checkout — sacola, identificação, entrega, pagamento, revisão, confirmação e falhas recuperáveis.
+
+## Sprint 4 — Comércio e checkout
+
+| # | Name | Design Question | Winner | Tags |
+|---|------|-----------------|--------|------|
+| 012 | cart-and-favorites | Como reunir favoritos, mini-sacola e sacola completa sem esconder preço, estoque ou próximos passos? | **C — Pronta para checkout** | cart, mini-cart, favorites, stock |
+| 013 | checkout-identity-delivery | Como identificar o comprador e coletar entrega com pouco atrito e validação clara? | Planejado | checkout, identity, address, shipping |
+| 014 | checkout-payment-review | Como coletar pagamento e revisar o pedido sem duplicidade ou surpresa financeira? | Planejado | payment, review, psp, security |
+| 015 | order-confirmation-recovery | Como confirmar o pedido e recuperar pagamento pendente ou falho com segurança? | Planejado | confirmation, payment-failure, order |
+
+## Sprint 4 — Decisions
+
+- **Sacola e favoritos:** aprovada a variante C, com revisão compacta de itens, favoritos salvos, entrega estimada, cupom e total orientados ao início do checkout.
+- **Referências visuais:** o comércio usa silhuetas de embalagem e hierarquia de informação; fotografias ficam reservadas para quando agregarem contexto real.
+- **Próximo sketch:** identificação e entrega, preservando a continuidade visual e financeira da sacola compacta aprovada.
