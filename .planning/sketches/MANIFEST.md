@@ -88,9 +88,11 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | # | Name | Design Question | Winner | Tags |
 |---|------|-----------------|--------|------|
 | 016 | account-dashboard | Como reunir análise, rotina, pedidos e atalhos pessoais sem transformar a conta em um painel administrativo? | **A — Resumo editorial** | account, dashboard, skin-profile, routine, orders |
+| 017 | profile-access-security | Como editar dados pessoais e gerenciar acesso sem misturar alterações comuns e ações sensíveis? | **B — Perfil em capítulos** | account, profile, security, sessions, verification |
 
 ## Sprint 5 — Decisions
 
 - **Dashboard:** aprovada a variante A; o perfil de pele abre a conta como síntese editorial, com rotina, pedido e atalhos pessoais em uma coluna complementar.
+- **Perfil e segurança:** aprovada a variante B, com navegação lateral persistente e capítulos expansíveis que separam dados pessoais, e-mail, senha, sessões e privacidade por peso e consequência.
 - **Referências visuais:** priorizar mapas, progresso, rotina e objetos funcionais; fotografias só entram quando adicionarem contexto novo.
-- **Próxima etapa:** detalhar perfil pessoal, dados de acesso e segurança da conta sem competir com a jornada de cuidado.
+- **Próxima etapa:** detalhar o perfil de pele, sua atualização e a relação segura com análises anteriores.
