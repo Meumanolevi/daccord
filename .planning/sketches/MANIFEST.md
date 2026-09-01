@@ -51,11 +51,13 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 |---|------|-----------------|--------|------|
 | 008 | analysis-entry-consent | Como apresentar limites, elegibilidade e consentimento antes da análise sem criar medo ou sobrecarga? | A · Jornada transparente | onboarding, consent, safety, lgpd |
 | 009 | skin-questionnaire | Como coletar contexto, alergias e restrições sem transformar o fluxo em anamnese clínica? | A · Passos por assunto | questionnaire, safety, progress |
-| 010 | photo-capture | Como orientar captura, permissão, quality gate e retake com feedback acionável? | Planejado | camera, upload, quality-gate |
+| 010 | photo-capture | Como orientar captura, permissão, quality gate e retake com feedback acionável? | C · Captura assistida | camera, upload, quality-gate |
 | 011 | analysis-result | Como explicar sinais, confiança, limites e rotina recomendada sem sugerir diagnóstico? | Planejado | result, explainability, routine |
 
 ## Sprint 3 — Decisions
 
 - **Entrada e consentimento:** jornada transparente, com abertura visual e informação em camadas; método, duração, limites e elegibilidade aparecem antes dos consentimentos separados.
 - **Questionário:** passos por assunto, com uma etapa temática por vez, progresso persistente, salvamento de sessão, revisão final e interrupção segura sem perder respostas.
-- **Próximo sketch:** captura e validação da foto após aprovação do Sketch 009.
+- **Captura e validação:** assistência persistente ao lado da câmera, com checklist em tempo real, um motivo prioritário por retake e referência visual exclusiva da etapa.
+- **Referências visuais:** cada etapa core deve priorizar um asset contextual próprio ou uma visualização funcional; evitar repetir os mesmos retratos editoriais entre landing, acesso, questionário, captura e resultado.
+- **Próximo sketch:** resultado da análise e rotina recomendada após aprovação do Sketch 010.
