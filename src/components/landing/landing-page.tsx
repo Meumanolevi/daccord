@@ -1,27 +1,20 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { MobileStepDeck } from "@/components/landing/mobile-step-deck";
+import { SiteHeader } from "@/components/landing/site-header";
 import { ScrollStageReveal } from "@/components/motion/scroll-stage-reveal";
 import { AnimatedButton } from "@/components/ui/animated-button";
-
-const navigation = [
-  { label: "Sobre", href: "#metodo" },
-  { label: "Como funciona", href: "#como-funciona" },
-  { label: "Produtos", href: "#produto" },
-  { label: "Minha análise", href: "/analise" },
-];
 
 const sectionSurface = (color: string) =>
   ({ "--section-surface": color }) as CSSProperties;
 
-export function LandingPage() {
+export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boolean }) {
   const root = useRef<HTMLElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [productStageOpen, setProductStageOpen] = useState(false);
   const reduceMotion = useReducedMotion();
 
@@ -66,74 +59,8 @@ export function LandingPage() {
   };
 
   return (
-    <main ref={root} className="landing-shell bg-white">
-      <header className="site-header relative bg-white" aria-label="Cabeçalho principal">
-        <div className="header-primary mx-auto grid max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center px-5 md:px-12">
-          <p className="header-eyebrow hidden text-[10px] font-medium tracking-[0.1em] text-ink-muted md:block">
-            BELEZA + TECNOLOGIA + CUIDADO
-          </p>
-
-          <Link href="/" aria-label="D’Accord — página inicial" className="header-wordmark font-sans leading-none font-bold tracking-[-0.055em] text-plum">
-            D’ACCORD
-          </Link>
-
-          <p className="header-tagline hidden justify-self-end font-elegant text-plum lg:block">
-            skincare inteligente para a sua pele.
-          </p>
-
-          <button
-            type="button"
-            aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={menuOpen}
-            className="col-start-3 flex h-10 w-10 justify-self-end border border-brand-border md:hidden"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <span className="m-auto flex flex-col gap-1.5">
-              <span className={`h-px w-5 bg-plum transition-transform ${menuOpen ? "translate-y-[3.5px] rotate-45" : ""}`} />
-              <span className={`h-px w-5 bg-plum transition-transform ${menuOpen ? "-translate-y-[3.5px] -rotate-45" : ""}`} />
-            </span>
-          </button>
-        </div>
-
-        <nav className="header-nav mx-auto hidden max-w-[1440px] items-center justify-center px-12 md:flex" aria-label="Navegação principal">
-          <ul className="flex items-center gap-7 text-[11px] font-medium tracking-[0.045em] text-plum lg:gap-10">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link className="underline-offset-4 transition-colors hover:text-brand hover:underline" href={item.href}>
-                  {item.label.toUpperCase()}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <AnimatePresence>
-          {menuOpen ? (
-            <motion.nav
-              className="absolute inset-x-0 top-full border-t border-brand-border/30 bg-white px-5 py-6 shadow-xl md:hidden"
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              aria-label="Navegação móvel"
-            >
-              <ul className="space-y-1">
-                {navigation.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      className="block border-b border-plum/10 py-3 text-sm font-semibold tracking-[0.06em]"
-                      href={item.href}
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      {item.label.toUpperCase()}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.nav>
-          ) : null}
-        </AnimatePresence>
-        <div className="header-rule bg-brand" />
-      </header>
+    <main ref={root} className={`landing-shell bg-white ${isAuthenticated ? "landing-shell--authenticated" : ""}`}>
+      <SiteHeader isAuthenticated={isAuthenticated} />
 
       <section id="inicio" data-snap-section className="hero-panel mx-auto grid max-w-[1440px] bg-white" aria-labelledby="hero-title">
         <div data-hero-copy className="hero-copy flex flex-col bg-brand text-white">
@@ -209,10 +136,9 @@ export function LandingPage() {
         <motion.div
           className="spotlight-visual absolute inset-0"
           animate={reduceMotion ? undefined : {
-            x: productStageOpen ? "-10%" : "0%",
-            scale: productStageOpen ? 1.035 : 1,
+            x: productStageOpen ? "-6%" : "0%",
           }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.78, ease: [0.22, 1, 0.36, 1] }}
         >
           <Image
             data-spotlight-image

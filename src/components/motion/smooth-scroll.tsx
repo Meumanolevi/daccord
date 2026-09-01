@@ -19,6 +19,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     let wheelAccumulator = 0;
     let accumulatorTimer: number | undefined;
     let unlockTimer: number | undefined;
+    let refreshFrame: number | undefined;
 
     const getSnapSections = () =>
       Array.from(document.querySelectorAll<HTMLElement>("[data-snap-section]"))
@@ -27,6 +28,15 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
           position: section.classList.contains("hero-panel") ? 0 : section.offsetTop,
         }))
         .sort((a, b) => a.position - b.position);
+
+    let snapSections = getSnapSections();
+
+    const refreshSnapSections = () => {
+      window.cancelAnimationFrame(refreshFrame ?? 0);
+      refreshFrame = window.requestAnimationFrame(() => {
+        snapSections = getSnapSections();
+      });
+    };
 
     const triggerScrollStage = (section: HTMLElement, active: boolean) => {
       section.dataset.stageActive = String(active);
@@ -44,6 +54,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     const handleWheel = (event: WheelEvent) => {
       if (event.ctrlKey || !window.matchMedia("(pointer: fine)").matches) return;
       if (event.target instanceof Element && event.target.closest("[data-lenis-prevent]")) return;
+      if (snapSections.length === 0) return;
 
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -59,7 +70,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       if (Math.abs(wheelAccumulator) < 18) return;
 
       const direction = Math.sign(wheelAccumulator);
-      const snapSections = getSnapSections();
       const positions = snapSections.map(({ position }) => position);
       const currentY = window.scrollY;
       const tolerance = 8;
@@ -116,11 +126,16 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     };
 
     window.addEventListener("wheel", handleWheel, { capture: true, passive: false });
+    window.addEventListener("resize", refreshSnapSections, { passive: true });
+    window.addEventListener("load", refreshSnapSections, { passive: true });
 
     return () => {
       window.clearTimeout(accumulatorTimer);
       window.clearTimeout(unlockTimer);
+      window.cancelAnimationFrame(refreshFrame ?? 0);
       window.removeEventListener("wheel", handleWheel, true);
+      window.removeEventListener("resize", refreshSnapSections);
+      window.removeEventListener("load", refreshSnapSections);
       lenis.destroy();
     };
   }, []);
