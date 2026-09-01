@@ -115,9 +115,13 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | # | Name | Design Question | Winner | Tags |
 |---|------|-----------------|--------|------|
 | 024 | admin-access-global-shell | Como estruturar acesso e navegação administrativa com contexto de papel, ambiente, alertas e auditoria? | **A — Sidebar operacional** | admin, access, shell, rbac, navigation, audit |
+| 025 | admin-operational-dashboard | Como transformar indicadores, filas, alertas e SLAs em uma visão diária acionável sem criar um mosaico de números? | **A — Exceções primeiro** | admin, dashboard, operations, queues, alerts, sla |
 
 ## Sprint 6 — Decisions
 
 - **Shell administrativo:** aprovada a variante A; a sidebar persistente organiza a operação por domínio, enquanto papel, ambiente, busca, alertas e auditoria permanecem sempre acessíveis.
 - **Separação de contextos:** o ADM preserva a identidade D’Accord, mas adota maior densidade e não reutiliza o header da loja.
 - **Próxima etapa:** detalhar o dashboard operacional com indicadores, filas, alertas e ações prioritárias.
+- **Dashboard operacional:** aprovada a variante A; exceções acionáveis ocupam o primeiro plano e são ordenadas por impacto, SLA e capacidade de recuperação.
+- **Hierarquia operacional:** indicadores e tendências fornecem contexto para decisões, mas não substituem a fila de trabalho nem escondem responsáveis e próximos passos.
+- **Próxima etapa:** estruturar a gestão de catálogo, produtos, variações, ingredientes e estoque.
