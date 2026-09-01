@@ -52,7 +52,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 008 | analysis-entry-consent | Como apresentar limites, elegibilidade e consentimento antes da análise sem criar medo ou sobrecarga? | A · Jornada transparente | onboarding, consent, safety, lgpd |
 | 009 | skin-questionnaire | Como coletar contexto, alergias e restrições sem transformar o fluxo em anamnese clínica? | A · Passos por assunto | questionnaire, safety, progress |
 | 010 | photo-capture | Como orientar captura, permissão, quality gate e retake com feedback acionável? | C · Captura assistida | camera, upload, quality-gate |
-| 011 | analysis-result | Como explicar sinais, confiança, limites e rotina recomendada sem sugerir diagnóstico? | Planejado | result, explainability, routine |
+| 011 | analysis-result | Como explicar sinais, confiança, limites e rotina recomendada sem sugerir diagnóstico? | A · Resultado em camadas | result, explainability, routine |
 
 ## Sprint 3 — Decisions
 
@@ -60,4 +60,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Questionário:** passos por assunto, com uma etapa temática por vez, progresso persistente, salvamento de sessão, revisão final e interrupção segura sem perder respostas.
 - **Captura e validação:** assistência persistente ao lado da câmera, com checklist em tempo real, um motivo prioritário por retake e referência visual exclusiva da etapa.
 - **Referências visuais:** cada etapa core deve priorizar um asset contextual próprio ou uma visualização funcional; evitar repetir os mesmos retratos editoriais entre landing, acesso, questionário, captura e resultado.
-- **Próximo sketch:** resultado da análise e rotina recomendada após aprovação do Sketch 010.
+- **Resultado e recomendação:** leitura em camadas, começando por síntese visual e aprofundando sinais, confiança, limites, justificativas, alternativas e rotina sob demanda.
+- **Sprint concluída:** a jornada core agora cobre entrada/consentimento, questionário, captura/quality gate e resultado/recomendação com estados críticos e responsividade.
+- **Próximo sprint:** comércio e checkout — sacola, identificação, entrega, pagamento, revisão, confirmação e falhas recuperáveis.
