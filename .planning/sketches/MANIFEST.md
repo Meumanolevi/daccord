@@ -93,6 +93,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 019 | analysis-library-comparison | Como consultar e comparar análises sem sugerir evolução clínica ou esconder diferenças de captura? | **A — Biblioteca editorial** | account, analysis, history, comparison, confidence, privacy |
 | 020 | curations-routine | Como apresentar curadoria, rotina e alternativas sem esconder origem, restrições, estoque ou impacto de uma troca? | **A — Rotina editorial** | account, curation, routine, alternatives, explainability |
 | 021 | orders-tracking | Como acompanhar um pedido ativo e consultar o histórico sem confundir pagamento, separação e entrega? | **B — Central por status** | account, orders, tracking, payment, delivery, history |
+| 022 | addresses-delivery-preferences | Como cadastrar, escolher e editar endereços sem sugerir que a alteração muda pedidos em andamento? | **A — Carteira de endereços** | account, addresses, delivery, cep, coverage, privacy |
 
 ## Sprint 5 — Decisions
 
@@ -103,4 +104,5 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Referências visuais:** priorizar mapas, progresso, rotina e objetos funcionais; fotografias só entram quando adicionarem contexto novo.
 - **Curadorias e rotina:** aprovada a variante A; a rotina ativa ocupa o primeiro plano em sequências de manhã e noite, enquanto justificativas, compatibilidade e alternativas apoiam a execução. Trocas exigem comparação e confirmação explícita e preservam os demais passos.
 - **Pedidos e acompanhamento:** aprovada a variante B; filtros e cartões apresentam o próximo acontecimento ou a ação necessária por pedido, mantendo status financeiro e logístico separados e recuperáveis.
-- **Próxima etapa:** detalhar endereços e privacidade da conta.
+- **Endereços e entrega:** aprovada a variante A; o endereço padrão recebe destaque editorial, enquanto destinos secundários, preferências e validação de CEP permanecem acessíveis. Alterações valem somente para compras futuras.
+- **Próxima etapa:** detalhar privacidade e consentimentos da conta.
