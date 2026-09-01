@@ -109,3 +109,15 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Privacidade e dados:** aprovada a variante B; cada categoria explicita origem, uso, permanência e controle, separando escolhas opcionais de tratamentos necessários e ações sensíveis.
 - **Sprint concluída:** a conta do cliente agora cobre dashboard, perfil, segurança, perfil de pele, análises, curadorias, pedidos, endereços e privacidade.
 - **Próximo sprint:** administração — acesso administrativo, dashboard operacional, catálogo, pedidos, clientes e governança das análises.
+
+## Sprint 6 — Administração
+
+| # | Name | Design Question | Winner | Tags |
+|---|------|-----------------|--------|------|
+| 024 | admin-access-global-shell | Como estruturar acesso e navegação administrativa com contexto de papel, ambiente, alertas e auditoria? | **A — Sidebar operacional** | admin, access, shell, rbac, navigation, audit |
+
+## Sprint 6 — Decisions
+
+- **Shell administrativo:** aprovada a variante A; a sidebar persistente organiza a operação por domínio, enquanto papel, ambiente, busca, alertas e auditoria permanecem sempre acessíveis.
+- **Separação de contextos:** o ADM preserva a identidade D’Accord, mas adota maior densidade e não reutiliza o header da loja.
+- **Próxima etapa:** detalhar o dashboard operacional com indicadores, filas, alertas e ações prioritárias.
