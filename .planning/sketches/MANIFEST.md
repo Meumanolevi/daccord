@@ -71,12 +71,14 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 012 | cart-and-favorites | Como reunir favoritos, mini-sacola e sacola completa sem esconder preço, estoque ou próximos passos? | **C — Pronta para checkout** | cart, mini-cart, favorites, stock |
 | 013 | checkout-identity-delivery | Como identificar o comprador e coletar entrega com pouco atrito e validação clara? | **C — CEP primeiro** | checkout, identity, address, shipping |
 | 014 | checkout-payment-review | Como coletar pagamento e revisar o pedido sem duplicidade ou surpresa financeira? | **A — Pagamento em foco** | payment, review, psp, security |
-| 015 | order-confirmation-recovery | Como confirmar o pedido e recuperar pagamento pendente ou falho com segurança? | Planejado | confirmation, payment-failure, order |
+| 015 | order-confirmation-recovery | Como confirmar o pedido e recuperar pagamento pendente ou falho com segurança? | **B — Acompanhamento imediato** | confirmation, payment-failure, order |
 
 ## Sprint 4 — Decisions
 
 - **Sacola e favoritos:** aprovada a variante C, com revisão compacta de itens, favoritos salvos, entrega estimada, cupom e total orientados ao início do checkout.
 - **Identificação e entrega:** aprovada a variante C; cobertura e prazo são verificados pelo CEP antes da revelação progressiva do endereço, contato e frete.
 - **Pagamento e revisão:** aprovada a variante A, com método e dados de pagamento em primeiro plano e revisão lateral persistente de contato, entrega, itens e total.
+- **Confirmação e recuperação:** aprovada a variante B, com linha do tempo e acompanhamento em primeiro plano, preservando recibo, estados de pagamento e o mesmo identificador durante a recuperação.
 - **Referências visuais:** o comércio usa silhuetas de embalagem e hierarquia de informação; fotografias ficam reservadas para quando agregarem contexto real.
-- **Próximo sketch:** confirmação do pedido e recuperação de pagamento após aprovação do Sketch 014.
+- **Sprint concluída:** comércio e checkout agora cobre sacola, entrega, pagamento, revisão, confirmação e recuperação sem duplicidade.
+- **Próximo sprint:** conta do cliente — dashboard, perfil, perfil de pele, análises, curadorias, pedidos, endereços e privacidade.
