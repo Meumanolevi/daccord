@@ -120,6 +120,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 027 | admin-order-operations | Como operar pedidos distinguindo pagamento, separação, entrega, cancelamento e devolução sem reduzir tudo a um único status? | **A — Fila com inspetor** | admin, orders, payment, fulfillment, delivery, cancellation, returns |
 | 028 | admin-customer-privacy | Como apoiar atendimento, compras e solicitações de privacidade sem expor continuamente dados pessoais, perfil de pele ou fotografias? | **A — Diretório contextual** | admin, customers, support, purchases, skin-profile, privacy, lgpd |
 | 029 | admin-ai-review-governance | Como revisar exceções individuais e governar a qualidade da AI sem transformar sinais cosméticos em diagnóstico ou expor fotografias continuamente? | **A — Fila de risco com inspetor** | admin, ai, analysis, human-review, governance, safety, privacy, audit |
+| 030 | admin-content-merchandising | Como administrar conteúdo, vitrines e orientações editoriais com contexto de canal, agenda e aprovação? | **D — Agenda editável** | admin, content, merchandising, editorial, scheduling, approval |
 
 ## Sprint 6 — Decisions
 
@@ -140,4 +141,5 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Próxima etapa:** estruturar a fila administrativa de análises, revisão humana e governança da AI.
 - **Revisão humana e governança:** aprovada a variante A; exceções são ordenadas por risco, SLA e recuperabilidade, enquanto o inspetor preserva contexto, origem das evidências e identidade protegida.
 - **Decisão assistida:** a AI apoia triagem e curadoria cosmética, mas não diagnostica; capturas exigem acesso auditado e aprovar, limitar, solicitar nova captura ou escalar exige justificativa vinculada ao modelo e às regras consultadas.
-- **Próxima etapa:** estruturar a gestão administrativa de conteúdo, vitrines e orientações editoriais.
+- **Conteúdo e vitrines:** aprovada a variante D; a agenda operacional e a seleção persistem enquanto prévia e edição acontecem no mesmo contexto, com canal, audiência, vigência, revisão e conflitos visíveis antes da publicação.
+- **Próxima etapa:** estruturar promoções e cupons com elegibilidade, vigência, limites de uso e impacto financeiro.
