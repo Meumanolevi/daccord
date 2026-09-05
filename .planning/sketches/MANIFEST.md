@@ -4,6 +4,8 @@
 
 Wireframes de baixa fidelidade com a identidade editorial D’Accord: composição ortogonal, contraste entre ameixa, magenta, nude e branco, tipografia condensada para títulos e navegação funcional direta. A experiência deve transmitir cuidado, segurança e curadoria sem linguagem clínica excessiva ou promessas médicas.
 
+**Padrão visual vigente — 05/09/2026:** o Sketch 035 A passa a orientar todos os 35 wireframes: DM Sans e Staatliches carregadas localmente, superfícies leves, raios discretos, controles consistentes e ícones vetoriais de traço uniforme nas sidebars. Mantêm-se layouts, variantes e escolhas anteriores; a loja conserva o header centralizado e o ADM sua navegação própria. Esta decisão atualiza as restrições históricas de geometria, sem alterar o escopo funcional. Contrato: [VISUAL-STANDARD.md](VISUAL-STANDARD.md).
+
 ## Reference Points
 
 - Landing page D’Accord já implementada.
@@ -125,6 +127,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 032 | admin-support-tickets | Como atender tickets de pedidos e análises com SLA, histórico, dados minimizados e escalonamento? | **D — SLA + atendimento contextual** | admin, support, tickets, sla, escalation, privacy |
 | 033 | admin-users-rbac | Como administrar usuários internos, papéis, permissões e sessões sem permitir privilégios excessivos ou mudanças invisíveis? | **A — Diretório com inspetor** | admin, users, rbac, permissions, mfa, sessions, audit |
 | 034 | admin-audit-traceability | Como investigar eventos administrativos e produzir evidências confiáveis sem tornar o histórico editável ou expor dados desnecessários? | **D — Linha + inspetor** | admin, audit, events, traceability, correlation, evidence, integrity |
+| 035 | admin-settings-integrations | Como configurar a operação da loja e suas integrações com clareza sobre o que está vigente, o que está em rascunho e o impacto de aplicar uma mudança? | **A — Configurações por área** | admin, settings, integrations, configuration, drafts, publication, audit |
 
 ## Sprint 6 — Decisions
 
@@ -158,3 +161,5 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Auditoria:** aprovada a variante D, síntese B + A; a investigação parte da entidade e sua sequência correlacionada, com seleção sincronizada entre linha, log cronológico e inspetor detalhado.
 - **Rastreabilidade:** ator, horário, origem, motivo, alterações e integridade orientam a revisão; dados pessoais permanecem minimizados e exportações registram finalidade e escopo, sem editar os eventos de origem.
 - **Próxima etapa:** estruturar as configurações administrativas do sistema (ADM-20).
+- **Configurações administrativas:** aprovada a variante A do Sketch 035; edição por área, configuração vigente e rascunho permanecem separados, com revisão antes de aplicar uma nova versão.
+- **Padronização visual:** o visual do Sketch 035 A é a referência transversal para todos os wireframes. Ícones vetoriais substituem símbolos tipográficos na navegação lateral; composição, comportamento e escolhas aprovadas são preservados.

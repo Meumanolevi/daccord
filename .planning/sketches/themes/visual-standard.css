@@ -1,0 +1,82 @@
+/* D’Accord wireframe standard · reference: Sketch 035 A.
+   Loaded after each sketch's local styles. Layout and interaction remain local. */
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:400;src:url('../../../node_modules/@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:500;src:url('../../../node_modules/@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2') format('woff2');font-display:swap}
+@font-face{font-family:'DM Sans';font-style:normal;font-weight:600 900;src:url('../../../node_modules/@fontsource/dm-sans/files/dm-sans-latin-700-normal.woff2') format('woff2');font-display:swap}
+@font-face{font-family:Staatliches;font-style:normal;font-weight:400;src:url('../../../node_modules/@fontsource/staatliches/files/staatliches-latin-400-normal.woff2') format('woff2');font-display:swap}
+@font-face{font-family:Belleza;font-style:normal;font-weight:400;src:url('../../../node_modules/@fontsource/belleza/files/belleza-latin-400-normal.woff2') format('woff2');font-display:swap}
+
+:root{
+  --font-sans:'DM Sans',Arial,sans-serif;
+  --font-display:Staatliches,'Arial Narrow',sans-serif;
+  --font-elegant:Belleza,Georgia,serif;
+  --wf-surface:#fff;
+  --wf-canvas:#f7f4f6;
+  --wf-soft:#f5eff2;
+  --wf-line:#e9e0e5;
+  --wf-radius-control:6px;
+  --wf-radius-surface:8px;
+  --wf-shadow:0 4px 18px #2b192407;
+}
+body{font-family:var(--font-sans);background:#e7e3e6}
+button,input,select,textarea{font-family:var(--font-sans)}
+h1,h2,.display,.section-title,.title{font-weight:400}
+/* Only supporting UI is unified; editorial scale, imagery and page grids stay intact. */
+.variant-nav{font-family:var(--font-sans);border-bottom:1px solid var(--wf-line);box-shadow:none;background:#fff;gap:6px}
+.variant-nav .variant-tab{min-height:40px;border:0;border-radius:5px;background:#f4f0f2;color:var(--color-text);font-size:12px;font-weight:500;box-shadow:none}
+.variant-nav .variant-tab.active{background:var(--color-text);color:#fff;box-shadow:none}
+.variant-nav .variant-tab:hover:not(.active){background:#eadde5}
+.surface{border-radius:var(--wf-radius-surface);box-shadow:var(--wf-shadow)}
+:where(.card,.summary-card,.profile-card,.product-card,.editor,.inspector,.review-inspector,.chapter){border-radius:var(--wf-radius-surface);border-color:var(--wf-line)}
+button:is(.primary,.secondary,.danger,.btn),a:is(.primary,.secondary,.btn){border-radius:var(--wf-radius-control);font-size:12px;font-weight:700;min-height:40px}
+button.primary,button.btn.primary{background:var(--color-primary);color:#fff}
+button.secondary{background:#eee5ea;color:var(--color-text)}
+:where(input:not([type=checkbox],[type=radio],[type=range],[type=color],[type=hidden]),select,textarea){border-radius:5px;font-size:11px}
+.eyebrow{font-size:10px;font-weight:700;line-height:1.5}
+.eyebrow + :is(h1,h2,.title,.display,.section-title){margin-top:8px;line-height:1.08}
+.lead{font-size:12px;line-height:1.6}
+.chip,.status-chip{font-size:10px;font-weight:700}
+:is(.sidebar,.sidebar-a,.account-sidebar,.rail-b){background:var(--color-text)}
+:is(.sidebar,.sidebar-a,.account-sidebar) nav button{
+  display:flex;align-items:center;gap:10px;min-height:40px;
+  border-radius:6px;font-weight:500;line-height:1.4;
+}
+:is(.sidebar,.sidebar-a,.account-sidebar) nav button.active{
+  background:#513243;color:#fff;border-left-color:transparent;
+  box-shadow:inset 3px 0 #e094bf;
+}
+:is(.sidebar,.sidebar-a,.account-sidebar) nav button:hover{background:#49323f;color:#fff}
+:is(.sidebar,.sidebar-a) .brand,:is(.sidebar,.sidebar-a) .sidebar-a__brand{border-color:#583f4d}
+.wf-icon-slot{display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 20px;width:20px!important;height:20px;line-height:1;vertical-align:middle;pointer-events:none;font-style:normal}
+.wf-icon{display:block;width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.rail-b button .wf-icon-slot{margin:auto}
+:is(.sidebar,.sidebar-a,.account-sidebar) nav button .wf-icon{opacity:.9}
+:is(.sidebar,.sidebar-a,.account-sidebar) nav button.active .wf-icon{color:#f0bdd8;opacity:1}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+/* Responsive accommodations for the larger, readable labels in legacy sketches. */
+@container(max-width:767px){
+  body[data-wf-sketch="003"] :is(.pdp-grid,.explain-grid,.routine-grid,.routine-product,.explain-content){grid-template-columns:minmax(0,1fr)}
+  body[data-wf-sketch="003"] :is(.gallery,.explain-copy,.explain-side,.purchase-panel){min-width:0;max-width:100%}
+  body[data-wf-sketch="003"] .explain-grid .gallery{grid-template-columns:minmax(0,1fr)}
+  body[data-wf-sketch="012"] .compact-grid{grid-template-columns:minmax(0,1fr)}
+  body[data-wf-sketch="012"] :is(.compact-list,.checkout-card,.item-info){min-width:0}
+  body[data-wf-sketch="012"] :is(.item-links,.item-actions){flex-wrap:wrap}
+}
+@container(max-width:560px){
+  body[data-wf-sketch="025"] .health-top{flex-wrap:wrap;gap:8px}
+  body[data-wf-shell="admin"] .topbar .breadcrumb{min-width:0;overflow-wrap:anywhere}
+  body[data-wf-shell="admin"] .summary-row{flex-wrap:wrap;row-gap:8px}
+  body[data-wf-sketch="026"] .quality-grid{grid-template-columns:minmax(0,1fr)}
+  body[data-wf-sketch="026"] .quality-grid .quality-column:last-child{grid-column:auto}
+  body[data-wf-sketch="026"] .quality-card__top{flex-wrap:wrap}
+  body[data-wf-sketch="030"] :is(.hybrid-queue,.hybrid-item){min-width:0}
+  body[data-wf-sketch="030"] .hybrid-item header{flex-wrap:wrap}
+  body[data-wf-sketch="030"] .hybrid-item :is(strong,span){overflow-wrap:anywhere}
+  body[data-wf-sketch="030"] .content-row{grid-template-columns:minmax(0,1fr) 75px 24px}
+  body[data-wf-sketch="031"] .promo-row{grid-template-columns:minmax(0,1fr) 75px 24px}
+  body[data-wf-sketch="033"] .button-row{flex-wrap:wrap}
+  body[data-wf-sketch="033"] .security-row{grid-template-columns:minmax(0,1fr) 80px}
+  body[data-wf-sketch="033"] .security-row button{max-width:100%;width:100%}
+}
+@media(max-width:650px){.variant-nav .variant-tab{font-size:11px}.variant-nav__label,.variant-label{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

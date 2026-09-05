@@ -15,7 +15,7 @@
     button { color:inherit; cursor:pointer; }
     [hidden] { display:none !important; }
     .variant-nav { position:fixed; z-index:9998; inset:0 0 auto; display:flex; min-height:58px; align-items:center; gap:8px; padding:9px 16px; overflow-x:auto; border-bottom:1px solid #cbc3c7; background:rgba(255,255,255,.98); box-shadow:0 6px 20px rgba(43,25,36,.08); font-family:system-ui,sans-serif; }
-    .variant-nav__label { margin-right:8px; color:#6b6267; font-size:11px; font-weight:800; letter-spacing:.09em; white-space:nowrap; }
+    .variant-nav__label { margin-right:8px; color:#6b6267; font-size:11px; font-weight:700; letter-spacing:.09em; white-space:nowrap; }
     .variant-tab { min-height:36px; padding:7px 12px; border:1px solid #d2c9cd; background:white; white-space:nowrap; }
     .variant-tab:hover { border-color:var(--color-primary); color:var(--color-primary); }
     .variant-tab.active { border-color:var(--color-text); background:var(--color-text); color:white; }
@@ -42,7 +42,7 @@
     .analysis-entry { display:flex; min-height:54px; align-items:center; justify-content:space-between; gap:14px; padding:8px 18px 8px 38px; background:var(--color-primary); color:white; }
     .analysis-entry p { margin:0; font-size:11px; }
     .analysis-entry strong { display:block; font-size:13px; }
-    .analysis-entry button { min-height:35px; padding:7px 11px; border:1px solid white; background:transparent; color:white; font-size:10px; font-weight:800; }
+    .analysis-entry button { min-height:35px; padding:7px 11px; border:1px solid white; background:transparent; color:white; font-size:10px; font-weight:700; }
     .analysis-entry button:hover { background:white; color:var(--color-primary); }
     .search-form { display:flex; min-width:0; height:54px; border-left:1px solid var(--color-border-soft); background:white; }
     .search-form input { min-width:0; flex:1; padding:0 16px; border:0; outline:0; background:transparent; color:var(--color-text); }
@@ -65,23 +65,23 @@
     .product-hero::before { position:absolute; width:145px; height:320px; border:1px solid #775c69; background:rgba(255,255,255,.3); box-shadow:inset 0 0 35px rgba(157,40,111,.12); content:""; }
     .product-hero::after { position:absolute; top:calc(50% - 190px); width:116px; height:72px; border:1px solid #775c69; background:linear-gradient(#b9a7b0,#73616a); content:""; }
     .hero-label { position:relative; z-index:2; margin-top:90px; font-family:var(--font-display); font-size:clamp(48px,6vw,82px); color:rgba(43,25,36,.65); }
-    .hero-caption { position:absolute; z-index:2; right:14px; bottom:12px; color:var(--color-text-muted); font-size:9px; font-weight:700; text-transform:uppercase; }
+    .hero-caption { position:absolute; z-index:2; right:14px; bottom:12px; color:var(--color-text-muted); font-size:10px; font-weight:700; text-transform:uppercase; }
     .purchase-panel { display:flex; flex-direction:column; padding:34px 38px 42px; background:white; }
-    .product-brand { margin:0; color:var(--color-primary); font-size:10px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    .product-brand { margin:0; color:var(--color-primary); font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
     .product-title { margin:8px 0 0; font-family:var(--font-display); font-size:clamp(48px,5vw,72px); line-height:.88; text-transform:uppercase; }
     .product-subtitle { margin:10px 0 0; font-size:17px; font-weight:700; line-height:1.25; }
     .product-description { margin:16px 0 0; color:var(--color-text-muted); font-size:12px; line-height:1.55; }
-    .price { margin:22px 0 0; font-size:24px; font-weight:800; }
+    .price { margin:22px 0 0; font-size:24px; font-weight:700; }
     .installments { margin:3px 0 0; color:var(--color-text-muted); font-size:10px; }
-    .choice-label { display:block; margin:20px 0 7px; font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
+    .choice-label { display:block; margin:20px 0 7px; font-size:10px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; }
     .size-options { display:flex; gap:7px; }
-    .size-option { min-width:78px; min-height:39px; border:1px solid var(--color-border-soft); background:white; font-size:10px; font-weight:800; }
+    .size-option { min-width:78px; min-height:39px; border:1px solid var(--color-border-soft); background:white; font-size:10px; font-weight:700; }
     .size-option:hover,.size-option[aria-pressed="true"] { border-color:var(--color-primary); background:var(--color-surface-soft); color:var(--color-primary); }
     .purchase-row { display:grid; grid-template-columns:104px minmax(0,1fr); gap:8px; margin-top:16px; }
     .quantity { display:grid; grid-template-columns:32px 1fr 32px; min-height:46px; border:1px solid var(--color-text); }
     .quantity button { border:0; background:white; }
-    .quantity span { display:grid; place-items:center; font-size:12px; font-weight:800; }
-    .primary,.secondary { min-height:46px; padding:9px 14px; font-size:10px; font-weight:800; }
+    .quantity span { display:grid; place-items:center; font-size:12px; font-weight:700; }
+    .primary,.secondary { min-height:46px; padding:9px 14px; font-size:10px; font-weight:700; }
     .primary { border:1px solid var(--color-primary); background:var(--color-primary); color:white; }
     .primary:hover { border-color:var(--color-primary-hover); background:var(--color-primary-hover); }
     .secondary { border:1px solid var(--color-text); background:white; }
@@ -91,32 +91,32 @@
     .favorite-line button[aria-pressed="true"] { border-color:var(--color-primary); color:var(--color-primary); }
     .shipping { display:flex; margin-top:18px; border-top:1px solid var(--color-border-soft); padding-top:16px; }
     .shipping input { min-width:0; min-height:40px; flex:1; padding:8px 10px; border:1px solid var(--color-border-soft); border-right:0; }
-    .shipping button { min-width:88px; min-height:40px; border:1px solid var(--color-text); background:white; font-size:9px; font-weight:800; }
-    .stock-message { margin:12px 0 0; color:var(--color-success); font-size:10px; font-weight:800; }
+    .shipping button { min-width:88px; min-height:40px; border:1px solid var(--color-text); background:white; font-size:10px; font-weight:700; }
+    .stock-message { margin:12px 0 0; color:var(--color-success); font-size:10px; font-weight:700; }
     .stock-message.warning { color:var(--color-danger); }
 
     .match-card { border:1px solid var(--color-primary); background:var(--color-surface-soft); }
     .match-card__head { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 16px; border-bottom:1px solid rgba(157,40,111,.25); }
     .match-score { font-family:var(--font-display); font-size:39px; line-height:1; color:var(--color-primary); }
     .match-card__head div:last-child { text-align:right; }
-    .match-card__head small { display:block; color:var(--color-primary); font-size:9px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .match-card__head small { display:block; color:var(--color-primary); font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
     .match-card__head strong { font-size:12px; }
     .match-body { padding:14px 16px; }
     .match-body p { margin:0; color:var(--color-text-muted); font-size:11px; line-height:1.5; }
     .match-reasons { display:flex; flex-wrap:wrap; gap:5px; margin:11px 0 0; padding:0; list-style:none; }
-    .match-reasons li { padding:5px 7px; border:1px solid rgba(157,40,111,.35); color:var(--color-primary); font-size:9px; font-weight:800; }
-    .match-link { width:100%; margin-top:11px; min-height:37px; border:1px solid var(--color-primary); background:white; color:var(--color-primary); font-size:9px; font-weight:800; }
+    .match-reasons li { padding:5px 7px; border:1px solid rgba(157,40,111,.35); color:var(--color-primary); font-size:10px; font-weight:700; }
+    .match-link { width:100%; margin-top:11px; min-height:37px; border:1px solid var(--color-primary); background:white; color:var(--color-primary); font-size:10px; font-weight:700; }
 
     .info-section { padding:40px 38px 62px; background:white; }
     .tab-list { display:flex; border-bottom:1px solid var(--color-text); }
-    .info-tab { min-height:45px; padding:10px 18px; border:0; border-bottom:3px solid transparent; background:white; font-size:10px; font-weight:800; }
+    .info-tab { min-height:45px; padding:10px 18px; border:0; border-bottom:3px solid transparent; background:white; font-size:10px; font-weight:700; }
     .info-tab:hover,.info-tab[aria-pressed="true"] { border-bottom-color:var(--color-primary); color:var(--color-primary); }
     .tab-panel { max-width:800px; padding:24px 0 0; }
     .tab-panel h2 { margin:0; font-family:var(--font-display); font-size:30px; text-transform:uppercase; }
     .tab-panel p,.tab-panel li { color:var(--color-text-muted); font-size:12px; line-height:1.6; }
     .details-stack { display:grid; gap:0; margin-top:24px; border-top:1px solid var(--color-text); }
     details { border-bottom:1px solid var(--color-border-soft); background:white; }
-    summary { display:flex; min-height:50px; align-items:center; justify-content:space-between; padding:10px 0; font-size:11px; font-weight:800; cursor:pointer; list-style:none; }
+    summary { display:flex; min-height:50px; align-items:center; justify-content:space-between; padding:10px 0; font-size:11px; font-weight:700; cursor:pointer; list-style:none; }
     summary::after { content:'+'; font-size:18px; }
     details[open] summary::after { content:'−'; }
     details > div { max-width:760px; padding:0 0 18px; color:var(--color-text-muted); font-size:12px; line-height:1.6; }
@@ -165,11 +165,11 @@
     .routine-context h1 { margin:8px 0 0; font-family:var(--font-display); font-size:clamp(44px,5vw,68px); line-height:.9; text-transform:uppercase; }
     .routine-context > p { color:rgba(255,255,255,.7); font-size:12px; line-height:1.5; }
     .period-tabs { display:flex; margin-top:22px; }
-    .period-tabs button { min-height:40px; flex:1; border:1px solid rgba(255,255,255,.45); background:transparent; color:white; font-size:10px; font-weight:800; }
+    .period-tabs button { min-height:40px; flex:1; border:1px solid rgba(255,255,255,.45); background:transparent; color:white; font-size:10px; font-weight:700; }
     .period-tabs button[aria-pressed="true"] { background:white; color:var(--color-text); }
     .routine-list { margin:20px 0 0; padding:0; list-style:none; counter-reset:step; }
     .routine-step { position:relative; min-height:70px; padding:13px 10px 13px 48px; border-top:1px solid rgba(255,255,255,.2); counter-increment:step; }
-    .routine-step::before { position:absolute; top:13px; left:8px; color:var(--color-accent); font-size:11px; font-weight:800; content:'0' counter(step); }
+    .routine-step::before { position:absolute; top:13px; left:8px; color:var(--color-accent); font-size:11px; font-weight:700; content:'0' counter(step); }
     .routine-step strong { display:block; font-size:12px; }
     .routine-step span { color:rgba(255,255,255,.6); font-size:10px; }
     .routine-step.current { margin-inline:-10px; padding-inline:58px 20px; background:var(--color-primary); }
@@ -183,8 +183,8 @@
     .alternative { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid var(--color-border-soft); }
     .alternative div { min-width:0; }
     .alternative strong { display:block; font-size:11px; }
-    .alternative span { color:var(--color-text-muted); font-size:9px; }
-    .alternative button { min-height:34px; padding:6px 9px; border:1px solid var(--color-text); background:white; font-size:9px; font-weight:800; }
+    .alternative span { color:var(--color-text-muted); font-size:10px; }
+    .alternative button { min-height:34px; padding:6px 9px; border:1px solid var(--color-text); background:white; font-size:10px; font-weight:700; }
 
     .compat-dialog { width:min(620px,calc(100vw - 28px)); padding:0; border:1px solid var(--color-text); color:var(--color-text); }
     .compat-dialog::backdrop { background:rgba(43,25,36,.58); }
@@ -250,8 +250,10 @@
     }
     @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
   </style>
+  <link rel="stylesheet" href="../themes/visual-standard.css">
+  <script src="../themes/sidebar-icons.js" defer></script>
 </head>
-<body>
+<body data-visual-standard="035-a" data-wf-sketch="003" data-wf-shell="store">
   <nav class="variant-nav" aria-label="Variantes do sketch"><span class="variant-nav__label">SKETCH 003 · PRODUTO</span><button class="variant-tab active" type="button" data-variant="a">A · Compra direta</button><button class="variant-tab" type="button" data-variant="b">B · Compatibilidade explicada</button><button class="variant-tab" type="button" data-variant="c">C · Rotina em contexto</button><button class="variant-tab" type="button" data-variant="d">D · Síntese B mais leve ★ Selecionada</button></nav>
   <main class="sketch-stage"><div class="viewport-shell" id="viewport-shell"><div id="sketch-viewport">
     <section class="variant active" id="variant-a" aria-label="Variante A: Compra direta"><div data-shell></div><div class="product-page"><p class="breadcrumb">Produtos / Séruns / IRIS 01</p><div class="pdp-grid"><div data-gallery></div><div class="purchase-panel"><p class="product-brand">D’Accord · Curadoria para pele sensível</p><h1 class="product-title" data-annotate="Título de produto">IRIS 01</h1><p class="product-subtitle">Sérum calmante para barreira sensibilizada</p><div class="match-card" style="margin-top:18px" data-match-card></div><p class="product-description">Fórmula leve com ativos de suporte à hidratação e ao conforto da pele. Orientação cosmética; não substitui avaliação dermatológica.</p><div data-purchase></div></div></div><div class="info-section"><div class="tab-list" role="tablist"><button class="info-tab" type="button" aria-pressed="true" data-tab="beneficios">Benefícios</button><button class="info-tab" type="button" aria-pressed="false" data-tab="ingredientes">Ingredientes</button><button class="info-tab" type="button" aria-pressed="false" data-tab="uso">Como usar</button><button class="info-tab" type="button" aria-pressed="false" data-tab="seguranca">Segurança</button></div><div class="tab-panel" data-tab-panel></div></div></div></section>
