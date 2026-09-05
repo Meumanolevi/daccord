@@ -124,6 +124,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 031 | admin-promotions-coupons | Como criar e operar promoções e cupons preservando elegibilidade, limites, vigência e impacto financeiro? | **A — Campanhas com simulador** | admin, promotions, coupons, eligibility, limits, finance |
 | 032 | admin-support-tickets | Como atender tickets de pedidos e análises com SLA, histórico, dados minimizados e escalonamento? | **D — SLA + atendimento contextual** | admin, support, tickets, sla, escalation, privacy |
 | 033 | admin-users-rbac | Como administrar usuários internos, papéis, permissões e sessões sem permitir privilégios excessivos ou mudanças invisíveis? | **A — Diretório com inspetor** | admin, users, rbac, permissions, mfa, sessions, audit |
+| 034 | admin-audit-traceability | Como investigar eventos administrativos e produzir evidências confiáveis sem tornar o histórico editável ou expor dados desnecessários? | **D — Linha + inspetor** | admin, audit, events, traceability, correlation, evidence, integrity |
 
 ## Sprint 6 — Decisions
 
@@ -154,3 +155,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Usuários internos:** aprovada a variante A; o diretório mantém a comparação entre pessoas, enquanto o inspetor reúne papel atribuído, permissões efetivas, MFA, revisão periódica, sessões e histórico sem perder o contexto.
 - **Governança de acesso:** ninguém amplia o próprio papel; permissões de leitura, operação e aprovação permanecem independentes, e mudanças críticas exigem justificativa, segunda aprovadora e auditoria.
 - **Próxima etapa:** estruturar o histórico administrativo de auditoria, eventos, filtros e rastreabilidade.
+- **Auditoria:** aprovada a variante D, síntese B + A; a investigação parte da entidade e sua sequência correlacionada, com seleção sincronizada entre linha, log cronológico e inspetor detalhado.
+- **Rastreabilidade:** ator, horário, origem, motivo, alterações e integridade orientam a revisão; dados pessoais permanecem minimizados e exportações registram finalidade e escopo, sem editar os eventos de origem.
+- **Próxima etapa:** estruturar as configurações administrativas do sistema (ADM-20).
