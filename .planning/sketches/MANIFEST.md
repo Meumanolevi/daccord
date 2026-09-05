@@ -123,6 +123,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 030 | admin-content-merchandising | Como administrar conteúdo, vitrines e orientações editoriais com contexto de canal, agenda e aprovação? | **D — Agenda editável** | admin, content, merchandising, editorial, scheduling, approval |
 | 031 | admin-promotions-coupons | Como criar e operar promoções e cupons preservando elegibilidade, limites, vigência e impacto financeiro? | **A — Campanhas com simulador** | admin, promotions, coupons, eligibility, limits, finance |
 | 032 | admin-support-tickets | Como atender tickets de pedidos e análises com SLA, histórico, dados minimizados e escalonamento? | **D — SLA + atendimento contextual** | admin, support, tickets, sla, escalation, privacy |
+| 033 | admin-users-rbac | Como administrar usuários internos, papéis, permissões e sessões sem permitir privilégios excessivos ou mudanças invisíveis? | **A — Diretório com inspetor** | admin, users, rbac, permissions, mfa, sessions, audit |
 
 ## Sprint 6 — Decisions
 
@@ -150,3 +151,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Central de suporte:** aprovada a variante D; capacidade, risco e destino de escalonamento filtram uma fila priorizada, enquanto conversa e contexto mínimo permanecem no mesmo espaço de atendimento.
 - **Continuidade e privacidade:** mensagens públicas e notas internas são visualmente distintas; perfil de pele e fotografias ficam ocultos por padrão, e transferências preservam SLA, histórico, evidências e próxima ação sem ampliar acesso sensível.
 - **Próxima etapa:** estruturar a gestão de usuários internos, papéis, permissões e sessões administrativas.
+- **Usuários internos:** aprovada a variante A; o diretório mantém a comparação entre pessoas, enquanto o inspetor reúne papel atribuído, permissões efetivas, MFA, revisão periódica, sessões e histórico sem perder o contexto.
+- **Governança de acesso:** ninguém amplia o próprio papel; permissões de leitura, operação e aprovação permanecem independentes, e mudanças críticas exigem justificativa, segunda aprovadora e auditoria.
+- **Próxima etapa:** estruturar o histórico administrativo de auditoria, eventos, filtros e rastreabilidade.
