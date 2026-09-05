@@ -122,6 +122,7 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 | 029 | admin-ai-review-governance | Como revisar exceções individuais e governar a qualidade da AI sem transformar sinais cosméticos em diagnóstico ou expor fotografias continuamente? | **A — Fila de risco com inspetor** | admin, ai, analysis, human-review, governance, safety, privacy, audit |
 | 030 | admin-content-merchandising | Como administrar conteúdo, vitrines e orientações editoriais com contexto de canal, agenda e aprovação? | **D — Agenda editável** | admin, content, merchandising, editorial, scheduling, approval |
 | 031 | admin-promotions-coupons | Como criar e operar promoções e cupons preservando elegibilidade, limites, vigência e impacto financeiro? | **A — Campanhas com simulador** | admin, promotions, coupons, eligibility, limits, finance |
+| 032 | admin-support-tickets | Como atender tickets de pedidos e análises com SLA, histórico, dados minimizados e escalonamento? | **D — SLA + atendimento contextual** | admin, support, tickets, sla, escalation, privacy |
 
 ## Sprint 6 — Decisions
 
@@ -146,3 +147,6 @@ Wireframes de baixa fidelidade com a identidade editorial D’Accord: composiç�
 - **Promoções e cupons:** aprovada a variante A; campanhas aparecem em uma lista operacional com inspetor de regras e desempenho, enquanto o simulador reproduz a elegibilidade do checkout e explica aplicações ou bloqueios antes da publicação.
 - **Controle financeiro:** teto, uso total, limite por cliente, cumulatividade e vigência permanecem independentes e auditáveis; campanhas ativas podem ser pausadas sem reescrever pedidos concluídos.
 - **Próxima etapa:** estruturar a central administrativa de suporte, tickets, SLAs, histórico e escalonamento.
+- **Central de suporte:** aprovada a variante D; capacidade, risco e destino de escalonamento filtram uma fila priorizada, enquanto conversa e contexto mínimo permanecem no mesmo espaço de atendimento.
+- **Continuidade e privacidade:** mensagens públicas e notas internas são visualmente distintas; perfil de pele e fotografias ficam ocultos por padrão, e transferências preservam SLA, histórico, evidências e próxima ação sem ampliar acesso sensível.
+- **Próxima etapa:** estruturar a gestão de usuários internos, papéis, permissões e sessões administrativas.
