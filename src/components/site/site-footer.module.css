@@ -34,7 +34,7 @@
 .notice > p {
   margin: 0 0 1rem;
   color: var(--daccord-color-text-brand);
-  font-size: .68rem;
+  font-size: .875rem;
   font-weight: 800;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -67,7 +67,7 @@
 
 .notice span {
   color: var(--daccord-color-text-secondary);
-  font-size: .78rem;
+  font-size: 1rem;
   line-height: 1.55;
 }
 
@@ -80,7 +80,7 @@
   padding: 1.25rem clamp(1.25rem, 5vw, 4.5rem);
   border-top: 1px solid rgb(43 25 36 / 10%);
   color: var(--daccord-color-text-secondary);
-  font-size: .68rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 900px) {

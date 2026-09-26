@@ -182,7 +182,7 @@ a {
   padding: 0 1rem;
   background: #e6d8de;
   color: var(--daccord-color-text-primary);
-  font-size: 0.68rem;
+  font-size: 0.875rem;
   text-align: center;
 }
 
@@ -233,12 +233,13 @@ a {
 .header-utility a,
 .header-accessibility > button {
   color: inherit;
-  font-size: 0.69rem;
+  font-size: 0.875rem;
   font-weight: 600;
   white-space: nowrap;
 }
 
 .header-utility a {
+  font-size: 1rem;
   text-decoration: none;
 }
 
@@ -301,7 +302,7 @@ a {
   background: white;
   color: var(--daccord-color-text-primary);
   font: inherit;
-  font-size: 0.72rem;
+  font-size: 0.875rem;
   font-weight: 700;
   cursor: pointer;
 }
@@ -424,7 +425,7 @@ a {
 
 .header-filters a {
   color: var(--daccord-color-text-primary);
-  font-size: 0.72rem;
+  font-size: 1rem;
   font-weight: 650;
   text-decoration: none;
   white-space: nowrap;
@@ -463,7 +464,7 @@ a {
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
 
 .header-mobile-menu__search button {
@@ -485,7 +486,7 @@ a {
   padding: 0.8rem 0;
   border-bottom: 1px solid rgb(43 25 36 / 10%);
   color: inherit;
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -497,7 +498,7 @@ a {
 .header-mobile-menu__accessibility > p {
   margin-bottom: 0.55rem;
   color: var(--daccord-color-text-brand);
-  font-size: 0.65rem;
+  font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -549,7 +550,7 @@ a {
 
 .hero-description {
   margin-top: clamp(0.8rem, 2.4dvh, 1.25rem);
-  font-size: clamp(0.85rem, 3.8vw, 1rem);
+  font-size: 1rem;
   line-height: 1.3;
 }
 
@@ -587,7 +588,7 @@ a {
 }
 
 .insight-copy {
-  font-size: 0.8125rem;
+  font-size: 1rem;
 }
 
 .section-transition {
@@ -658,7 +659,7 @@ a {
   top: clamp(1.5rem, 5svh, 3.25rem);
   left: 1.5rem;
   padding: 0.7rem 1.35rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .spotlight-title {
@@ -670,7 +671,7 @@ a {
 .spotlight-copy {
   right: 1.5rem;
   bottom: 1.75rem;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 
 .spotlight-recommendation {
@@ -707,7 +708,7 @@ a {
 .spotlight-recommendation__header {
   padding-bottom: 0.75rem;
   border-bottom: 1px solid rgb(43 25 36 / 14%);
-  font-size: 0.62rem;
+  font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: 0.08em;
 }
@@ -723,7 +724,7 @@ a {
 .spotlight-recommendation__eyebrow {
   margin-top: clamp(0.8rem, 2dvh, 1.25rem);
   color: var(--daccord-color-text-brand);
-  font-size: 0.65rem;
+  font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: 0.12em;
 }
@@ -746,7 +747,7 @@ a {
   max-width: 34rem;
   margin-top: clamp(0.7rem, 2dvh, 1.1rem);
   color: var(--daccord-color-text-secondary);
-  font-size: clamp(0.78rem, 3.25vw, 0.95rem);
+  font-size: clamp(1.0625rem, calc(1.0625rem + 0.2vw), 1.125rem);
   line-height: 1.45;
 }
 
@@ -764,11 +765,12 @@ a {
   border: 1px solid rgb(148 21 100 / 30%);
   border-radius: 0;
   color: var(--daccord-color-text-brand);
-  font-size: 0.59rem;
+  font-size: 0.8125rem;
   font-weight: 800;
   letter-spacing: 0.055em;
 }
 
+  font-size: 0.8125rem;
 .spotlight-recommendation__purchase {
   margin-top: auto;
   padding-top: 0.8rem;
@@ -782,7 +784,7 @@ a {
 .spotlight-recommendation__purchase span,
 .spotlight-recommendation__card small {
   color: var(--daccord-color-text-secondary);
-  font-size: 0.58rem;
+  font-size: 0.875rem;
   letter-spacing: 0.04em;
 }
 
@@ -855,7 +857,7 @@ a {
 .editorial-caption {
   min-height: 1.55rem;
   margin-top: 0.25rem;
-  font-size: clamp(0.72rem, 2.95vw, 0.82rem);
+  font-size: 0.875rem;
   line-height: 1.25;
 }
 
@@ -880,7 +882,7 @@ a {
 
 .editorial-list-copy {
   margin-top: clamp(0.5rem, 1.5dvh, 0.75rem);
-  font-size: clamp(0.8125rem, 3.35vw, 0.9375rem);
+  font-size: 1rem;
   line-height: 1.35;
 }
 
@@ -942,6 +944,10 @@ a {
   transform-origin: center bottom;
   touch-action: pan-y;
 }
+.editorial-caption span:last-child {
+  font-size: 1rem;
+}
+
 
 .mobile-step-card:active {
   cursor: grabbing;
@@ -963,7 +969,7 @@ a {
 
 .mobile-step-card__number {
   color: var(--daccord-color-text-brand);
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   font-weight: 800;
   letter-spacing: 0.12em;
 }
@@ -977,7 +983,7 @@ a {
 .mobile-step-card__note {
   margin-top: auto;
   color: var(--daccord-color-text-secondary);
-  font-size: clamp(0.78rem, 3.3vw, 0.9rem);
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.035em;
   text-transform: uppercase;
@@ -1226,7 +1232,7 @@ a {
 }
 
 .help-chatbot__header p {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: 0.11em;
 }
@@ -1237,7 +1243,7 @@ a {
   gap: 0.45rem;
   margin-top: 0.3rem;
   color: rgb(255 255 255 / 68%);
-  font-size: 0.58rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.09em;
 }
@@ -1289,13 +1295,13 @@ a {
   display: block;
   margin-bottom: 0.35rem;
   color: var(--daccord-color-text-brand);
-  font-size: 0.55rem;
+  font-size: 0.875rem;
   font-weight: 800;
   letter-spacing: 0.1em;
 }
 
 .help-chatbot__message p {
-  font-size: 0.82rem;
+  font-size: 1rem;
   line-height: 1.45;
 }
 
@@ -1333,7 +1339,7 @@ a {
 .help-chatbot__form label {
   display: block;
   margin-bottom: 0.4rem;
-  font-size: 0.55rem;
+  font-size: 0.8125rem;
   font-weight: 800;
   letter-spacing: 0.1em;
 }
@@ -1352,7 +1358,7 @@ a {
   background: white;
   color: var(--daccord-color-text-primary);
   font: inherit;
-  font-size: 0.78rem;
+  font-size: 1rem;
 }
 
 .help-chatbot__form button {
@@ -1533,7 +1539,7 @@ a {
   .spotlight-copy {
     right: clamp(2rem, 3.333vw, 3rem);
     bottom: clamp(3.5rem, 9svh, 6.5rem);
-    font-size: clamp(0.75rem, min(1vw, 2svh), 0.875rem);
+    font-size: 0.875rem;
   }
 
   .spotlight-recommendation {
@@ -1562,7 +1568,7 @@ a {
   }
 
   .spotlight-recommendation__reason {
-    font-size: clamp(0.82rem, min(1.05vw, 2svh), 0.98rem);
+    font-size: clamp(1.0625rem, calc(1.0625rem + 0.2vw), 1.125rem);
   }
 
   .editorial-shell {
@@ -1673,7 +1679,7 @@ a {
     background: transparent;
     color: inherit;
     font: inherit;
-    font-size: 0.78rem;
+    font-size: 1rem;
     font-weight: 600;
   }
 
@@ -1706,7 +1712,7 @@ a {
     align-items: center;
     gap: 0.45rem;
     color: inherit;
-    font-size: 0.7rem;
+    font-size: 0.875rem;
     font-weight: 650;
     text-decoration: none;
     white-space: nowrap;
@@ -1779,7 +1785,7 @@ a {
   .editorial-caption {
     min-height: clamp(1.6rem, 4svh, 2.6rem);
     margin-top: clamp(0.3rem, 1svh, 0.75rem);
-    font-size: clamp(0.65rem, min(0.85vw, 1.55svh), 0.8125rem);
+    font-size: 0.875rem;
     line-height: 1.35;
   }
 
@@ -1802,7 +1808,7 @@ a {
 
   .editorial-list-copy {
     margin-top: clamp(1rem, 4svh, 3.25rem);
-    font-size: clamp(0.78rem, min(1.05vw, 2svh), 0.95rem);
+    font-size: 1rem;
     line-height: 1.45;
   }
 

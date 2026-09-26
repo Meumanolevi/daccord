@@ -16,12 +16,12 @@ export function FuturePage({ eyebrow, title, description, nextStep, cta }: Futur
         <Link href="/" className="text-3xl font-bold tracking-[-0.055em] sm:text-5xl" aria-label="Voltar para a página inicial">
           D’ACCORD
         </Link>
-        <p className="hidden font-elegant text-sm sm:block">skincare inteligente para a sua pele.</p>
+        <p className="hidden font-elegant text-base sm:block">skincare inteligente para a sua pele.</p>
       </header>
 
       <section className="mx-auto grid max-w-[1440px] bg-white lg:min-h-[720px] lg:grid-cols-[0.8fr_1.2fr]">
         <div className="bg-brand px-7 py-14 text-white sm:px-12 sm:py-20">
-          <p className="text-xs font-bold tracking-[0.08em]">{eyebrow}</p>
+          <p className="text-sm font-bold tracking-[0.08em]">{eyebrow}</p>
           <h1 className="mt-10 font-sans text-[clamp(2.45rem,4.25vw,4.3rem)] leading-[0.96] font-bold tracking-[-0.045em] text-balance">{title}</h1>
         </div>
         <div className="flex flex-col justify-between px-7 py-14 sm:px-12 sm:py-20 lg:px-16">

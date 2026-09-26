@@ -73,7 +73,7 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
           <AnimatedButton href="/analise" variant="secondary" className="hero-action w-fit min-w-[230px]">
             Analisar minha pele
           </AnimatedButton>
-          <p className="mt-auto text-xs font-bold tracking-[0.02em]">IA + COSMETICS</p>
+          <p className="mt-auto text-sm font-bold tracking-[0.02em]">IA + COSMETICS</p>
         </div>
 
         <div data-hero-image className="hero-visual relative">
@@ -93,7 +93,7 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
             transition={{ delay: 0.9, duration: 0.55 }}
             aria-label="Prévia ilustrativa do perfil de pele"
           >
-            <p className="text-[11px] font-bold text-brand-dark">PRÉVIA DO SEU PERFIL</p>
+            <p className="text-sm font-bold text-brand-dark">PRÉVIA DO SEU PERFIL</p>
             <p className="insight-title mt-3 font-display">Barreira sensibilizada</p>
             <p className="insight-copy mt-4 leading-5">Hidratação + proteção<br />compatibilidade 97%</p>
           </motion.aside>
@@ -312,7 +312,7 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
             <p className="mt-4 max-w-sm font-elegant text-lg text-ink-muted">Beleza guiada pela sua pele.</p>
           </div>
           <nav aria-label="Links do rodapé" className="footer-nav">
-            <p className="mb-4 text-[11px] font-bold tracking-[0.14em] text-brand-dark">NAVEGAÇÃO</p>
+            <p className="mb-4 text-sm font-bold tracking-[0.14em] text-brand-dark">NAVEGAÇÃO</p>
             <ul className="space-y-1 text-sm font-medium leading-7">
               <li><Link className="transition-colors hover:text-brand" href="/produtos">PRODUTOS</Link></li>
               <li><Link className="transition-colors hover:text-brand" href="#como-funciona">COMO FUNCIONA</Link></li>
@@ -321,7 +321,7 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
               <li><Link className="transition-colors hover:text-brand" href="/contato">AJUDA</Link></li>
             </ul>
           </nav>
-          <div className="footer-legal border-t border-plum/15 pt-5 text-xs text-ink-muted">
+          <div className="footer-legal border-t border-plum/15 pt-5 text-base text-ink-muted">
             <p>© 2026 D’Accord · Projeto acadêmico</p>
             <p className="max-w-md md:text-right">Orientação cosmética. Não substitui avaliação de um profissional dermatologista.</p>
           </div>
