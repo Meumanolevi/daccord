@@ -2,7 +2,13 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const TEXT_SCALE_STORAGE_KEY = "daccord-text-scale";
+const LEGACY_LARGE_TEXT_STORAGE_KEY = "daccord-large-text";
+const MIN_TEXT_SCALE = 100;
+const MAX_TEXT_SCALE = 120;
+const TEXT_SCALE_STEP = 2.5;
 
 const utilityLinks = [
   { label: "Sobre a D’Accord", href: "/sobre" },
@@ -26,30 +32,40 @@ type SiteHeaderProps = {
 };
 
 export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
+  const accessibilityRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [accessibilityOpen, setAccessibilityOpen] = useState(false);
-  const [largeText, setLargeText] = useState(false);
+  const [textScale, setTextScale] = useState(MIN_TEXT_SCALE);
   const [highContrast, setHighContrast] = useState(false);
 
   useEffect(() => {
-    const savedLargeText = window.localStorage.getItem("daccord-large-text") === "true";
+    const savedTextScale = window.localStorage.getItem(TEXT_SCALE_STORAGE_KEY);
+    const legacyLargeText = window.localStorage.getItem(LEGACY_LARGE_TEXT_STORAGE_KEY) === "true";
+    const initialTextScale = savedTextScale === null
+      ? legacyLargeText ? 112.5 : MIN_TEXT_SCALE
+      : normalizeTextScale(Number(savedTextScale));
     const savedHighContrast = window.localStorage.getItem("daccord-high-contrast") === "true";
 
     const frame = window.requestAnimationFrame(() => {
-      setLargeText(savedLargeText);
+      setTextScale(initialTextScale);
       setHighContrast(savedHighContrast);
-      document.documentElement.classList.toggle("daccord-large-text", savedLargeText);
+      document.documentElement.style.fontSize = `${initialTextScale}%`;
       document.documentElement.classList.toggle("daccord-high-contrast", savedHighContrast);
     });
+
+    if (savedTextScale === null || Number(savedTextScale) !== initialTextScale || window.localStorage.getItem(LEGACY_LARGE_TEXT_STORAGE_KEY) !== null) {
+      window.localStorage.setItem(TEXT_SCALE_STORAGE_KEY, String(initialTextScale));
+      window.localStorage.removeItem(LEGACY_LARGE_TEXT_STORAGE_KEY);
+    }
 
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
-  const toggleLargeText = () => {
-    const nextValue = !largeText;
-    setLargeText(nextValue);
-    document.documentElement.classList.toggle("daccord-large-text", nextValue);
-    window.localStorage.setItem("daccord-large-text", String(nextValue));
+  const changeTextScale = (value: number) => {
+    const nextValue = normalizeTextScale(value);
+    setTextScale(nextValue);
+    document.documentElement.style.fontSize = `${nextValue}%`;
+    window.localStorage.setItem(TEXT_SCALE_STORAGE_KEY, String(nextValue));
   };
 
   const toggleHighContrast = () => {
@@ -59,8 +75,30 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
     window.localStorage.setItem("daccord-high-contrast", String(nextValue));
   };
 
+  useEffect(() => {
+    if (!accessibilityOpen) return;
+
+    const accessibilityControl = accessibilityRef.current;
+    if (!accessibilityControl?.closest(".landing-shell")) return;
+
+    const closeOnOutsidePointerDown = (event: PointerEvent) => {
+      if (event.target instanceof Node && !accessibilityControl.contains(event.target)) {
+        setAccessibilityOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", closeOnOutsidePointerDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", closeOnOutsidePointerDown);
+    };
+  }, [accessibilityOpen]);
+
   return (
-    <header className={`site-header relative bg-white ${isAuthenticated ? "site-header--authenticated" : ""}`} aria-label="Cabeçalho principal">
+    <header
+      className={`site-header relative bg-white ${isAuthenticated ? "site-header--authenticated" : ""} ${accessibilityOpen ? "site-header--accessibility-open" : ""}`}
+      aria-label="Cabeçalho principal"
+    >
       {!isAuthenticated ? (
         <aside className="header-login-notice" aria-label="Aviso de acesso à conta">
           <p>
@@ -74,7 +112,7 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
       <div className="header-utility">
         <div className="header-utility__content">
           <div className="header-utility__group">
-            <div className="header-accessibility">
+            <div ref={accessibilityRef} className="header-accessibility">
               <button
                 type="button"
                 aria-expanded={accessibilityOpen}
@@ -96,9 +134,9 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
                     exit={{ opacity: 0, y: -6 }}
                   >
                     <AccessibilityControls
-                      largeText={largeText}
+                      textScale={textScale}
                       highContrast={highContrast}
-                      onLargeText={toggleLargeText}
+                      onTextScale={changeTextScale}
                       onHighContrast={toggleHighContrast}
                     />
                   </motion.div>
@@ -218,9 +256,9 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
             <div className="header-mobile-menu__accessibility">
               <p>Acessibilidade</p>
               <AccessibilityControls
-                largeText={largeText}
+                textScale={textScale}
                 highContrast={highContrast}
-                onLargeText={toggleLargeText}
+                onTextScale={changeTextScale}
                 onHighContrast={toggleHighContrast}
               />
             </div>
@@ -234,28 +272,47 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
 }
 
 function AccessibilityControls({
-  largeText,
+  textScale,
   highContrast,
-  onLargeText,
+  onTextScale,
   onHighContrast,
 }: {
-  largeText: boolean;
+  textScale: number;
   highContrast: boolean;
-  onLargeText: () => void;
+  onTextScale: (value: number) => void;
   onHighContrast: () => void;
 }) {
   return (
     <div className="accessibility-controls">
-      <button type="button" aria-pressed={largeText} onClick={onLargeText}>
-        <span aria-hidden="true">A+</span>
-        Texto maior
-      </button>
+      <label className="accessibility-controls__text-scale">
+        <span>Tamanho do texto</span>
+        <output>{textScale}%</output>
+        <input
+          type="range"
+          min={MIN_TEXT_SCALE}
+          max={MAX_TEXT_SCALE}
+          step={TEXT_SCALE_STEP}
+          value={textScale}
+          aria-label="Tamanho do texto"
+          aria-valuetext={`${textScale}%`}
+          onChange={(event) => onTextScale(Number(event.currentTarget.value))}
+        />
+      </label>
       <button type="button" aria-pressed={highContrast} onClick={onHighContrast}>
         <span className="contrast-symbol" aria-hidden="true" />
         Alto contraste
       </button>
     </div>
   );
+}
+
+function normalizeTextScale(value: number) {
+  if (!Number.isFinite(value)) {
+    return MIN_TEXT_SCALE;
+  }
+
+  const clampedValue = Math.min(MAX_TEXT_SCALE, Math.max(MIN_TEXT_SCALE, value));
+  return MIN_TEXT_SCALE + Math.round((clampedValue - MIN_TEXT_SCALE) / TEXT_SCALE_STEP) * TEXT_SCALE_STEP;
 }
 
 function HeaderIcon({ name }: { name: "accessibility" | "chevron" | "heart" | "search" | "sparkles" | "user" }) {
