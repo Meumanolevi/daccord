@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: "DM Sans", sans-serif;
-  --font-display: "Staatliches", sans-serif;
-  --font-elegant: "Belleza", serif;
+  --font-sans: var(--daccord-font-body);
+  --font-display: var(--daccord-font-display);
+  --font-elegant: var(--daccord-font-elegant);
   --color-plum: #2b1924;
   --color-ink-muted: #6f6068;
   --color-brand: #9d286f;
@@ -15,6 +15,10 @@
 }
 
 :root {
+  /* Same families for the landing's Tailwind utilities and every CSS Module. */
+  --daccord-font-body: "DM Sans", sans-serif;
+  --daccord-font-display: "Staatliches", sans-serif;
+  --daccord-font-elegant: "Belleza", serif;
   --daccord-color-text-primary: #2b1924;
   --daccord-color-text-secondary: #6f6068;
   --daccord-color-bg-brand: #9d286f;
@@ -103,6 +107,7 @@ html.daccord-high-contrast .header-login-notice {
 }
 
 html {
+  font-family: var(--daccord-font-body);
   background: var(--daccord-color-bg-surface);
   scroll-behavior: smooth;
   scroll-padding-top: 0;
@@ -115,7 +120,7 @@ body {
   overflow-x: clip;
   background: var(--daccord-color-bg-surface);
   color: var(--daccord-color-text-primary);
-  font-family: "DM Sans", sans-serif;
+  font-family: var(--daccord-font-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src next.config.ts postcss.config.mjs eslint.config.mjs --max-warnings=0",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:typography": "node --test tests/typography.test.mjs"
   },
   "dependencies": {
     "@fontsource/belleza": "5.3.0",

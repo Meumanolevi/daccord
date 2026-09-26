@@ -1,14 +1,14 @@
-.catalog { background: #fff; color: var(--daccord-color-text-primary); }
+.catalog { background: #fff; color: var(--daccord-color-text-primary); font-family: var(--daccord-font-body); }
 .hero { display: flex; min-height: 21rem; align-items: flex-end; justify-content: space-between; gap: 3rem; padding: clamp(3.5rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4.5rem) clamp(2.8rem, 6vw, 5rem); background: linear-gradient(125deg, #f9e8ef 0%, #fff4f7 52%, #ead8df 100%); }
 .hero > div { max-width: 52rem; }
 .hero p, .guidance p { margin: 0 0 1rem; color: var(--daccord-color-text-brand); font-size: .7rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-.hero h1 { max-width: 48rem; margin: 0; font-family: "Belleza", serif; font-size: clamp(3.2rem, 6.4vw, 6.8rem); font-weight: 400; letter-spacing: -.055em; line-height: .9; }
+.hero h1 { max-width: 48rem; margin: 0; font-family: var(--daccord-font-body); font-size: clamp(2.45rem, 4.25vw, 4.3rem); font-weight: 700; letter-spacing: -.045em; line-height: .96; text-wrap: balance; }
 .hero > div > span { display: block; max-width: 42rem; margin-top: 1.5rem; color: var(--daccord-color-text-secondary); font-size: clamp(.92rem, 1.3vw, 1.1rem); line-height: 1.65; }
 .hero > a, .guidance a { display: inline-flex; min-height: 3.4rem; flex: 0 0 auto; align-items: center; justify-content: center; gap: .8rem; padding: .8rem 1.3rem; border: 1px solid var(--daccord-color-bg-brand); background: var(--daccord-color-bg-brand); color: #fff; font-size: .75rem; font-weight: 800; text-decoration: none; }
 .workspace { display: grid; max-width: 1480px; margin: 0 auto; grid-template-columns: 17.5rem minmax(0, 1fr); gap: clamp(2rem, 4vw, 4.5rem); padding: 3.5rem clamp(1.25rem, 4vw, 4rem) 6rem; }
 .desktopFilters { min-width: 0; }
 .filterHeading { display: flex; min-height: 3rem; align-items: flex-start; justify-content: space-between; gap: 1rem; border-bottom: 1px solid rgb(43 25 36 / 22%); }
-.filterHeading > span { font-family: "Belleza", serif; font-size: 1.25rem; }
+.filterHeading > span { font-family: var(--daccord-font-display); font-size: 1.35rem; letter-spacing: .01em; text-transform: uppercase; }
 .filterHeading button, .resultMeta button { padding: 0; border: 0; background: transparent; color: var(--daccord-color-text-brand); font: inherit; font-size: .7rem; font-weight: 750; text-decoration: underline; text-underline-offset: .2rem; cursor: pointer; }
 .filterGroups details { border-bottom: 1px solid rgb(43 25 36 / 14%); }
 .filterGroups summary { display: flex; min-height: 3.8rem; align-items: center; justify-content: space-between; gap: 1rem; font-size: .75rem; font-weight: 800; cursor: pointer; list-style: none; }
@@ -49,7 +49,7 @@
 .packshot::before { position: absolute; top: -2.8rem; width: 4.9rem; height: 3.1rem; border-radius: .55rem .55rem .15rem .15rem !important; background: linear-gradient(90deg, #c8b9bf, #faf5f7 48%, #806d75); content: ""; box-shadow: inset 0 -.3rem .5rem rgb(43 25 36 / 24%); }
 .packshot i { position: absolute; top: .7rem; right: .55rem; bottom: .7rem; width: .7rem; border-radius: 1rem !important; background: linear-gradient(to bottom, transparent, rgb(255 255 255 / 35%), transparent); }
 .packshot b { font-size: .56rem; letter-spacing: .12em; }
-.packshot em { margin-top: .45rem; font-family: "Belleza", serif; font-size: 1.1rem; font-style: normal; }
+.packshot em { margin-top: .45rem; font-family: var(--daccord-font-display); font-size: 1.1rem; font-style: normal; letter-spacing: .02em; text-transform: uppercase; }
 .jar { width: 9rem; height: 6.4rem; margin-top: 5rem; border-radius: 1rem 1rem 1.8rem 1.8rem !important; }
 .jar::before { top: -1.3rem; width: 9.2rem; height: 1.5rem; border-radius: .6rem .6rem .2rem .2rem !important; }
 .pump::before { top: -3.4rem; width: 4.4rem; height: 3.7rem; border-radius: .25rem !important; }
@@ -60,7 +60,7 @@
 .mist::before { top: -2.2rem; width: 3.9rem; height: 2.5rem; }
 .productCopy { padding: 1.25rem 1.15rem 1.3rem; }
 .productCopy > p { margin: 0 0 .45rem; color: var(--daccord-color-text-brand); font-size: .58rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.productCopy h2 { margin: 0; font-family: "Belleza", serif; font-size: 1.65rem; font-weight: 400; }
+.productCopy h2 { margin: 0; font-family: var(--daccord-font-display); font-size: 1.75rem; font-weight: 400; letter-spacing: .01em; line-height: 1; text-transform: uppercase; }
 .productCopy > span { display: -webkit-box; min-height: 3.7rem; margin-top: .55rem; overflow: hidden; color: var(--daccord-color-text-secondary); font-size: .73rem; line-height: 1.5; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
 .productCopy ul { display: flex; min-height: 1.6rem; flex-wrap: wrap; gap: .35rem; margin: .8rem 0 1rem; padding: 0; list-style: none; }
 .productCopy li { padding: .3rem .45rem; border-radius: 999px !important; background: #f8eaf0; color: var(--daccord-color-text-brand); font-size: .52rem; font-weight: 750; }
@@ -73,19 +73,19 @@
 .favoriteActive svg { fill: currentColor; }
 .featured { position: absolute; z-index: 2; top: .9rem; left: .9rem; padding: .4rem .55rem; border-radius: 999px !important; background: var(--daccord-color-bg-brand); color: #fff; font-size: .48rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 .emptyState { display: grid; min-height: 34rem; place-items: center; align-content: center; padding: 3rem; background: #faf7f8; text-align: center; }
-.emptyState > span { color: var(--daccord-color-text-brand); font-family: "Belleza", serif; font-size: 4rem; }
-.emptyState h2 { margin: .3rem 0 .8rem; font-family: "Belleza", serif; font-size: 2.3rem; font-weight: 400; }
+.emptyState > span { color: var(--daccord-color-text-brand); font-family: var(--daccord-font-display); font-size: 4rem; }
+.emptyState h2 { margin: .3rem 0 .8rem; font-family: var(--daccord-font-display); font-size: 2.3rem; font-weight: 400; text-transform: uppercase; }
 .emptyState p { max-width: 30rem; margin: 0; color: var(--daccord-color-text-secondary); font-size: .83rem; line-height: 1.6; }
 .emptyState button { margin-top: 1.5rem; padding: .85rem 1.1rem; border: 1px solid var(--daccord-color-bg-brand); background: transparent; color: var(--daccord-color-text-brand); font: inherit; font-size: .72rem; font-weight: 800; cursor: pointer; }
 .guidance { display: grid; min-height: 22rem; place-items: center; align-content: center; padding: 4rem 1.5rem; background: var(--daccord-neutral-plum-900); color: #fff; text-align: center; }
 .guidance p { color: #e7b8cf; }
-.guidance h2 { max-width: 54rem; margin: 0; font-family: "Belleza", serif; font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 400; line-height: .98; }
+.guidance h2 { max-width: 54rem; margin: 0; font-family: var(--daccord-font-display); font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 400; letter-spacing: -.01em; line-height: .92; text-transform: uppercase; }
 .guidance a { margin-top: 2rem; }
 .drawerBackdrop, .modalBackdrop { position: fixed; z-index: 200; inset: 0; background: rgb(32 14 25 / 58%); backdrop-filter: blur(4px); }
 .drawerBackdrop { display: none; }
 .drawer { position: absolute; top: 0; right: 0; bottom: 0; display: grid; width: min(25rem, 92vw); grid-template-rows: auto minmax(0, 1fr) auto; background: #fff; box-shadow: -1rem 0 3rem rgb(43 25 36 / 22%); }
 .drawer header { display: flex; min-height: 5.5rem; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; border-bottom: 1px solid rgb(43 25 36 / 14%); }
-.drawer header p { margin: 0; font-family: "Belleza", serif; font-size: 1.4rem; }
+.drawer header p { margin: 0; font-family: var(--daccord-font-display); font-size: 1.5rem; text-transform: uppercase; }
 .drawer header span { color: var(--daccord-color-text-secondary); font-size: .65rem; }
 .drawer header button, .modalClose { display: grid; width: 2.5rem; height: 2.5rem; place-items: center; border: 0; background: transparent; color: inherit; font-size: 1.8rem; cursor: pointer; }
 .drawerContent { padding: 0 1.25rem 2rem; overflow-y: auto; }
@@ -98,7 +98,7 @@
 .productVisualCompact { min-height: 35rem; }
 .modalCopy { display: flex; flex-direction: column; justify-content: center; padding: clamp(2rem, 5vw, 4.5rem); }
 .modalCopy > p { margin: 0 0 .7rem; color: var(--daccord-color-text-brand); font-size: .62rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
-.modalCopy h2 { margin: 0; font-family: "Belleza", serif; font-size: clamp(3rem, 5vw, 5rem); font-weight: 400; line-height: .9; }
+.modalCopy h2 { margin: 0; font-family: var(--daccord-font-display); font-size: clamp(3rem, 5vw, 5rem); font-weight: 400; letter-spacing: -.01em; line-height: .9; text-transform: uppercase; }
 .modalCopy > span { margin-top: 1.2rem; color: var(--daccord-color-text-secondary); font-size: .85rem; line-height: 1.6; }
 .modalCopy h3 { margin: 1.7rem 0 .6rem; font-size: .72rem; }
 .modalCopy ul { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none; }
@@ -115,7 +115,7 @@
 @media (max-width: 1120px) { .workspace { grid-template-columns: 15rem minmax(0, 1fr); gap: 2rem; } .productGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 767px) {
   .hero { min-height: 27rem; align-items: flex-start; flex-direction: column; justify-content: flex-end; gap: 1.7rem; padding: 3.5rem 1.2rem 2.7rem; }
-  .hero h1 { font-size: clamp(3.1rem, 15vw, 4.5rem); }
+  .hero h1 { font-size: clamp(2.45rem, 11.5vw, 3rem); }
   .hero > a { width: 100%; }
   .workspace { display: block; padding: 1.25rem 1rem 4rem; }
   .desktopFilters { display: none; }

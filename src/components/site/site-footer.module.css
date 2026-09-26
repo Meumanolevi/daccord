@@ -2,6 +2,7 @@
   border-top: 1px solid rgb(43 25 36 / 12%);
   background: #fff;
   color: var(--daccord-color-text-primary);
+  font-family: var(--daccord-font-body);
 }
 
 .grid {
@@ -25,7 +26,7 @@
 .brand p {
   margin: 1rem 0 0;
   color: var(--daccord-color-text-secondary);
-  font-family: "Belleza", serif;
+  font-family: var(--daccord-font-elegant);
   font-size: 1.05rem;
 }
 

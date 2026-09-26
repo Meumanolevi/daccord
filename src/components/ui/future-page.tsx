@@ -22,7 +22,7 @@ export function FuturePage({ eyebrow, title, description, nextStep, cta }: Futur
       <section className="mx-auto grid max-w-[1440px] bg-white lg:min-h-[720px] lg:grid-cols-[0.8fr_1.2fr]">
         <div className="bg-brand px-7 py-14 text-white sm:px-12 sm:py-20">
           <p className="text-xs font-bold tracking-[0.08em]">{eyebrow}</p>
-          <h1 className="mt-10 font-display text-[clamp(4rem,9vw,7rem)] leading-[0.88] text-balance">{title}</h1>
+          <h1 className="mt-10 font-sans text-[clamp(2.45rem,4.25vw,4.3rem)] leading-[0.96] font-bold tracking-[-0.045em] text-balance">{title}</h1>
         </div>
         <div className="flex flex-col justify-between px-7 py-14 sm:px-12 sm:py-20 lg:px-16">
           <div>
