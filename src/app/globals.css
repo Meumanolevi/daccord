@@ -718,6 +718,7 @@ a {
   border-radius: 0;
   background: var(--daccord-color-bg-brand);
   color: white;
+  font-size: 0.8125rem;
   white-space: nowrap;
 }
 
@@ -770,7 +771,6 @@ a {
   letter-spacing: 0.055em;
 }
 
-  font-size: 0.8125rem;
 .spotlight-recommendation__purchase {
   margin-top: auto;
   padding-top: 0.8rem;
