@@ -41,6 +41,8 @@ O projeto traduz o frame oficial do Figma para uma aplicação responsiva em Nex
 | Scroll | Lenis | suavização e navegação por seções |
 | Tipografia | Fontsource | fontes locais e estabilidade de renderização |
 | Qualidade | ESLint + TypeScript | análise estática e segurança de tipos |
+| Backend | Laravel 13 + Sanctum | API, sessões, autenticação e autorização |
+| Banco provisório | SQLite | usuários, papéis, sessões e tokens de recuperação |
 
 ## Experiência e movimento
 
@@ -120,6 +122,8 @@ scripts/                     # utilitários de tratamento dos assets da hero
 
 As APIs planejadas retornam `501 Not Implemented` de forma intencional até a conexão de provedores, consentimento, armazenamento seguro e regras de negócio.
 
+A autenticação funcional está no backend Laravel em `backend/`, sob `/api/v1`. Cadastro, login, logout, consulta da sessão, confirmação de e-mail, recuperação de senha e administração de papéis estão documentados em [docs/AUTH_API.md](docs/AUTH_API.md).
+
 ## SEO
 
 A estrutura de SEO está centralizada em `src/app/layout.tsx` e `src/lib/site-config.ts`:
@@ -183,11 +187,31 @@ Copy-Item .env.example .env.local
 
 Acesse [http://localhost:3000](http://localhost:3000).
 
+O painel administrativo está disponível em [http://localhost:3000/admin](http://localhost:3000/admin). Depois de entrar com uma conta de administrador, use:
+
+- `/admin/produtos` para listar, cadastrar, consultar, editar e excluir produtos e variações;
+- `/admin/estoque` para consultar disponibilidade, ajustar quantidades e acompanhar o histórico;
+- `/admin/usuarios` para consultar contas e administrar perfis de acesso.
+
+O catálogo público em `/produtos` consome os mesmos produtos e saldos persistidos no SQLite. Cada produto possui uma ou mais variações, e cada variação possui seu próprio registro de estoque.
+
+Para preparar e executar o backend em outro terminal, consulte [Autenticação D’Accord](docs/AUTH_API.md). Neste workspace, o runtime portátil permite iniciar a API com:
+
+```powershell
+cd backend
+..\.tools\php\php.exe artisan migrate --seed
+..\.tools\php\php.exe artisan serve --host=localhost --port=8000
+```
+
 ### Ambiente
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=http://localhost:8000
+BACKEND_INTERNAL_URL=http://localhost:8000
 ```
+
+As chamadas do navegador para `/backend/*` são encaminhadas pelo Next.js ao Laravel. Esse proxy mantém a autenticação funcional quando o frontend é aberto por `localhost`, `127.0.0.1` ou pelo endereço da rede local.
 
 Em produção, defina `NEXT_PUBLIC_SITE_URL` com o domínio canônico para gerar URLs corretas em metadata, sitemap e dados estruturados.
 

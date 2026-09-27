@@ -1,0 +1,42 @@
+.page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 2rem 1rem;
+  background: var(--daccord-color-bg-canvas);
+  color: var(--daccord-color-text-primary);
+}
+
+.card {
+  width: min(100%, 540px);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid rgb(43 25 36 / 12%);
+  background: #fff;
+  box-shadow: 0 24px 70px rgb(43 25 36 / 10%);
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--daccord-color-text-brand);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.card h1 { margin: 0; font-size: clamp(2rem, 6vw, 3.25rem); line-height: 1; letter-spacing: -0.045em; }
+.card > p:not(.eyebrow) { color: var(--daccord-color-text-secondary); line-height: 1.55; }
+.field { display: grid; gap: 0.45rem; margin-top: 1rem; }
+.field label { font-size: 0.875rem; font-weight: 800; }
+.field input { min-height: 48px; padding: 0 0.9rem; border: 1px solid rgb(43 25 36 / 18%); background: #fbf6f8; color: inherit; font: inherit; }
+.field span, .hint { color: var(--daccord-color-text-secondary); font-size: 0.82rem; line-height: 1.45; }
+.error { margin-top: 1rem; color: #a13b50; font-size: 0.9rem; font-weight: 700; }
+.success { margin-top: 1rem; color: #2d7041; font-size: 0.95rem; font-weight: 700; }
+.button, .link { display: flex; width: 100%; min-height: 48px; align-items: center; justify-content: center; margin-top: 1rem; padding: 0.75rem 1rem; border: 0; background: var(--daccord-color-bg-brand); color: #fff; font-size: 0.75rem; font-weight: 800; text-decoration: none; text-transform: uppercase; }
+.button:disabled { cursor: wait; opacity: 0.65; }
+.secondary { background: #f1e7eb; color: var(--daccord-color-text-primary); }
+.strength { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.35rem; margin-top: 0.65rem; }
+.strength span { height: 4px; background: #e2d5da; }
+.strength[data-level="fraca"] span:first-child { background: #a13b50; }
+.strength[data-level="média"] span:nth-child(-n + 2) { background: #a36b19; }
+.strength[data-level="forte"] span { background: #2d7041; }

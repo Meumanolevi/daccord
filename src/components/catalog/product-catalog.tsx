@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { apiRequest } from "@/lib/api-client";
+import type { Pagination, Product as ApiProduct } from "@/types/catalog";
 import styles from "./product-catalog.module.css";
 
 type FilterKey = "category" | "need" | "skinType" | "preference" | "texture";
@@ -35,106 +37,6 @@ export type CatalogInitialState = {
   texture: string;
 };
 
-const products: Product[] = [
-  {
-    id: "iris-01",
-    eyebrow: "Sérum reparador",
-    name: "Íris 01",
-    description: "Sérum calmante para uma barreira sensibilizada, com textura leve e acabamento confortável.",
-    price: 129.9,
-    categories: ["serum"],
-    needs: ["sensibilidade", "hidratacao", "barreira"],
-    skinTypes: ["seca", "mista", "sensivel"],
-    preferences: ["sem-fragrancia", "vegano"],
-    textures: ["leve"],
-    reasons: ["Sem fragrância", "Barreira + hidratação", "Textura leve"],
-    tone: "#8f3a66",
-    toneSoft: "#ead0dc",
-    shape: "dropper",
-    featured: true,
-  },
-  {
-    id: "calma-02",
-    eyebrow: "Gel-sérum",
-    name: "Calma 02",
-    description: "Hidratação aquosa para rotinas que pedem poucas camadas e sensação de frescor.",
-    price: 149.9,
-    categories: ["serum"],
-    needs: ["sensibilidade", "hidratacao"],
-    skinTypes: ["oleosa", "mista", "sensivel"],
-    preferences: ["sem-fragrancia", "vegano"],
-    textures: ["leve", "gel"],
-    reasons: ["Gel aquoso", "Sem fragrância", "Pele sensível"],
-    tone: "#9c6b7b",
-    toneSoft: "#eadde1",
-    shape: "pump",
-  },
-  {
-    id: "barreira-04",
-    eyebrow: "Creme de tratamento",
-    name: "Barreira 04",
-    description: "Creme nutritivo para reduzir o desconforto de peles secas sem complicar o ritual.",
-    price: 159.9,
-    categories: ["hidratante"],
-    needs: ["barreira", "hidratacao", "sensibilidade"],
-    skinTypes: ["seca", "sensivel"],
-    preferences: ["sem-fragrancia"],
-    textures: ["rica"],
-    reasons: ["Nutrição prolongada", "Barreira fragilizada", "Sem fragrância"],
-    tone: "#71505f",
-    toneSoft: "#e5d8dd",
-    shape: "jar",
-  },
-  {
-    id: "neutra-03",
-    eyebrow: "Limpeza facial",
-    name: "Neutra 03",
-    description: "Gel de limpeza gentil, pensado para remover resíduos sem deixar sensação de repuxamento.",
-    price: 89.9,
-    categories: ["limpeza"],
-    needs: ["oleosidade", "sensibilidade"],
-    skinTypes: ["oleosa", "mista", "sensivel"],
-    preferences: ["sem-fragrancia", "vegano"],
-    textures: ["gel", "leve"],
-    reasons: ["Limpeza gentil", "Gel leve", "Uso diário"],
-    tone: "#8c6571",
-    toneSoft: "#efe0e4",
-    shape: "pump",
-  },
-  {
-    id: "solar-05",
-    eyebrow: "Proteção diária",
-    name: "Solar 05",
-    description: "Protetor facial de toque seco e fácil reaplicação para acompanhar todos os dias.",
-    price: 119.9,
-    categories: ["protecao-solar"],
-    needs: ["protecao", "oleosidade"],
-    skinTypes: ["seca", "oleosa", "mista", "sensivel"],
-    preferences: ["sem-fragrancia"],
-    textures: ["leve"],
-    reasons: ["Toque seco", "Sem fragrância", "Amplo espectro"],
-    tone: "#b77579",
-    toneSoft: "#f0dcdb",
-    shape: "tube",
-  },
-  {
-    id: "bruma-06",
-    eyebrow: "Bruma hidratante",
-    name: "Bruma 06",
-    description: "Uma camada fina de conforto para complementar a rotina sem pesar sobre outros produtos.",
-    price: 79.9,
-    categories: ["bruma"],
-    needs: ["hidratacao", "sensibilidade"],
-    skinTypes: ["seca", "oleosa", "mista", "sensivel"],
-    preferences: ["vegano"],
-    textures: ["leve"],
-    reasons: ["Camada ultraleve", "Fácil reaplicação", "Vegano"],
-    tone: "#986778",
-    toneSoft: "#ead9df",
-    shape: "mist",
-  },
-];
-
 const filterGroups: Array<{ key: FilterKey; label: string; options: Array<{ value: string; label: string }> }> = [
   { key: "category", label: "Categoria", options: [
     { value: "serum", label: "Séruns" }, { value: "hidratante", label: "Hidratantes" }, { value: "limpeza", label: "Limpeza" }, { value: "protecao-solar", label: "Proteção solar" }, { value: "bruma", label: "Brumas" },
@@ -157,6 +59,9 @@ const priceFormatter = new Intl.NumberFormat("pt-BR", { style: "currency", curre
 const emptyFilters = (): FilterState => ({ category: [], need: [], skinType: [], preference: [], texture: [] });
 
 export function ProductCatalog({ initialState }: { initialState: CatalogInitialState }) {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [catalogLoading, setCatalogLoading] = useState(true);
+  const [catalogError, setCatalogError] = useState("");
   const [query, setQuery] = useState(initialState.query);
   const [sort, setSort] = useState("relevancia");
   const [filters, setFilters] = useState<FilterState>(() => ({
@@ -169,6 +74,34 @@ export function ProductCatalog({ initialState }: { initialState: CatalogInitialS
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [quickView, setQuickView] = useState<Product | null>(null);
   const [favorites, setFavorites] = useState<string[]>([]);
+
+  useEffect(() => {
+    let active = true;
+    apiRequest<Pagination<ApiProduct>>("/api/v1/products")
+      .then((response) => {
+        if (!active) return;
+        setProducts(response.data.data.map((product) => ({
+          id: String(product.id),
+          eyebrow: product.eyebrow ?? product.category,
+          name: product.name,
+          description: product.description,
+          price: (product.min_price_cents ?? 0) / 100,
+          categories: [product.category],
+          needs: product.needs,
+          skinTypes: product.skin_types,
+          preferences: product.preferences,
+          textures: product.textures,
+          reasons: product.reasons,
+          tone: product.tone,
+          toneSoft: product.tone_soft,
+          shape: product.shape,
+          featured: product.featured,
+        })));
+      })
+      .catch(() => active && setCatalogError("Não foi possível carregar os produtos agora."))
+      .finally(() => active && setCatalogLoading(false));
+    return () => { active = false; };
+  }, []);
 
   const activeCount = Object.values(filters).reduce((total, values) => total + values.length, 0);
   const results = useMemo(() => {
@@ -190,7 +123,7 @@ export function ProductCatalog({ initialState }: { initialState: CatalogInitialS
       if (sort === "nome") return a.name.localeCompare(b.name, "pt-BR");
       return Number(Boolean(b.featured)) - Number(Boolean(a.featured));
     });
-  }, [filters, query, sort]);
+  }, [filters, products, query, sort]);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -277,10 +210,14 @@ export function ProductCatalog({ initialState }: { initialState: CatalogInitialS
 
           <div className={styles.resultMeta} aria-live="polite">
             <p><b>{results.length}</b> {results.length === 1 ? "produto encontrado" : "produtos encontrados"}</p>
-            {activeCount || query ? <button type="button" onClick={clearFilters}>Limpar busca e filtros</button> : <span>Catálogo demonstrativo do MVP</span>}
+            {activeCount || query ? <button type="button" onClick={clearFilters}>Limpar busca e filtros</button> : <span>Disponibilidade atualizada pelo estoque D’Accord</span>}
           </div>
 
-          {results.length ? (
+          {catalogLoading ? (
+            <div className={styles.emptyState}><span aria-hidden="true">◌</span><h2>Carregando a curadoria…</h2><p>Estamos consultando o catálogo e a disponibilidade de cada produto.</p></div>
+          ) : catalogError ? (
+            <div className={styles.emptyState}><span aria-hidden="true">!</span><h2>Catálogo indisponível.</h2><p>{catalogError} Atualize a página para tentar novamente.</p></div>
+          ) : results.length ? (
             <div className={styles.productGrid}>
               {results.map((product) => (
                 <ProductCard key={product.id} product={product} favorite={favorites.includes(product.id)} onFavorite={toggleFavorite} onQuickView={setQuickView} />

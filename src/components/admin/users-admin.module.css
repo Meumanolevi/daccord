@@ -1,0 +1,10 @@
+.userList { max-width: 100%; overflow-x: auto; }
+.userHead, .userRow { display: grid; min-width: 680px; grid-template-columns: minmax(260px, 2fr) 150px 120px 40px; align-items: center; gap: 12px; padding: 13px 15px; }
+.userHead { background: var(--admin-soft); color: var(--admin-muted); font-size: .625rem; font-weight: 900; letter-spacing: .09em; }
+.userRow { width: 100%; min-height: 74px; border: 0; border-top: 1px solid var(--admin-border); background: var(--admin-surface); color: var(--admin-text); font-size: .75rem; text-align: left; }
+.userRow:hover, .userRow.selected { background: #faf1f6; }
+.userRow.selected { box-shadow: inset 3px 0 var(--admin-brand); }
+.profile { display: grid; gap: 6px; margin-bottom: 20px; color: var(--admin-muted); font-size: .75rem; }
+.warning { margin: 17px 0; padding: 12px; border-left: 3px solid #9a5a19; background: #fff1df; color: #6d3e10; font-size: .6875rem; line-height: 1.5; }
+:global(html.daccord-high-contrast) .userRow { border-color: var(--admin-border); }
+:global(html.daccord-high-contrast) .warning { border-color: #14000c; background: white; color: #14000c; }

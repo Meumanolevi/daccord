@@ -8,6 +8,7 @@ import "@fontsource/staatliches/400.css";
 import "@fontsource/belleza/400.css";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import { HelpChatbot } from "@/components/ui/help-chatbot";
+import { AuthProvider } from "@/components/auth/auth-provider";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -74,8 +75,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="pt-BR">
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
-        <HelpChatbot />
+        <AuthProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+          <HelpChatbot />
+        </AuthProvider>
       </body>
     </html>
   );

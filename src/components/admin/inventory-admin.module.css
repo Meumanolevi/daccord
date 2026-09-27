@@ -1,0 +1,21 @@
+.stockTable { max-width: 100%; overflow-x: auto; }
+.stockHead, .stockRow { display: grid; min-width: 700px; grid-template-columns: minmax(260px, 2fr) 88px 82px 125px 40px; align-items: center; gap: 12px; padding: 13px 15px; }
+.stockHead { background: var(--admin-soft); color: var(--admin-muted); font-size: .625rem; font-weight: 900; letter-spacing: .09em; }
+.stockRow { width: 100%; min-height: 76px; border: 0; border-top: 1px solid var(--admin-border); background: var(--admin-surface); color: var(--admin-text); font-size: .75rem; text-align: left; cursor: pointer; }
+.stockRow:hover, .stockRow.selected { background: #faf1f6; }
+.stockRow.selected { box-shadow: inset 3px 0 var(--admin-brand); }
+.inspector { position: sticky; top: 92px; min-width: 0; padding: 21px; }
+.inspector h2 { margin: 4px 0; overflow-wrap: anywhere; font-family: var(--daccord-font-display); font-size: 2.25rem; font-weight: 400; text-transform: uppercase; }
+.variantTitle { display: block; margin-bottom: 19px; color: var(--admin-muted); font-size: .6875rem; }
+.adjustForm { display: grid; gap: 15px; padding-bottom: 20px; border-bottom: 1px solid var(--admin-border); }
+.history { margin-top: 18px; }
+.history h3 { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+.history article { padding: 12px 0; border-top: 1px solid var(--admin-border); }
+.history article > div { display: flex; justify-content: space-between; gap: 10px; font-size: .75rem; }
+.history p { margin: 6px 0; color: var(--admin-muted); font-size: .6875rem; }
+.history small { color: var(--admin-muted); font-size: .625rem; }
+:global(html.daccord-high-contrast) .stockRow { border-color: var(--admin-border); }
+
+@media (max-width: 1200px) {
+  .inspector { position: relative; top: auto; }
+}

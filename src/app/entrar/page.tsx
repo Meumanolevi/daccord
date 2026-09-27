@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { AuthExperience } from "@/components/auth/auth-experience";
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function SignInPage() {
-  return <AuthExperience />;
+  return (
+    <Suspense fallback={null}>
+      <AuthExperience />
+    </Suspense>
+  );
 }

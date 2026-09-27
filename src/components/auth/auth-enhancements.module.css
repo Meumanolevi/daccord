@@ -1,0 +1,52 @@
+.loading {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.generatePassword {
+  margin: 0.65rem 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--daccord-color-text-brand);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.passwordStrength {
+  margin-top: 0.65rem;
+  padding: 0.75rem;
+  border-left: 3px solid #a13b50;
+  background: #fbf6f8;
+  color: var(--daccord-color-text-secondary);
+  font-size: 0.78rem;
+}
+
+.passwordStrength > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.3rem;
+}
+
+.passwordStrength > div span {
+  height: 4px;
+  background: #e2d5da;
+}
+
+.passwordStrength[data-level="fraca"] > div span:first-child { background: #a13b50; }
+.passwordStrength[data-level="média"] { border-color: #a36b19; }
+.passwordStrength[data-level="média"] > div span:nth-child(-n + 2) { background: #a36b19; }
+.passwordStrength[data-level="forte"] { border-color: #2d7041; }
+.passwordStrength[data-level="forte"] > div span { background: #2d7041; }
+.passwordStrength p { margin: 0.45rem 0 0; text-transform: capitalize; }
+.passwordStrength ul { display: grid; gap: 0.2rem; margin: 0.45rem 0 0; padding-left: 1rem; }
+.passwordStrength small { display: block; margin-top: 0.45rem; line-height: 1.4; }
+
+.formError {
+  margin: 0.75rem 0 0;
+  color: #a13b50;
+  font-size: 0.875rem;
+  font-weight: 700;
+}

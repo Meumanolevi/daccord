@@ -9,12 +9,15 @@ import { StepCarousel } from "@/components/landing/step-carousel";
 import { SiteHeader } from "@/components/landing/site-header";
 import { ScrollStageReveal } from "@/components/motion/scroll-stage-reveal";
 import { AnimatedButton } from "@/components/ui/animated-button";
+import { useAuth } from "@/components/auth/auth-provider";
 
 const sectionSurface = (color: string) =>
   ({ "--section-surface": color }) as CSSProperties;
 
-export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boolean }) {
+export function LandingPage({ isAuthenticated }: { isAuthenticated?: boolean }) {
   const root = useRef<HTMLElement>(null);
+  const { user } = useAuth();
+  const authenticated = isAuthenticated ?? Boolean(user);
   const [productStageOpen, setProductStageOpen] = useState(false);
   const reduceMotion = useReducedMotion();
 
@@ -59,8 +62,8 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
   };
 
   return (
-    <main ref={root} className={`landing-shell bg-white ${isAuthenticated ? "landing-shell--authenticated" : ""}`}>
-      <SiteHeader isAuthenticated={isAuthenticated} />
+    <main ref={root} className={`landing-shell bg-white ${authenticated ? "landing-shell--authenticated" : ""}`}>
+      <SiteHeader isAuthenticated={authenticated} />
 
       <section id="inicio" data-snap-section className="hero-panel mx-auto grid max-w-[1440px] bg-white" aria-labelledby="hero-title">
         <div data-hero-copy className="hero-copy flex flex-col bg-brand text-white">

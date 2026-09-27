@@ -1,0 +1,69 @@
+.catalogLayout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 17px; align-items: start; }
+.catalogLayout.withEditor { grid-template-columns: minmax(580px, 1fr) minmax(390px, 450px); }
+.productTable { min-width: 0; }
+.productRow { width: 100%; border-right: 0; border-bottom: 0; border-left: 0; background: var(--admin-surface); color: inherit; text-align: left; cursor: pointer; }
+.productRow.selected { background: #f9f0f5; box-shadow: inset 3px 0 var(--admin-brand); }
+.productCell { display: flex; min-width: 0; align-items: center; gap: 12px; }
+.productVisual { --tone: #8f3a66; --soft: #ead0dc; position: relative; display: block; width: 42px; height: 50px; flex: 0 0 auto; border-radius: 16px 16px 5px 5px !important; background: linear-gradient(145deg, var(--soft), var(--tone)); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 40%); }
+.productVisual::before { position: absolute; top: -5px; left: 13px; width: 16px; height: 8px; border-radius: 2px !important; background: var(--admin-plum); content: ""; }
+.productCell small { color: var(--admin-brand); font-size: .625rem; }
+.low { display: block; margin-top: 4px; color: #93401f; font-size: .625rem; }
+
+.editor { position: sticky; top: 92px; max-height: calc(100vh - 112px); overflow: hidden; border: 1px solid var(--admin-border); border-radius: 8px !important; background: var(--admin-surface); box-shadow: 0 18px 50px rgb(43 25 36 / 13%); }
+.editor > form { display: flex; max-height: inherit; flex-direction: column; }
+.standalone { position: relative; top: auto; width: min(920px, 100%); max-height: none; margin: 0 auto; }
+.standalone > form { max-height: none; }
+.editorHead { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 20px 21px 16px; }
+.editorHead h2 { margin: 4px 0; font-family: var(--daccord-font-display); font-size: 2.125rem; font-weight: 400; line-height: 1; text-transform: uppercase; }
+.editorHead span { color: var(--admin-muted); font-size: .6875rem; }
+.editorHead > button { display: grid; width: 36px; height: 36px; flex: 0 0 auto; place-items: center; border: 0; border-radius: 5px !important; background: #eee5e9; color: var(--admin-text); font-size: 1.375rem; }
+.eyebrow { margin: 0; color: var(--admin-brand); font-size: .6875rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.tabs { display: flex; overflow-x: auto; border-top: 1px solid var(--admin-border); border-bottom: 1px solid var(--admin-border); background: #faf6f8; }
+.tabs button { min-width: max-content; min-height: 46px; flex: 1; padding: 0 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--admin-muted); font-size: .625rem; font-weight: 800; white-space: nowrap; }
+.tabs .tabActive { border-bottom-color: var(--admin-brand); color: var(--admin-brand); background: var(--admin-surface); }
+.editorBody { display: grid; min-height: 320px; gap: 15px; overflow: auto; padding: 19px 21px; }
+.formSection { display: grid; align-content: start; gap: 15px; }
+.formSection small { color: #a02d47; font-size: .6875rem; }
+.formSection label i { font-weight: 500; color: var(--admin-muted); }
+.validation { padding: 12px; border-left: 3px solid #4b83ae; background: #eaf2f7; color: #2b526e; font-size: .6875rem; line-height: 1.5; }
+.check { display: flex; min-height: 44px; align-items: center; gap: 9px; color: var(--admin-muted); font-size: .75rem; font-weight: 700; }
+.check input { accent-color: var(--admin-brand); }
+.editorActions { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 21px; border-top: 1px solid var(--admin-border); background: #fbf8f9; }
+.editorActions > div, .inlineActions, .variantMeta > div { display: flex; gap: 8px; }
+.dangerText { border: 0; background: transparent; color: #a3314d; font-size: .6875rem; font-weight: 800; text-decoration: underline; cursor: pointer; }
+.formError { padding: 12px; border-left: 3px solid #a8324e; background: #fdecef; color: #90233d; font-size: .75rem; }
+.variantList { display: grid; gap: 12px; }
+.variantItem, .ingredientRow, .addVariant { display: grid; gap: 12px; padding: 15px; border: 1px solid var(--admin-border); border-radius: 6px !important; background: #fdfafb; }
+.variantMeta, .ingredientActions { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--admin-muted); font-size: .6875rem; }
+
+.modalBackdrop { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 22px; background: rgb(43 25 36 / 58%); }
+.modal { width: min(480px, 100%); max-height: calc(100vh - 44px); overflow-y: auto; padding: 26px; border: 1px solid var(--admin-border); border-radius: 8px !important; background: var(--admin-surface); box-shadow: 0 25px 80px rgb(0 0 0 / 28%); }
+.modal h2 { margin: 6px 0; font-family: var(--daccord-font-display); font-size: 2.625rem; font-weight: 400; text-transform: uppercase; }
+.modal > p:not(.eyebrow) { color: var(--admin-muted); font-size: .8125rem; line-height: 1.55; }
+.modal label { display: grid; gap: 7px; margin-top: 17px; }
+.modal label span { font-size: .6875rem; font-weight: 800; letter-spacing: .08em; }
+.modal input { height: 46px; padding: 0 12px; border: 1px solid var(--admin-border); border-radius: 5px !important; background: var(--admin-surface); color: var(--admin-text); font-size: .8125rem; }
+.modal footer { display: flex; justify-content: flex-end; gap: 9px; margin-top: 20px; }
+.secondary, .danger { min-height: 44px; padding: 0 16px; border: 0; border-radius: 5px !important; font-size: .75rem; font-weight: 800; }
+.secondary { background: #eee5e9; color: var(--admin-text); }
+.danger { background: #a22e4a; color: white; }
+
+:global(html.daccord-high-contrast) .editor,
+:global(html.daccord-high-contrast) .modal,
+:global(html.daccord-high-contrast) .variantItem,
+:global(html.daccord-high-contrast) .ingredientRow,
+:global(html.daccord-high-contrast) .addVariant { border-color: var(--admin-border); box-shadow: 0 0 0 1px var(--admin-border); }
+:global(html.daccord-high-contrast) .validation { border-color: #14000c; background: white; color: #14000c; }
+
+@media (max-width: 1360px) {
+  .catalogLayout.withEditor { display: block; }
+  .editor { position: fixed; z-index: 60; top: 0; right: 0; width: min(560px, 100%); height: 100vh; max-height: none; border-radius: 0 !important; }
+  .editor > form { height: 100%; max-height: none; }
+}
+
+@media (max-width: 740px) {
+  .editorActions { align-items: stretch; flex-direction: column; }
+  .editorActions > div { display: grid; grid-template-columns: 1fr 1fr; }
+  .variantMeta, .ingredientActions { align-items: flex-start; flex-direction: column; }
+  .modal { padding: 21px; }
+}

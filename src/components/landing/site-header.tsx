@@ -3,12 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-
-const TEXT_SCALE_STORAGE_KEY = "daccord-text-scale";
-const LEGACY_LARGE_TEXT_STORAGE_KEY = "daccord-large-text";
-const MIN_TEXT_SCALE = 100;
-const MAX_TEXT_SCALE = 120;
-const TEXT_SCALE_STEP = 2.5;
+import { AccessibilityControls, useAccessibilityPreferences } from "@/components/accessibility/accessibility-controls";
+import { useAuth } from "@/components/auth/auth-provider";
 
 const utilityLinks = [
   { label: "Sobre a D’Accord", href: "/sobre" },
@@ -31,49 +27,13 @@ type SiteHeaderProps = {
   isAuthenticated?: boolean;
 };
 
-export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
+export function SiteHeader({ isAuthenticated }: SiteHeaderProps) {
+  const { user, logout } = useAuth();
+  const authenticated = isAuthenticated ?? Boolean(user);
   const accessibilityRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [accessibilityOpen, setAccessibilityOpen] = useState(false);
-  const [textScale, setTextScale] = useState(MIN_TEXT_SCALE);
-  const [highContrast, setHighContrast] = useState(false);
-
-  useEffect(() => {
-    const savedTextScale = window.localStorage.getItem(TEXT_SCALE_STORAGE_KEY);
-    const legacyLargeText = window.localStorage.getItem(LEGACY_LARGE_TEXT_STORAGE_KEY) === "true";
-    const initialTextScale = savedTextScale === null
-      ? legacyLargeText ? 112.5 : MIN_TEXT_SCALE
-      : normalizeTextScale(Number(savedTextScale));
-    const savedHighContrast = window.localStorage.getItem("daccord-high-contrast") === "true";
-
-    const frame = window.requestAnimationFrame(() => {
-      setTextScale(initialTextScale);
-      setHighContrast(savedHighContrast);
-      document.documentElement.style.fontSize = `${initialTextScale}%`;
-      document.documentElement.classList.toggle("daccord-high-contrast", savedHighContrast);
-    });
-
-    if (savedTextScale === null || Number(savedTextScale) !== initialTextScale || window.localStorage.getItem(LEGACY_LARGE_TEXT_STORAGE_KEY) !== null) {
-      window.localStorage.setItem(TEXT_SCALE_STORAGE_KEY, String(initialTextScale));
-      window.localStorage.removeItem(LEGACY_LARGE_TEXT_STORAGE_KEY);
-    }
-
-    return () => window.cancelAnimationFrame(frame);
-  }, []);
-
-  const changeTextScale = (value: number) => {
-    const nextValue = normalizeTextScale(value);
-    setTextScale(nextValue);
-    document.documentElement.style.fontSize = `${nextValue}%`;
-    window.localStorage.setItem(TEXT_SCALE_STORAGE_KEY, String(nextValue));
-  };
-
-  const toggleHighContrast = () => {
-    const nextValue = !highContrast;
-    setHighContrast(nextValue);
-    document.documentElement.classList.toggle("daccord-high-contrast", nextValue);
-    window.localStorage.setItem("daccord-high-contrast", String(nextValue));
-  };
+  const { textScale, highContrast, changeTextScale, toggleHighContrast } = useAccessibilityPreferences();
 
   useEffect(() => {
     if (!accessibilityOpen) return;
@@ -96,10 +56,10 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
 
   return (
     <header
-      className={`site-header relative bg-white ${isAuthenticated ? "site-header--authenticated" : ""} ${accessibilityOpen ? "site-header--accessibility-open" : ""}`}
+      className={`site-header relative bg-white ${authenticated ? "site-header--authenticated" : ""} ${accessibilityOpen ? "site-header--accessibility-open" : ""}`}
       aria-label="Cabeçalho principal"
     >
-      {!isAuthenticated ? (
+      {!authenticated ? (
         <aside className="header-login-notice" aria-label="Aviso de acesso à conta">
           <p>
             <Link href="/entrar">Faça login</Link>
@@ -159,6 +119,7 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
             <ul>
               <li><Link href="/privacidade">Privacidade</Link></li>
               <li><Link href="/analise">Minha análise</Link></li>
+              {authenticated ? <li><button type="button" className="header-logout" onClick={() => void logout()}>Sair</button></li> : null}
             </ul>
           </nav>
         </div>
@@ -198,9 +159,9 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
             <HeaderIcon name="heart" />
             <span>Minha curadoria</span>
           </Link>
-          <Link href={isAuthenticated ? "/analise" : "/entrar"} className="header-action-link">
+          <Link href={user?.role === "admin" ? "/admin" : authenticated ? "/analise" : "/entrar"} className="header-action-link">
             <HeaderIcon name="user" />
-            <span>{isAuthenticated ? "Minha conta" : "Entrar"}</span>
+            <span>{user?.role === "admin" ? "Painel ADM" : authenticated ? user?.name.split(" ")[0] ?? "Minha conta" : "Entrar"}</span>
           </Link>
         </div>
 
@@ -269,50 +230,6 @@ export function SiteHeader({ isAuthenticated = false }: SiteHeaderProps) {
       <div className="header-rule bg-brand" />
     </header>
   );
-}
-
-function AccessibilityControls({
-  textScale,
-  highContrast,
-  onTextScale,
-  onHighContrast,
-}: {
-  textScale: number;
-  highContrast: boolean;
-  onTextScale: (value: number) => void;
-  onHighContrast: () => void;
-}) {
-  return (
-    <div className="accessibility-controls">
-      <label className="accessibility-controls__text-scale">
-        <span>Tamanho do texto</span>
-        <output>{textScale}%</output>
-        <input
-          type="range"
-          min={MIN_TEXT_SCALE}
-          max={MAX_TEXT_SCALE}
-          step={TEXT_SCALE_STEP}
-          value={textScale}
-          aria-label="Tamanho do texto"
-          aria-valuetext={`${textScale}%`}
-          onChange={(event) => onTextScale(Number(event.currentTarget.value))}
-        />
-      </label>
-      <button type="button" aria-pressed={highContrast} onClick={onHighContrast}>
-        <span className="contrast-symbol" aria-hidden="true" />
-        Alto contraste
-      </button>
-    </div>
-  );
-}
-
-function normalizeTextScale(value: number) {
-  if (!Number.isFinite(value)) {
-    return MIN_TEXT_SCALE;
-  }
-
-  const clampedValue = Math.min(MAX_TEXT_SCALE, Math.max(MIN_TEXT_SCALE, value));
-  return MIN_TEXT_SCALE + Math.round((clampedValue - MIN_TEXT_SCALE) / TEXT_SCALE_STEP) * TEXT_SCALE_STEP;
 }
 
 function HeaderIcon({ name }: { name: "accessibility" | "chevron" | "heart" | "search" | "sparkles" | "user" }) {
