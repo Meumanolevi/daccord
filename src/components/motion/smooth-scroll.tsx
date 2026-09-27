@@ -53,8 +53,20 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     const handleWheel = (event: WheelEvent) => {
       if (event.ctrlKey || !window.matchMedia("(pointer: fine)").matches) return;
+      if (event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
       if (event.target instanceof Element && event.target.closest("[data-lenis-prevent]")) return;
       if (snapSections.length === 0) return;
+
+      // Keep expanded sections readable on short viewports and with larger text.
+      const flowSection = snapSections.find(({ section, position }) =>
+        section.hasAttribute("data-snap-flow") &&
+        window.scrollY >= position - 8 &&
+        window.scrollY < position + section.offsetHeight - 8);
+      if (flowSection) {
+        const bottom = flowSection.position + flowSection.section.offsetHeight - window.innerHeight;
+        if ((event.deltaY > 0 && window.scrollY < bottom - 8) ||
+          (event.deltaY < 0 && window.scrollY > flowSection.position + 8)) return;
+      }
 
       event.preventDefault();
       event.stopImmediatePropagation();

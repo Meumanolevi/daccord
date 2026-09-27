@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
-import { MobileStepDeck } from "@/components/landing/mobile-step-deck";
+import { StepCarousel } from "@/components/landing/step-carousel";
 import { SiteHeader } from "@/components/landing/site-header";
 import { ScrollStageReveal } from "@/components/motion/scroll-stage-reveal";
 import { AnimatedButton } from "@/components/ui/animated-button";
@@ -213,6 +213,7 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
       <section
         id="como-funciona"
         data-panel
+        data-snap-flow
         data-snap-section
         className="section-transition immersive-panel editorial-panel mx-auto max-w-[1440px] bg-white"
         style={sectionSurface("#ffffff")}
@@ -221,48 +222,16 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
         <div data-panel-content className="editorial-shell">
           <h2 id="editorial-title" className="editorial-title font-display tracking-[0.03em]">TEXTURA. CONTEXTO. ROTINA.</h2>
 
-          <div className="editorial-desktop-steps">
-            <div className="editorial-top">
-              <EditorialImage
-                src="/images/texture.png"
-                alt="Textura cremosa e cápsula de skincare em tons rosados"
-                label="01 · TEXTURAS QUE SUA PELE TOLERA"
-                note="HIDRATAÇÃO SEM PESO."
-              />
-              <EditorialImage
-                src="/images/application.png"
-                alt="Pessoa aplicando suavemente um produto de skincare no rosto"
-                label="02 · COMO VOCÊ USA"
-                note="SENSAÇÃO, FREQUÊNCIA E PREFERÊNCIAS."
-              />
+          <StepCarousel />
+          <aside className="editorial-summary" aria-label="Como a curadoria organiza as escolhas">
+            <div>
+              <h3 className="editorial-summary__title font-display">OBSERVAR. ENTENDER. FILTRAR. RECOMENDAR.</h3>
+              <p className="editorial-summary__copy">A IA organiza os sinais. Você continua no centro das escolhas.</p>
             </div>
-
-            <div className="editorial-bottom">
-              <EditorialImage
-                src="/images/ritual.png"
-                alt="Ritual de skincare com sérum e potes sobre composição editorial rosa"
-                label="03 · PRODUTOS QUE CONVERSAM ENTRE SI"
-                note="UM RITUAL MENOR, MAIS COERENTE."
-                ratio="wide"
-              />
-              <aside className="editorial-list flex min-h-0 flex-col bg-nude">
-                <h3 className="editorial-list-title font-display">
-                  <span>OBSERVAR</span>
-                  <span>ENTENDER</span>
-                  <span>FILTRAR</span>
-                  <span>RECOMENDAR.</span>
-                </h3>
-                <p className="editorial-list-copy max-w-[320px] font-medium text-[#6b2f45]">
-                  A IA organiza os sinais. Você continua no centro das escolhas.
-                </p>
-                <AnimatedButton href="/analise" className="editorial-list-action mt-auto w-fit min-w-[220px]">
-                  Ver minha curadoria
-                </AnimatedButton>
-              </aside>
-            </div>
-          </div>
-
-          <MobileStepDeck />
+            <AnimatedButton href="/analise" className="min-w-[220px]">
+              Ver minha curadoria
+            </AnimatedButton>
+          </aside>
         </div>
         <SectionArrow href="#diagnostico" label="Ir para o diagnóstico" caption="CONTINUAR" tone="dark" />
       </section>
@@ -332,40 +301,6 @@ export function LandingPage({ isAuthenticated = false }: { isAuthenticated?: boo
   );
 }
 
-function EditorialImage({
-  src,
-  alt,
-  label,
-  note,
-  ratio = "standard",
-}: {
-  src: string;
-  alt: string;
-  label: string;
-  note: string;
-  ratio?: "standard" | "wide";
-}) {
-  return (
-    <figure className={`editorial-figure editorial-figure-${ratio}`}>
-      <div className="editorial-media relative min-h-0 overflow-hidden">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          quality={90}
-          loading="lazy"
-          decoding="async"
-          sizes={ratio === "wide" ? "(max-width: 1023px) 100vw, 66vw" : "(max-width: 767px) 100vw, 50vw"}
-          className="object-cover transition-transform duration-700 hover:scale-[1.025]"
-        />
-      </div>
-      <figcaption className="editorial-caption">
-        <span className="block">{label}</span>
-        <span className="block">{note}</span>
-      </figcaption>
-    </figure>
-  );
-}
 
 function SectionArrow({
   href,

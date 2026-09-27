@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint src next.config.ts postcss.config.mjs eslint.config.mjs --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "test:typography": "node --test tests/typography.test.mjs"
+    "test:typography": "node --test tests/typography.test.mjs",
+    "test:carousel": "node --experimental-strip-types --test tests/carousel.test.mjs"
   },
   "dependencies": {
     "@fontsource/belleza": "5.3.0",
